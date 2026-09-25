@@ -1,0 +1,134 @@
+/* Testimonials Section */
+.testimonialsSection {
+  background-color: var(--bg-white);
+  padding: 3.75rem 0 4rem 0;
+  border-bottom: 1px solid var(--border-default);
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* Infinite Marquee Container */
+.marqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 0.5rem 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scrollMarquee 38s linear infinite;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+/* Card Styling */
+.card {
+  width: 360px;
+  max-width: 85vw;
+  flex-shrink: 0;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: rgba(0, 34, 85, 0.25);
+  box-shadow: 0 6px 18px rgba(0, 34, 85, 0.06);
+  transform: translateY(-2px);
+}
+
+.quoteText {
+  font-size: 0.925rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Author Row */
+.authorRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-default);
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--mainBlue);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  min-width: 0;
+}
+
+.authorName {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  line-height: 1.2;
+}
+
+.courseName {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 768px) {
+  .testimonialsSection {
+    padding: 2.75rem 0 3.25rem 0;
+  }
+  .title {
+    font-size: 1.65rem;
+  }
+  .card {
+    width: 300px;
+    padding: 1.25rem;
+  }
+}

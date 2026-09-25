@@ -1,0 +1,537 @@
+.resultWrapper {
+  background-color: var(--bg-page, #f8fafc);
+  min-height: 100vh;
+  padding: 2rem 0 5rem 0;
+}
+
+.breadcrumbBar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.825rem;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+  color: var(--text-muted, #64748b);
+  transition: color var(--transition-fast, 0.15s ease);
+}
+
+.breadcrumbLink:hover {
+  color: var(--mainBlue, #002255);
+}
+
+.breadcrumbSep {
+  color: var(--text-light, #94a3b8);
+}
+
+.breadcrumbCurrent {
+  color: var(--text-heading, #091e42);
+  font-weight: 600;
+}
+
+/* Scorecard Hero */
+.scorecardHero {
+  background: linear-gradient(135deg, #001f4d 0%, #002b66 50%, #00163a 100%);
+  border-radius: var(--radius-lg, 8px);
+  padding: 2.25rem 2.5rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 34, 85, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  flex-wrap: wrap;
+}
+
+.scorecardMain {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.statusHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm, 4px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pillPassed {
+  background: #059669;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.4);
+}
+
+.pillFailed {
+  background: #d97706;
+  color: #ffffff;
+}
+
+.categoryBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #bfdbfe;
+  background: rgba(11, 87, 208, 0.35);
+  border: 1px solid rgba(191, 219, 254, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs, 2px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.assessmentTitle {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.scorecardDesc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.55;
+  margin: 0 0 0.75rem 0;
+  max-width: 600px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.actionBtn {
+  border-radius: var(--radius-md, 6px);
+  padding: 0.65rem 1.25rem;
+}
+
+/* Score Gauge Card */
+.scoreGaugeCard {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md, 6px);
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 250px;
+  gap: 1.25rem;
+}
+
+.gaugeCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gaugeScoreNum {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.gaugePercentage {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-top: 0.25rem;
+}
+
+.gaugeLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.2rem;
+}
+
+.metaStatList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.78rem;
+  color: #cbd5e1;
+}
+
+.metaStatItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.statIcon {
+  color: #94a3b8;
+}
+
+.statIconSuccess {
+  color: #34d399;
+}
+
+/* Solutions Section */
+.solutionsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.solutionsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1.5px solid var(--border-default, #e2e8f0);
+  flex-wrap: wrap;
+}
+
+.solutionsTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--mainBlue, #002255);
+  margin: 0 0 0.35rem 0;
+}
+
+.solutionsSubtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #475569);
+  margin: 0;
+}
+
+.filterPills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.filterBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--text-secondary, #475569);
+  background: #ffffff;
+  border: 1px solid var(--border-default, #e2e8f0);
+  border-radius: var(--radius-sm, 4px);
+  cursor: pointer;
+  transition: all var(--transition-fast, 0.15s ease);
+}
+
+.filterBtn:hover {
+  background: var(--bg-alt, #f1f5f9);
+}
+
+.filterBtnActive {
+  background: var(--mainBlue, #002255);
+  color: #ffffff;
+  border-color: var(--mainBlue, #002255);
+}
+
+/* Questions Stack */
+.questionsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.solutionCard {
+  background: var(--bg-card, #ffffff);
+  border: 1px solid var(--border-default, #e2e8f0);
+  border-radius: var(--radius-lg, 8px);
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 34, 85, 0.06));
+}
+
+.cardCorrect {
+  border-left: 4px solid #059669;
+}
+
+.cardIncorrect {
+  border-left: 4px solid #dc2626;
+}
+
+.cardTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.qInfoGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qIndexBadge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--mainBlue, #002255);
+  background: var(--mainBlue-surface, #f0f5fc);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-xs, 2px);
+}
+
+.topicTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs, 2px);
+}
+
+.badgeCorrect {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #059669;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.badgeIncorrect {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #dc2626;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.badgeSkipped {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.promptText {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-heading, #091e42);
+  line-height: 1.45;
+  margin: 0 0 1.25rem 0;
+}
+
+.codeSnippetBox {
+  background: #0f172a;
+  border-radius: var(--radius-md, 6px);
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.codeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  background: #1e293b;
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.codeBlock {
+  padding: 0.85rem 1.1rem;
+  margin: 0;
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 0.85rem;
+  color: #38bdf8;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.optionItem {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md, 6px);
+  border: 1.5px solid var(--border-default, #e2e8f0);
+  background: #ffffff;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.optDefault {
+  color: var(--text-primary, #1e293b);
+}
+
+.optCorrect {
+  border-color: #059669;
+  background-color: #f0fdf4;
+}
+
+.optWrong {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.optLetterWrap {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-xs, 2px);
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.optCorrect .optLetterWrap {
+  background: #059669;
+  color: #ffffff;
+}
+
+.optWrong .optLetterWrap {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.optText {
+  font-size: 0.9rem;
+  color: var(--text-primary, #1e293b);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.correctLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #059669;
+  background: #dcfce7;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs, 2px);
+}
+
+.yourChoiceLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs, 2px);
+}
+
+/* Explanation Box */
+.explanationBox {
+  background: var(--mainBlue-surface, #f0f5fc);
+  border: 1px solid rgba(0, 34, 85, 0.12);
+  border-radius: var(--radius-md, 6px);
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.explanationHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--mainBlue, #002255);
+}
+
+.explanationSparkle {
+  color: #d97706;
+}
+
+.explanationTitle {
+  font-size: 0.825rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.explanationBody {
+  font-size: 0.88rem;
+  color: var(--text-primary, #1e293b);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .scorecardHero {
+    padding: 1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .assessmentTitle {
+    font-size: 1.45rem;
+  }
+
+  .scoreGaugeCard {
+    width: 100%;
+  }
+
+  .solutionCard {
+    padding: 1.25rem;
+  }
+
+  .promptText {
+    font-size: 1.05rem;
+  }
+}

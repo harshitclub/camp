@@ -1,0 +1,192 @@
+/* Course Card Styles */
+.card {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(0, 34, 85, 0.04);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.card:hover {
+  border-color: rgba(0, 34, 85, 0.35);
+  box-shadow: 0 10px 24px -4px rgba(0, 34, 85, 0.12);
+  transform: translateY(-3px);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.thumbnailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .thumbnailImg {
+  transform: scale(1.03);
+}
+
+.imageBadges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.durationBadge {
+  background-color: var(--mainBlue);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.categoryBadge {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--mainBlue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(0, 34, 85, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardBody {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.ratingBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #b45309;
+  font-weight: 700;
+}
+
+.levelTag {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.01em;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.skillsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.skillPill {
+  background-color: var(--bg-alt);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+}
+
+.cardFooter {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.deliverableText {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accentEmerald);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  background-color: var(--mainBlue-surface);
+  border: 1px solid rgba(0, 34, 85, 0.15);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.viewBtn:hover {
+  background-color: var(--mainBlue);
+  color: #ffffff;
+  border-color: var(--mainBlue);
+}
+
+@media (max-width: 640px) {
+  .cardBody {
+    padding: 1.25rem;
+  }
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .viewBtn {
+    width: 100%;
+  }
+}

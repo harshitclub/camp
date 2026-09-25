@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-pbi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#120c03" />
+      <stop offset="50%" stop-color="#241706" />
+      <stop offset="100%" stop-color="#140d03" />
+    </linearGradient>
+    <radialGradient id="glow-pbi" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-pbi" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#f59e0b" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg-pbi)" />
+  <rect width="800" height="450" fill="url(#grid-pbi)" />
+  <circle cx="400" cy="225" r="270" fill="url(#glow-pbi)" />
+
+  <g transform="translate(180, 75)">
+    <rect x="-10" y="-10" width="460" height="320" rx="20" fill="#f59e0b" fill-opacity="0.12" filter="blur(16px)" />
+    <rect x="0" y="0" width="440" height="300" rx="16" fill="#241706" fill-opacity="0.9" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="1.5" />
+    
+    <rect x="0" y="0" width="440" height="42" rx="16" fill="#140d03" fill-opacity="0.95" />
+    <path d="M 0 42 L 440 42" stroke="#f59e0b" stroke-opacity="0.2" stroke-width="1" />
+    <circle cx="24" cy="21" r="5" fill="#f43f5e" />
+    <circle cx="42" cy="21" r="5" fill="#eab308" />
+    <circle cx="60" cy="21" r="5" fill="#10b981" />
+    <text x="220" y="26" fill="#fde68a" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">ExecutiveDashboard.pbix — Power BI &amp; DAX</text>
+
+    <!-- Multi Visual BI Cards -->
+    <g transform="translate(30, 60)">
+      <!-- KPI Card 1 -->
+      <rect x="0" y="0" width="115" height="65" rx="8" fill="#150d03" stroke="#f59e0b" stroke-width="1" />
+      <text x="57" y="20" fill="#fcd34d" font-family="system-ui" font-size="10" font-weight="700" text-anchor="middle">TOTAL SALES</text>
+      <text x="57" y="44" fill="#ffffff" font-family="monospace" font-size="15" font-weight="800" text-anchor="middle">$4.82M</text>
+      <text x="57" y="58" fill="#10b981" font-family="system-ui" font-size="9" text-anchor="middle">▲ +19.4% YoY</text>
+
+      <!-- KPI Card 2 -->
+      <rect x="132" y="0" width="115" height="65" rx="8" fill="#150d03" stroke="#38bdf8" stroke-width="1" />
+      <text x="189" y="20" fill="#7dd3fc" font-family="system-ui" font-size="10" font-weight="700" text-anchor="middle">CUSTOMER RETENTION</text>
+      <text x="189" y="44" fill="#ffffff" font-family="monospace" font-size="15" font-weight="800" text-anchor="middle">94.2%</text>
+      <text x="189" y="58" fill="#38bdf8" font-family="system-ui" font-size="9" text-anchor="middle">Enterprise Tier</text>
+
+      <!-- KPI Card 3 -->
+      <rect x="265" y="0" width="115" height="65" rx="8" fill="#150d03" stroke="#a855f7" stroke-width="1" />
+      <text x="322" y="20" fill="#d8b4fe" font-family="system-ui" font-size="10" font-weight="700" text-anchor="middle">CONVERSION RATE</text>
+      <text x="322" y="44" fill="#ffffff" font-family="monospace" font-size="15" font-weight="800" text-anchor="middle">8.65%</text>
+      <text x="322" y="58" fill="#10b981" font-family="system-ui" font-size="9" text-anchor="middle">▲ Top Decile</text>
+    </g>
+
+    <!-- Bar Chart Grid -->
+    <g transform="translate(30, 140)">
+      <rect x="0" y="0" width="380" height="75" rx="8" fill="#150d03" />
+      <!-- Bars -->
+      <rect x="30" y="40" width="25" height="25" rx="3" fill="#f59e0b" />
+      <rect x="85" y="25" width="25" height="40" rx="3" fill="#f59e0b" />
+      <rect x="140" y="15" width="25" height="50" rx="3" fill="#f59e0b" />
+      <rect x="195" y="30" width="25" height="35" rx="3" fill="#38bdf8" />
+      <rect x="250" y="10" width="25" height="55" rx="3" fill="#38bdf8" />
+      <rect x="305" y="5" width="25" height="60" rx="3" fill="#10b981" />
+    </g>
+
+    <g transform="translate(30, 230)">
+      <rect x="0" y="0" width="380" height="42" rx="8" fill="#140d03" stroke="#f59e0b" stroke-opacity="0.3" />
+      <circle cx="20" cy="21" r="5" fill="#f59e0b" />
+      <text x="36" y="25" fill="#fef3c7" font-family="monospace" font-size="11" font-weight="600">POWER QUERY ETL, ADVANCED DAX &amp; KPI DASHBOARDS</text>
+    </g>
+  </g>
+
+  <g transform="translate(45, 195)">
+    <circle cx="30" cy="30" r="32" fill="#78350f" stroke="#f59e0b" stroke-width="1" />
+    <text x="30" y="37" fill="#fef08a" font-family="system-ui" font-size="12" font-weight="800" text-anchor="middle">DAX</text>
+  </g>
+  <g transform="translate(695, 195)">
+    <circle cx="30" cy="30" r="32" fill="#78350f" stroke="#f59e0b" stroke-width="1" />
+    <text x="30" y="37" fill="#fef08a" font-family="system-ui" font-size="12" font-weight="800" text-anchor="middle">PBI</text>
+  </g>
+</svg>

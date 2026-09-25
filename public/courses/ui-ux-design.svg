@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-uiux" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#120514" />
+      <stop offset="50%" stop-color="#240b28" />
+      <stop offset="100%" stop-color="#140616" />
+    </linearGradient>
+    <radialGradient id="glow-uiux" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-uiux" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#ec4899" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg-uiux)" />
+  <rect width="800" height="450" fill="url(#grid-uiux)" />
+  <circle cx="400" cy="225" r="270" fill="url(#glow-uiux)" />
+
+  <g transform="translate(180, 75)">
+    <rect x="-10" y="-10" width="460" height="320" rx="20" fill="#ec4899" fill-opacity="0.12" filter="blur(16px)" />
+    <rect x="0" y="0" width="440" height="300" rx="16" fill="#240b28" fill-opacity="0.9" stroke="#ec4899" stroke-opacity="0.4" stroke-width="1.5" />
+    
+    <rect x="0" y="0" width="440" height="42" rx="16" fill="#120514" fill-opacity="0.95" />
+    <path d="M 0 42 L 440 42" stroke="#ec4899" stroke-opacity="0.2" stroke-width="1" />
+    <circle cx="24" cy="21" r="5" fill="#f43f5e" />
+    <circle cx="42" cy="21" r="5" fill="#eab308" />
+    <circle cx="60" cy="21" r="5" fill="#10b981" />
+    <text x="220" y="26" fill="#fbcfe8" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">DesignSystem.fig — Figma &amp; Design Systems</text>
+
+    <!-- UI/UX Wireframe Frame & Swatches -->
+    <g transform="translate(60, 65)">
+      <!-- Mobile Mockup Frame -->
+      <rect x="0" y="0" width="120" height="150" rx="12" fill="#120514" stroke="#ec4899" stroke-width="1.5" />
+      <rect x="15" y="15" width="90" height="18" rx="4" fill="#db2777" fill-opacity="0.4" />
+      <rect x="15" y="42" width="40" height="40" rx="6" fill="#831843" />
+      <rect x="65" y="42" width="40" height="40" rx="6" fill="#831843" />
+      <rect x="15" y="92" width="90" height="35" rx="6" fill="#ec4899" fill-opacity="0.6" />
+      <text x="60" y="114" fill="#ffffff" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle">CTA BUTTON</text>
+
+      <!-- Palette Swatches & Typography Specs -->
+      <g transform="translate(150, 15)">
+        <circle cx="15" cy="15" r="14" fill="#ec4899" />
+        <circle cx="55" cy="15" r="14" fill="#8b5cf6" />
+        <circle cx="95" cy="15" r="14" fill="#06b6d4" />
+        <circle cx="135" cy="15" r="14" fill="#10b981" />
+
+        <text x="0" y="60" fill="#fbcfe8" font-family="system-ui" font-size="12" font-weight="700">Design Tokens &amp; Components</text>
+        <text x="0" y="80" fill="#cbd5e1" font-family="monospace" font-size="10">Auto-Layout 5.0 • Variables</text>
+        <text x="0" y="100" fill="#cbd5e1" font-family="monospace" font-size="10">Micro-Interactions • Heuristics</text>
+      </g>
+    </g>
+
+    <g transform="translate(30, 230)">
+      <rect x="0" y="0" width="380" height="42" rx="8" fill="#120514" stroke="#ec4899" stroke-opacity="0.3" />
+      <circle cx="20" cy="21" r="5" fill="#ec4899" />
+      <text x="36" y="25" fill="#fdf2f8" font-family="monospace" font-size="11" font-weight="600">FIGMA PROTOTYPING, USER RESEARCH &amp; DESIGN TOKENS</text>
+    </g>
+  </g>
+
+  <g transform="translate(45, 195)">
+    <circle cx="30" cy="30" r="32" fill="#500724" stroke="#ec4899" stroke-width="1" />
+    <path d="M 22 38 L 38 22 M 38 22 L 32 22 M 38 22 L 38 28" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" />
+  </g>
+  <g transform="translate(695, 195)">
+    <circle cx="30" cy="30" r="32" fill="#500724" stroke="#a855f7" stroke-width="1" />
+    <text x="30" y="37" fill="#e879f9" font-family="system-ui" font-size="12" font-weight="800" text-anchor="middle">UI</text>
+  </g>
+</svg>

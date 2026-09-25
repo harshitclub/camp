@@ -1,0 +1,214 @@
+.legalSection {
+  padding: 4.5rem 0;
+  background-color: var(--bg-page);
+}
+
+.legalGrid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3.5rem;
+  align-items: flex-start;
+}
+
+/* Sidebar Table of Contents */
+.tocSidebar {
+  position: sticky;
+  top: 96px;
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.tocTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.tocNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.tocLink {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+  line-height: 1.4;
+  display: block;
+}
+
+.tocLink:hover {
+  color: var(--accentBlue);
+  background-color: var(--mainBlue-surface);
+}
+
+/* Main Legal Content Container */
+.contentCard {
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 3rem 3.25rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.legalBlock {
+  margin-bottom: 2.75rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.legalBlock:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionHeading {
+  font-size: 1.4rem;
+  color: var(--mainBlue);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  line-height: 1.3;
+}
+
+.sectionNumber {
+  color: var(--accentBlue);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.text strong {
+  color: var(--mainBlue);
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.925rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.listBullet {
+  color: var(--accentBlue);
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.calloutBox {
+  background: var(--mainBlue-surface);
+  border-left: 3px solid var(--accentBlue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+}
+
+.calloutTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  margin-bottom: 0.35rem;
+}
+
+.calloutText {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.contactTable {
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.contactRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border-subtle);
+  font-size: 0.9rem;
+}
+
+.contactRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.contactKey {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.contactVal {
+  color: var(--mainBlue);
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .legalGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .tocSidebar {
+    display: none;
+  }
+
+  .contentCard {
+    padding: 2rem 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .legalSection {
+    padding: 2.5rem 0;
+  }
+
+  .contentCard {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .sectionHeading {
+    font-size: 1.2rem;
+  }
+
+  .contactRow {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}

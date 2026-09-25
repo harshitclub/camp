@@ -1,0 +1,209 @@
+.section {
+  padding: 5.5rem 0;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3.5rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #eef4ff;
+  color: #0b57d0;
+  border: 1px solid #d0e1fd;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: 1rem;
+}
+
+.eyebrowIcon {
+  color: #0b57d0;
+}
+
+.title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--mainBlue);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* Dual Column Comparison Grid */
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.compareCard {
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+/* Traditional Card Styling */
+.traditionalCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: var(--shadow-card);
+}
+
+.crossIconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.categoryLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #dc2626;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* Campussutras Card Styling */
+.campCard {
+  background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
+  border: 2px solid #0b57d0;
+  box-shadow: 0 20px 40px -15px rgba(11, 87, 208, 0.2);
+}
+
+.recommendedBadge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: linear-gradient(135deg, #0b57d0 0%, #002255 100%);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.3);
+}
+
+.checkIconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background-color: #e8f0fe;
+  color: #0b57d0;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.categoryLabelCamp {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #0b57d0;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.cardHeading {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  margin: 0;
+}
+
+/* Point List */
+.pointList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  flex: 1;
+}
+
+.pointItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.crossIcon {
+  color: #ef4444;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.checkIcon {
+  color: #059669;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.cardCta {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(11, 87, 208, 0.15);
+}
+
+@media (max-width: 992px) {
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+  }
+  .compareCard {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+  .title {
+    font-size: 1.85rem;
+  }
+}

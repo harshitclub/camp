@@ -1,0 +1,851 @@
+.verifierContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Search Card */
+.searchCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.searchHeader {
+  margin-bottom: 1.75rem;
+}
+
+.searchEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--mainBlue-surface);
+  color: var(--accentBlue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: 0.6rem;
+}
+
+.shieldIcon {
+  color: var(--accentBlue);
+}
+
+.searchTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  margin-bottom: 0.4rem;
+}
+
+.searchSubtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 600px;
+  margin: 0 auto 1.25rem;
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.inputField {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-heading);
+  background: var(--bg-page);
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-xs);
+  padding: 0.85rem 2.75rem 0.85rem 2.85rem;
+  transition: all var(--transition-fast);
+}
+
+.inputField:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--accentBlue);
+  box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
+}
+
+.clearBtn {
+  position: absolute;
+  right: 0.85rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clearBtn:hover {
+  color: var(--text-primary);
+  background: var(--bg-alt);
+}
+
+.verifyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.spinnerWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.sampleSuggestions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.sampleLabel {
+  font-weight: 500;
+}
+
+.sampleButtons {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.sampleBtn {
+  background: var(--bg-alt);
+  color: var(--accentBlue);
+  border: 1px solid var(--border-default);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sampleBtn:hover {
+  background: var(--mainBlue-surface);
+  border-color: var(--accentBlue);
+}
+
+/* Error Card */
+.errorCard {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.errorIconWrap {
+  color: #dc2626;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.errorContent {
+  flex: 1;
+}
+
+.errorTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #991b1b;
+  margin-bottom: 0.35rem;
+}
+
+.errorDesc {
+  color: #b91c1c;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.errorTip {
+  background: #ffffff;
+  border: 1px solid #fee2e2;
+  border-radius: var(--radius-xs);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: #7f1d1d;
+}
+
+.errorTip ul {
+  margin-top: 0.35rem;
+  padding-left: 1.2rem;
+}
+
+.errorTip li {
+  margin-bottom: 0.2rem;
+}
+
+.errorTip a {
+  color: var(--accentBlue);
+  text-decoration: underline;
+}
+
+/* Certificate Result Card */
+.certificateResultCard {
+  background: #ffffff;
+  border: 2px solid var(--accentBlue);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg), 0 20px 35px -10px rgba(0, 34, 85, 0.12);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  animation: slideUp 0.35s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ribbonBar {
+  background: linear-gradient(90deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.verifiedBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.certCode {
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+}
+
+.certBody {
+  padding: 2.25rem;
+  background: radial-gradient(circle at center, #ffffff 0%, #f8fafd 100%);
+}
+
+.certHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.orgBrand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.brandLogo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.orgTextWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.orgName {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.orgSub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.authStamp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #d97706;
+  border: 2px dashed #f59e0b;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-xs);
+  background: #fffbeb;
+  flex-shrink: 0;
+}
+
+.stampIcon {
+  color: #d97706;
+}
+
+.stampText {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-default);
+  margin: 1.75rem 0;
+}
+
+.studentSection {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.statementText {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  display: block;
+}
+
+.studentName {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  margin: 0.5rem 0;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.programHighlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--mainBlue-surface);
+  color: var(--accentBlue);
+  border: 1px solid #bfdbfe;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-xs);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-top: 0.75rem;
+}
+
+.sparkleIcon {
+  color: #d97706;
+}
+
+/* Details Grid */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.detailIcon {
+  color: var(--accentBlue);
+  background: var(--mainBlue-surface);
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detailMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.detailLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.detailValue {
+  font-size: 0.88rem;
+  color: var(--text-heading);
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.naTag {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs, 4px);
+  letter-spacing: 0.02em;
+}
+
+.independentPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accentBlue, #0b57d0);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.statusVerified {
+  color: #059669;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.certFooter {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.25rem;
+}
+
+.securityNotice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.secShield {
+  color: #059669;
+  flex-shrink: 0;
+}
+
+/* Action Toolbar */
+.actionToolbar {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border-default);
+  padding: 1rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #ffffff;
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.toolBtn:hover {
+  background: var(--mainBlue-surface);
+  border-color: var(--accentBlue);
+  color: var(--accentBlue);
+}
+
+.toolBtnSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px transparent solid;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.toolBtnSecondary:hover {
+  color: var(--text-primary);
+}
+
+/* Trust Guide */
+.trustGuide {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-default);
+}
+
+.guideTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-heading);
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.guideCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.35rem;
+}
+
+.guideIconWrap {
+  width: 36px;
+  height: 36px;
+  background: var(--mainBlue-surface);
+  color: var(--accentBlue);
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+}
+
+.guideCardTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.35rem;
+}
+
+.guideCardDesc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.guideCardDesc code {
+  background: var(--bg-alt);
+  padding: 0.15rem 0.35rem;
+  border-radius: 3px;
+  font-weight: 600;
+  color: var(--accentBlue);
+}
+
+.loadingFallback {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Print Stylesheet - Single Page Certificate Export */
+@media print {
+  .searchCard,
+  .actionToolbar,
+  .trustGuide,
+  .errorCard,
+  .sampleSuggestions {
+    display: none !important;
+  }
+
+  .verifierContainer {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .certificateResultCard {
+    border: 2px solid #002255 !important;
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    border-radius: 4px !important;
+  }
+
+  .ribbonBar {
+    background: #059669 !important;
+    padding: 0.6rem 1.25rem !important;
+  }
+
+  .verifiedBadge {
+    color: #ffffff !important;
+    font-size: 0.8rem !important;
+  }
+
+  .certCode {
+    background: rgba(0, 0, 0, 0.25) !important;
+    color: #ffffff !important;
+  }
+
+  .certBody {
+    padding: 1.25rem 1.5rem !important;
+    background: #ffffff !important;
+  }
+
+  .brandLogo {
+    height: 42px !important;
+  }
+
+  .orgName {
+    font-size: 1.05rem !important;
+  }
+
+  .orgSub {
+    font-size: 0.72rem !important;
+  }
+
+  .authStamp {
+    padding: 0.35rem 0.65rem !important;
+    background: #fffbeb !important;
+    border: 1.5px dashed #d97706 !important;
+  }
+
+  .stampText {
+    font-size: 0.6rem !important;
+  }
+
+  .divider {
+    margin: 1rem 0 !important;
+  }
+
+  .studentSection {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .statementText {
+    font-size: 0.85rem !important;
+  }
+
+  .studentName {
+    font-size: 1.75rem !important;
+    margin: 0.35rem 0 !important;
+  }
+
+  .programHighlight {
+    font-size: 1.05rem !important;
+    padding: 0.45rem 1.15rem !important;
+    margin-top: 0.5rem !important;
+    background: #f0f5fc !important;
+    border: 1px solid #bfdbfe !important;
+  }
+
+  .detailsGrid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.65rem !important;
+    padding: 0.85rem !important;
+    margin-bottom: 1rem !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  .detailItem {
+    gap: 0.5rem !important;
+  }
+
+  .detailIcon {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .detailLabel {
+    font-size: 0.65rem !important;
+  }
+
+  .detailValue {
+    font-size: 0.82rem !important;
+  }
+
+  .statusVerified {
+    font-size: 0.82rem !important;
+  }
+
+  .certFooter {
+    padding-top: 0.75rem !important;
+  }
+
+  .securityNotice {
+    font-size: 0.72rem !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 860px) {
+  .detailsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .guideGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .certHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.15rem;
+  }
+  .orgBrand {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.65rem;
+    width: 100%;
+  }
+  .orgTextWrap {
+    align-items: center;
+    text-align: center;
+  }
+  .orgName {
+    font-size: 1.05rem;
+    text-align: center;
+  }
+  .orgSub {
+    text-align: center;
+  }
+  .authStamp {
+    align-self: center;
+    margin: 0 auto;
+  }
+  .ribbonBar {
+    flex-direction: column;
+    gap: 0.45rem;
+    text-align: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .searchCard {
+    padding: 1.5rem 1.15rem;
+  }
+  .searchForm {
+    flex-direction: column;
+  }
+  .verifyBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .certBody {
+    padding: 1.5rem 1rem;
+  }
+  .studentName {
+    font-size: 1.6rem;
+    word-break: break-word;
+  }
+  .programHighlight {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.85rem;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  .actionToolbar {
+    padding: 0.85rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .toolBtn,
+  .toolBtnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

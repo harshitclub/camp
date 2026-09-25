@@ -1,0 +1,347 @@
+.formCard {
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #eef4ff;
+  color: #0b57d0;
+  border: 1px solid #d0e1fd;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-xs);
+  margin-bottom: 0.85rem;
+}
+
+.eyebrowIcon {
+  color: #0b57d0;
+}
+
+.title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  margin-bottom: 0.45rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.alertError {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin-bottom: 1.5rem;
+}
+
+.alertIcon {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.alertSuccess {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #059669;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.alertIconSuccess {
+  flex-shrink: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Audience Segmented Control */
+.audienceSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.sectionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.segmentedControl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #f1f5f9;
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  gap: 4px;
+}
+
+.segmentBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #475569;
+  background: transparent;
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.segmentBtn:hover {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.segmentBtnActive {
+  background: #ffffff !important;
+  color: #0b57d0 !important;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(11, 87, 208, 0.15);
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.15rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.reqStar {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+.optLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.fieldIcon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  pointer-events: none;
+  transition: color var(--transition-fast);
+}
+
+.inputWrapper:focus-within .fieldIcon {
+  color: #0b57d0;
+}
+
+.input {
+  width: 100%;
+  padding: 0.82rem 1rem 0.82rem 2.65rem;
+  font-size: 0.93rem;
+  color: var(--text-primary);
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.input:focus {
+  border-color: #0b57d0;
+  box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
+}
+
+.selectCustom {
+  cursor: pointer;
+  appearance: auto;
+}
+
+.eyeBtn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyeBtn:hover {
+  color: var(--mainBlue);
+}
+
+/* Optional Details Block (Always Visible & Distinct) */
+.detailsCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1.35rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 0.25rem;
+  position: relative;
+}
+
+.detailsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.15rem;
+}
+
+.detailsTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.optionalBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #e2e8f0;
+  color: #475569;
+  padding: 0.18rem 0.55rem;
+  border-radius: 20px;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.15rem;
+}
+
+.fullSpan {
+  grid-column: 1 / -1;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 0.5rem;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(11, 87, 208, 0.25);
+  font-size: 1rem;
+  padding: 0.95rem;
+  border-radius: var(--radius-sm);
+}
+
+.loadingWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-default);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.switchLink {
+  color: #0b57d0;
+  font-weight: 700;
+  margin-left: 0.25rem;
+}
+
+.switchLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .formCard {
+    padding: 2rem 1.25rem;
+  }
+  .grid2,
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+  .segmentedControl {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,103 @@
+.heroSection {
+  padding: 4.5rem 0 3.5rem 0;
+  background: linear-gradient(180deg, var(--bg-white) 0%, var(--mainBlue-surface) 100%);
+  border-bottom: 1px solid rgba(0, 34, 85, 0.08);
+  text-align: center;
+}
+
+.heroContent {
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-white);
+  border: 1px solid rgba(0, 34, 85, 0.12);
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mainBlue);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accentEmerald);
+}
+
+.title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  line-height: 1.2;
+  margin-bottom: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.highlight {
+  color: var(--accentBlue);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  max-width: 720px;
+}
+
+.badgesBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.badgeItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mainBlue);
+  background: var(--bg-white);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-xs);
+}
+
+.badgeIcon {
+  color: var(--accentBlue);
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 3rem 0 2.5rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .badgesBar {
+    gap: 0.65rem;
+  }
+}

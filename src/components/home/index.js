@@ -1,0 +1,12 @@
+export { default as Hero } from "./Hero/Hero";
+export { default as Stats } from "./Stats/Stats";
+export { default as AboutSection } from "./AboutSection/AboutSection";
+export { default as FeaturedCourses } from "./FeaturedCourses/FeaturedCourses";
+export { default as FeaturedAssessments } from "./FeaturedAssessments/FeaturedAssessments";
+export { default as WhyChooseUs } from "./WhyChooseUs/WhyChooseUs";
+export { default as ProcessSection } from "./ProcessSection/ProcessSection";
+export { default as CertificateSection } from "./CertificateSection/CertificateSection";
+export { default as Testimonials } from "./Testimonials/Testimonials";
+export { default as FaqSection } from "./FaqSection/FaqSection";
+export { default as HireSection } from "./HireSection/HireSection";
+export { default as CtaBanner } from "./CtaBanner/CtaBanner";

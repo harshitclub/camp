@@ -1,0 +1,149 @@
+/* Why Choose Us Section */
+.whySection {
+  background-color: var(--bg-white);
+  padding: 5.5rem 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.pillarCard {
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  transition: all var(--transition-fast);
+}
+
+.pillarCard:hover {
+  border-color: rgba(0, 34, 85, 0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.pillarIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-xs);
+  background-color: var(--mainBlue-surface);
+  color: var(--mainBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.85rem;
+}
+
+.pillarTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  margin-bottom: 0.35rem;
+}
+
+.pillarText {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Image Column */
+.imageCol {
+  position: relative;
+}
+
+.imageCard {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.whyImg {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+.trustOverlay {
+  position: absolute;
+  bottom: -15px;
+  left: 20px;
+  right: 20px;
+  background-color: var(--mainBlue);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.trustText {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.trustHighlight {
+  color: #38bdf8;
+  font-weight: 800;
+}
+
+@media (max-width: 992px) {
+  .whyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .imageCol {
+    order: -1;
+  }
+  .title {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .trustOverlay {
+    position: static;
+    margin-top: 1rem;
+  }
+}

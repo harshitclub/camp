@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg-java" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070c18" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#0a1020" />
+    </linearGradient>
+    <linearGradient id="java-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <radialGradient id="glow-java" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid-java" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#38bdf8" stroke-opacity="0.04" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bg-java)" />
+  <rect width="800" height="450" fill="url(#grid-java)" />
+  <circle cx="400" cy="225" r="270" fill="url(#glow-java)" />
+
+  <g transform="translate(180, 75)">
+    <rect x="-10" y="-10" width="460" height="320" rx="20" fill="#f97316" fill-opacity="0.1" filter="blur(16px)" />
+    <rect x="0" y="0" width="440" height="300" rx="16" fill="#0f172a" fill-opacity="0.9" stroke="#f97316" stroke-opacity="0.35" stroke-width="1.5" />
+    
+    <rect x="0" y="0" width="440" height="42" rx="16" fill="#090d16" fill-opacity="0.95" />
+    <path d="M 0 42 L 440 42" stroke="#f97316" stroke-opacity="0.2" stroke-width="1" />
+    <circle cx="24" cy="21" r="5" fill="#f43f5e" />
+    <circle cx="42" cy="21" r="5" fill="#eab308" />
+    <circle cx="60" cy="21" r="5" fill="#10b981" />
+    <text x="220" y="26" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="12" font-weight="600" text-anchor="middle">OrderService.java — Spring Boot 3</text>
+
+    <!-- Code Block -->
+    <text x="28" y="78" fill="#f97316" font-family="monospace" font-size="13" font-weight="600">@SpringBootApplication</text>
+    <text x="28" y="104" fill="#38bdf8" font-family="monospace" font-size="13">public class</text>
+    <text x="135" y="104" fill="#f8fafc" font-family="monospace" font-size="13" font-weight="600">MicroserviceCloud</text>
+    <text x="280" y="104" fill="#94a3b8" font-family="monospace" font-size="13">{</text>
+
+    <!-- Microservice Nodes Graph -->
+    <g transform="translate(30, 130)">
+      <rect x="0" y="0" width="115" height="60" rx="10" fill="#1e293b" stroke="#f97316" stroke-width="1.2" />
+      <text x="57" y="26" fill="#f97316" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">API GATEWAY</text>
+      <text x="57" y="44" fill="#94a3b8" font-family="monospace" font-size="9" text-anchor="middle">Spring Cloud</text>
+
+      <path d="M 118 30 L 132 30" stroke="#f97316" stroke-width="2" stroke-dasharray="2 2" />
+
+      <rect x="135" y="0" width="115" height="60" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+      <text x="192" y="26" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">KAFKA CLUSTER</text>
+      <text x="192" y="44" fill="#94a3b8" font-family="monospace" font-size="9" text-anchor="middle">Event Stream</text>
+
+      <path d="M 253 30 L 267 30" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2 2" />
+
+      <rect x="270" y="0" width="110" height="60" rx="10" fill="#1e293b" stroke="#10b981" stroke-width="1.2" />
+      <text x="325" y="26" fill="#10b981" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">POSTGRES DB</text>
+      <text x="325" y="44" fill="#94a3b8" font-family="monospace" font-size="9" text-anchor="middle">JPA / Hibernate</text>
+    </g>
+
+    <!-- Footer Tag -->
+    <g transform="translate(30, 230)">
+      <rect x="0" y="0" width="380" height="42" rx="8" fill="#090d16" stroke="#f97316" stroke-opacity="0.25" />
+      <circle cx="20" cy="21" r="5" fill="#f97316" />
+      <text x="36" y="25" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600">ENTERPRISE JAVA 21 &amp; DISTRIBUTED ARCHITECTURE</text>
+    </g>
+  </g>
+
+  <!-- Side Tech Badges -->
+  <g transform="translate(45, 195)">
+    <circle cx="30" cy="30" r="32" fill="#1e293b" stroke="#f97316" stroke-width="1" />
+    <path d="M 20 38 C 20 22, 40 22, 40 38 Z" fill="none" stroke="#f97316" stroke-width="2" />
+    <path d="M 25 18 Q 28 24 30 18 Q 32 24 35 18" fill="none" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+  <g transform="translate(695, 195)">
+    <circle cx="30" cy="30" r="32" fill="#1e293b" stroke="#10b981" stroke-width="1" />
+    <path d="M 30 16 Q 44 26 30 44 Q 16 26 30 16 Z" fill="none" stroke="#10b981" stroke-width="2" />
+  </g>
+</svg>

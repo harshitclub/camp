@@ -1,0 +1,344 @@
+.notFoundWrapper {
+  position: relative;
+  min-height: 80vh;
+  padding: 5rem 0 6rem 0;
+  background: radial-gradient(circle at 50% 15%, #ffffff 0%, var(--bg-page) 60%, var(--mainBlue-surface) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ambientGlow {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(11, 87, 208, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.contentContainer {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--bg-white);
+  border: 1px solid rgba(0, 34, 85, 0.12);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accentBlue);
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.pillIcon {
+  color: var(--accentBlue);
+}
+
+/* Big Stylized 404 Display */
+.glitchNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 7.5rem;
+  font-weight: 900;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1;
+  color: var(--mainBlue);
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+.number4 {
+  background: linear-gradient(180deg, var(--mainBlue) 30%, var(--accentBlue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 30px rgba(0, 34, 85, 0.12);
+}
+
+.zeroWrapper {
+  width: 105px;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.zeroRing {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 12px solid var(--accentBlue);
+  background: var(--mainBlue-surface);
+  box-shadow: 0 0 25px rgba(11, 87, 208, 0.25), inset 0 0 15px rgba(0, 34, 85, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulseZero 3s infinite ease-in-out;
+}
+
+@keyframes pulseZero {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(11, 87, 208, 0.25);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px rgba(11, 87, 208, 0.45);
+  }
+}
+
+.zeroCore {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--mainBlue);
+}
+
+.heading {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.highlightText {
+  color: var(--accentBlue);
+}
+
+.description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 620px;
+  margin-bottom: 2.25rem;
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+  width: 100%;
+}
+
+.mainBtn {
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(0, 34, 85, 0.2);
+}
+
+.secondaryBtn {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+.outlineBtn {
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Hub Section */
+.hubSection {
+  width: 100%;
+  margin-bottom: 2.5rem;
+  background: var(--bg-white);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.hubHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.hubSparkle {
+  color: var(--accentBlue);
+}
+
+.destinationsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.destCard {
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.destCard:hover {
+  background: var(--bg-white);
+  border-color: var(--accentBlue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.destTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.destIconWrap {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background: var(--mainBlue-surface);
+  color: var(--mainBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 34, 85, 0.08);
+}
+
+.destBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #065f46;
+  background: var(--accentEmerald-light);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.destTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  margin-bottom: 0.35rem;
+}
+
+.destDesc {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+  flex-grow: 1;
+}
+
+.destArrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--accentBlue);
+  transition: gap var(--transition-fast);
+}
+
+.destCard:hover .destArrow {
+  gap: 0.6rem;
+}
+
+/* Help Box */
+.helpBox {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.emailLink {
+  color: var(--accentBlue);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.emailLink:hover {
+  color: var(--accentBlue-hover);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .notFoundWrapper {
+    padding: 3.5rem 0 4.5rem 0;
+  }
+
+  .glitchNumber {
+    font-size: 5rem;
+  }
+
+  .zeroWrapper {
+    width: 75px;
+    height: 75px;
+  }
+
+  .zeroRing {
+    width: 65px;
+    height: 65px;
+    border-width: 9px;
+  }
+
+  .zeroCore {
+    width: 18px;
+    height: 18px;
+  }
+
+  .heading {
+    font-size: 1.75rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
+
+  .destinationsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actionButtons a {
+    width: 100%;
+  }
+
+  .hubSection {
+    padding: 1.5rem 1.25rem;
+  }
+}

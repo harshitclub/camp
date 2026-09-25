@@ -1,0 +1,317 @@
+.heroWrapper {
+  margin-bottom: 1.75rem;
+}
+
+.heroCard {
+  position: relative;
+  background: linear-gradient(135deg, #001f4d 0%, #002b66 50%, #00163a 100%);
+  border-radius: var(--radius-lg, 8px);
+  padding: 1.75rem 2rem;
+  color: #ffffff;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0, 34, 85, 0.08));
+}
+
+.glow1 {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(11, 87, 208, 0.3) 0%, rgba(11, 87, 208, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.glow2 {
+  position: absolute;
+  bottom: -60px;
+  left: 20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.avatarSection {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex: 1;
+  min-width: 280px;
+}
+
+.avatarBadgeWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatarPill {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md, 6px);
+  background: linear-gradient(135deg, #0b57d0 0%, #2563eb 100%);
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.verifiedIconBadge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-xs, 2px);
+  background: #059669;
+  border: 1.5px solid #001f4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pendingIconBadge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-xs, 2px);
+  background: #d97706;
+  border: 1.5px solid #001f4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userMainInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.userName {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.roleBadge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm, 4px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.role_Student {
+  background: rgba(11, 87, 208, 0.35);
+  color: #bfdbfe;
+  border: 1px solid rgba(191, 219, 254, 0.3);
+}
+
+.role_Working_Professional {
+  background: rgba(124, 58, 237, 0.35);
+  color: #ddd6fe;
+  border: 1px solid rgba(221, 214, 254, 0.3);
+}
+
+.role_Job_Seeker {
+  background: rgba(217, 119, 6, 0.35);
+  color: #fde68a;
+  border: 1px solid rgba(253, 230, 138, 0.3);
+}
+
+.role_Freelancer {
+  background: rgba(16, 185, 129, 0.35);
+  color: #a7f3d0;
+  border: 1px solid rgba(167, 243, 208, 0.3);
+}
+
+.role_Other {
+  background: rgba(100, 116, 139, 0.35);
+  color: #e2e8f0;
+  border: 1px solid rgba(226, 232, 240, 0.3);
+}
+
+.adminBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm, 4px);
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+.verifiedTextBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm, 4px);
+  background: rgba(5, 150, 105, 0.3);
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.3);
+}
+
+.pendingTextBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm, 4px);
+  background: rgba(217, 119, 6, 0.3);
+  color: #fde68a;
+  border: 1px solid rgba(253, 230, 138, 0.3);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.metaIcon {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.metaDivider {
+  color: #64748b;
+}
+
+/* Completion Card */
+.completionCard {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md, 6px);
+  padding: 1rem 1.25rem;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.completionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.completionTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.awardIcon {
+  color: #f59e0b;
+}
+
+.completionTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.completionPercent {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #38bdf8;
+}
+
+.progressBarTrack {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-xs, 2px);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8 0%, #3b82f6 100%);
+  border-radius: var(--radius-xs, 2px);
+  transition: width 0.4s ease;
+}
+
+.completionTip {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.35;
+}
+
+@media (max-width: 768px) {
+  .heroCard {
+    padding: 1.25rem;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .avatarSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .completionCard {
+    width: 100%;
+  }
+}

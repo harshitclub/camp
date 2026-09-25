@@ -1,0 +1,284 @@
+.outcomesContainer {
+  margin-bottom: 2.5rem;
+}
+
+.sectionBlock {
+  margin-bottom: 2.75rem;
+  scroll-margin-top: 90px;
+}
+
+.sectionTitle {
+  font-size: 1.65rem;
+  color: var(--text-heading);
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.overviewText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  color: var(--text-primary);
+  font-size: 0.96rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.highlightsCard {
+  background: var(--mainBlue-surface);
+  border: 1px solid #dbeafe;
+  border-radius: var(--radius-sm);
+  padding: 1.35rem 1.5rem;
+}
+
+.cardHeaderSmall {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  margin-bottom: 1rem;
+}
+
+.highlightHeaderIcon {
+  color: var(--accentBlue);
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1.5rem;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.highlightCheck {
+  color: var(--accentBlue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Key Outcomes Grid */
+.outcomesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.outcomeCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.15rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  transition: border-color var(--transition-fast);
+}
+
+.outcomeCard:hover {
+  border-color: #93c5fd;
+}
+
+.outcomeIconWrap {
+  color: var(--accentBlue);
+  background: var(--mainBlue-surface);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.outcomeText {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Tools Wrap */
+.toolsWrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.toolBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  transition: all var(--transition-fast);
+}
+
+.toolBadge:hover {
+  background: var(--mainBlue-surface);
+  border-color: var(--accentBlue);
+  color: var(--accentBlue);
+}
+
+.toolIcon {
+  color: var(--accentBlue);
+}
+
+/* Dual Section: Who is this for & Career Roles */
+.dualSectionBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2.75rem;
+}
+
+.infoBox {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem;
+}
+
+.boxHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.boxIcon {
+  color: var(--accentBlue);
+}
+
+.boxTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.boxList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.boxItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+}
+
+.boxCheck {
+  color: var(--accentEmerald);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.rolesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.roleChip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.roleDot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--accentBlue);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Prerequisites */
+.prereqBlock {
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 2.5rem;
+}
+
+.prereqHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.75rem;
+}
+
+.prereqIcon {
+  color: #b45309;
+}
+
+.prereqTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.prereqList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.prereqItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: #78350f;
+  line-height: 1.45;
+}
+
+.prereqDot {
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .highlightsGrid {
+    grid-template-columns: 1fr;
+  }
+  .outcomesGrid {
+    grid-template-columns: 1fr;
+  }
+  .dualSectionBlock {
+    grid-template-columns: 1fr;
+  }
+  .sectionTitle {
+    font-size: 1.4rem;
+  }
+}

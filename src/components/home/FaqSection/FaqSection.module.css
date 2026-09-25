@@ -1,0 +1,100 @@
+/* FAQ Section */
+.faqSection {
+  background-color: var(--bg-page);
+  padding: 5.5rem 0;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.faqWrapper {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.faqItem {
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.faqItemOpen {
+  border-color: var(--mainBlue);
+  box-shadow: var(--shadow-sm);
+}
+
+.faqHeader {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.faqQuestion {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.faqIconBox {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  background-color: var(--mainBlue-surface);
+  color: var(--mainBlue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+  pointer-events: none;
+}
+
+.faqBody {
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.faqMoreCard {
+  margin-top: 3rem;
+  background-color: var(--mainBlue-surface);
+  border: 1px solid rgba(0, 34, 85, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .faqHeader {
+    padding: 1rem 1.15rem;
+  }
+  .faqQuestion {
+    font-size: 0.95rem;
+  }
+  .faqMoreCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
