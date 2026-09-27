@@ -69,7 +69,7 @@ export default function CourseDetailHero({ course }) {
                 <div className={styles.metaIconWrap}>
                   <Clock size={18} />
                 </div>
-                <div>
+                <div className={styles.metaTextWrap}>
                   <span className={styles.metaLabel}>Duration</span>
                   <strong className={styles.metaValue}>{course.duration}</strong>
                 </div>
@@ -79,7 +79,7 @@ export default function CourseDetailHero({ course }) {
                 <div className={styles.metaIconWrap}>
                   <FolderGit2 size={18} />
                 </div>
-                <div>
+                <div className={styles.metaTextWrap}>
                   <span className={styles.metaLabel}>Capstones</span>
                   <strong className={styles.metaValue}>{course.projectsCount}</strong>
                 </div>
@@ -89,7 +89,7 @@ export default function CourseDetailHero({ course }) {
                 <div className={styles.metaIconWrap}>
                   <Layers size={18} />
                 </div>
-                <div>
+                <div className={styles.metaTextWrap}>
                   <span className={styles.metaLabel}>Skill Level</span>
                   <strong className={styles.metaValue}>{course.level}</strong>
                 </div>
@@ -99,7 +99,7 @@ export default function CourseDetailHero({ course }) {
                 <div className={styles.metaIconWrap}>
                   <Award size={18} />
                 </div>
-                <div>
+                <div className={styles.metaTextWrap}>
                   <span className={styles.metaLabel}>Credential</span>
                   <strong className={styles.metaValue}>Verified ID</strong>
                 </div>

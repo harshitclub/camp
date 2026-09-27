@@ -15,7 +15,8 @@ import {
   ExternalLink,
   Settings,
   Sparkles,
-  Award
+  Award,
+  X
 } from "lucide-react";
 
 export default function AdminSidebar({ mobileOpen, onCloseMobile }) {
@@ -65,9 +66,19 @@ export default function AdminSidebar({ mobileOpen, onCloseMobile }) {
       <aside className={`${styles.sidebar} ${mobileOpen ? styles.sidebarMobileOpen : ""}`}>
         {/* Brand & Admin Badge */}
         <div className={styles.brandHeader}>
-          <Link href="/admin" className={styles.logoLink} onClick={onCloseMobile}>
-            <img src="/media/logo.png" alt="Campussutras" className={styles.logoImg} />
-          </Link>
+          <div className={styles.brandTopRow}>
+            <Link href="/admin" className={styles.logoLink} onClick={onCloseMobile}>
+              <img src="/media/logo.png" alt="Campussutras" className={styles.logoImg} />
+            </Link>
+            <button
+              type="button"
+              onClick={onCloseMobile}
+              className={styles.mobileCloseBtn}
+              aria-label="Close Sidebar"
+            >
+              <X size={18} />
+            </button>
+          </div>
           <div className={styles.adminBadge}>
             <ShieldCheck size={13} />
             <span>Admin Console</span>

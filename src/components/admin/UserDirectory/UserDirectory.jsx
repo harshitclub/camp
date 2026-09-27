@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useMemo } from "react";
 import styles from "./UserDirectory.module.css";
+import { useAuth } from "@/context/AuthContext";
 import { 
   getAllUsers, 
   updateUserByAdmin, 
+  deleteUserByAdmin,
   getAllAttempts 
 } from "@/lib/adminService";
 import { 
@@ -36,10 +38,13 @@ import {
   RotateCw,
   Download,
   FileSpreadsheet,
-  ChevronDown
+  ChevronDown,
+  Trash2
 } from "lucide-react";
+import { getPaginationRange } from "@/lib/pagination";
 
 export default function UserDirectory() {
+  const { user: currentUser } = useAuth();
   const [users, setUsers] = useState([]);
   const [attempts, setAttempts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -59,6 +64,8 @@ export default function UserDirectory() {
   // Modals state
   const [editingUser, setEditingUser] = useState(null);
   const [auditUser, setAuditUser] = useState(null);
+  const [deletingUser, setDeletingUser] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [actionSuccessMsg, setActionSuccessMsg] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -290,6 +297,28 @@ export default function UserDirectory() {
       console.error("[UserDirectory] Update profile error:", err);
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  // Delete User Confirmation
+  const handleConfirmDelete = async () => {
+    if (!deletingUser) return;
+    setIsDeleting(true);
+
+    try {
+      const success = await deleteUserByAdmin(deletingUser.id);
+      if (success) {
+        setUsers((prev) => prev.filter((u) => u.id !== deletingUser.id));
+        showNotification(`User ${deletingUser.full_name || deletingUser.email} was permanently deleted.`);
+        setDeletingUser(null);
+      } else {
+        showNotification("Failed to delete user. Please try again.");
+      }
+    } catch (err) {
+      console.error("[UserDirectory] Delete error:", err);
+      showNotification("Error deleting user.");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -580,6 +609,20 @@ export default function UserDirectory() {
                             >
                               <Edit3 size={15} />
                             </button>
+
+                            <button
+                              type="button"
+                              onClick={() => setDeletingUser(u)}
+                              disabled={currentUser?.id === u.id || (currentUser?.email && u.email && currentUser.email.toLowerCase() === u.email.toLowerCase())}
+                              className={`${styles.iconActionBtn} ${styles.btnDelete}`}
+                              title={
+                                currentUser?.id === u.id || (currentUser?.email && u.email && currentUser.email.toLowerCase() === u.email.toLowerCase())
+                                  ? "Cannot delete your own active admin account"
+                                  : "Permanently Delete Member"
+                              }
+                            >
+                              <Trash2 size={15} />
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -607,27 +650,26 @@ export default function UserDirectory() {
                     <ChevronLeft size={16} />
                   </button>
 
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
-                    if (
-                      totalPages > 7 &&
-                      pageNum !== 1 &&
-                      pageNum !== totalPages &&
-                      Math.abs(pageNum - currentPage) > 2
-                    ) {
-                      if (pageNum === 2 || pageNum === totalPages - 1) {
-                        return <span key={pageNum} className={styles.pageEllipsis}>...</span>;
-                      }
-                      return null;
+                  {getPaginationRange(currentPage, totalPages).map((item, idx) => {
+                    if (typeof item !== "number" || item === "...") {
+                      return (
+                        <span key={`ellipsis-${idx}`} className={styles.pageEllipsis}>
+                          &hellip;
+                        </span>
+                      );
                     }
 
+                    const isPageActive = currentPage === item;
                     return (
                       <button
-                        key={pageNum}
+                        key={item}
                         type="button"
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`${styles.pageBtn} ${currentPage === pageNum ? styles.pageBtnActive : ""}`}
+                        onClick={() => setCurrentPage(item)}
+                        className={`${styles.pageBtn} ${isPageActive ? styles.pageBtnActive : ""}`}
+                        aria-current={isPageActive ? "page" : undefined}
+                        aria-label={`Page ${item}`}
                       >
-                        {pageNum}
+                        {item}
                       </button>
                     );
                   })}
@@ -901,6 +943,66 @@ export default function UserDirectory() {
                 className="btn btn-secondary"
               >
                 Close Audit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Modal 3: Delete Confirmation Modal */}
+      {deletingUser && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.deleteModalCard}>
+            <div className={styles.modalHeader} style={{ background: "#fef2f2", borderBottom: "1px solid #fee2e2" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+                <div style={{ background: "#fee2e2", color: "#dc2626", padding: "0.45rem", borderRadius: "6px", display: "flex" }}>
+                  <Trash2 size={18} />
+                </div>
+                <div>
+                  <h3 className={styles.modalTitle} style={{ color: "#991b1b" }}>Delete User Account</h3>
+                  <p className={styles.modalSubtitle} style={{ color: "#b91c1c" }}>This action is permanent and cannot be undone.</p>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                onClick={() => setDeletingUser(null)}
+                className={styles.modalCloseBtn}
+                disabled={isDeleting}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className={styles.deleteModalBody}>
+              <div className={styles.deleteUserDetail}>
+                <div><strong>Full Name:</strong> {deletingUser.full_name || "Anonymous"}</div>
+                <div><strong>Email:</strong> {deletingUser.email || "No email"}</div>
+                <div><strong>User Type:</strong> {deletingUser.user_type || "Student"}</div>
+                <div><strong>Recorded Tests:</strong> {getUserAttempts(deletingUser).length} attempt{getUserAttempts(deletingUser).length === 1 ? "" : "s"}</div>
+              </div>
+
+              <div className={styles.deleteWarningBox}>
+                ⚠️ Deleting this user will permanently purge their authentication credentials from Supabase, erase their profile record, and clear their test attempt history.
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <button
+                type="button"
+                onClick={() => setDeletingUser(null)}
+                className="btn btn-secondary"
+                disabled={isDeleting}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmDelete}
+                className={styles.btnDanger}
+                disabled={isDeleting}
+              >
+                <Trash2 size={14} />
+                <span>{isDeleting ? "Deleting..." : "Permanently Delete"}</span>
               </button>
             </div>
           </div>

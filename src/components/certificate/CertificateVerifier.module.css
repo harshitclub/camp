@@ -555,6 +555,120 @@
   color: var(--text-primary);
 }
 
+/* ========================================================
+   Minimalist Certificate ID Pattern Guide
+   ======================================================== */
+.idFormatCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.idFormatHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.idFormatTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.idFormatSub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.sampleMono {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--mainBlue);
+  background: var(--mainBlue-surface);
+  border: 1px solid #bfdbfe;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.05em;
+}
+
+.segmentedBar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.65rem;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xs);
+  padding: 0.85rem;
+}
+
+.segItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.4rem 0.25rem;
+}
+
+.segCode {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--mainBlue);
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xs);
+  padding: 0.25rem 0.6rem;
+  min-width: 44px;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.segName {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  line-height: 1.2;
+  margin-bottom: 0.15rem;
+}
+
+.segDetail {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.idFormatFooter {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.85rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.idFormatFooter code {
+  background: var(--bg-alt);
+  color: var(--accentBlue);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 0.76rem;
+}
+
 /* Trust Guide */
 .trustGuide {
   margin-top: 3.5rem;
@@ -765,12 +879,24 @@
   .detailsGrid {
     grid-template-columns: 1fr 1fr;
   }
+  .segmentedBar {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
   .guideGrid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 700px) {
+  .idFormatCard {
+    padding: 1.25rem 1rem;
+  }
+  .idFormatHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
   .certHeader {
     flex-direction: column;
     align-items: center;
@@ -809,6 +935,10 @@
 }
 
 @media (max-width: 540px) {
+  .segmentedBar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
   .searchCard {
     padding: 1.5rem 1.15rem;
   }

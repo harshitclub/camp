@@ -1,15 +1,15 @@
 import AssessmentHub from "@/components/assessments/AssessmentHub/AssessmentHub";
 
 export const metadata = {
-  title: "Technical Assessment Hub — Free Skill Diagnostics",
-  description: "Take free, timed, high-impact technical evaluations across Full Stack Web Development, Generative AI, Python, DSA, and PostgreSQL Architecture with instant scorecards and verified badges.",
-  keywords: "free coding assessment, technical skill test, react mcq test, gen ai diagnostic test, campussutras assessments, python test online",
+  title: "Skill Assessment Hub — Free Online Practice Tests",
+  description: "Take free, timed practice tests across Technical, Business, English, Soft Skills, and Marketing with instant scores, accuracy analysis, and complete solutions.",
+  keywords: "free skill tests, online assessment, aptitude test, soft skills test, english assessment, technical skill test, campussutras practice tests",
   alternates: {
     canonical: "/assessments",
   },
   openGraph: {
-    title: "Technical Assessment Hub — Free Skill Diagnostics | Campussutras",
-    description: "Take free, timed technical evaluations with instant scorecards and verified credentials.",
+    title: "Skill Assessment Hub — Free Online Practice Tests | Campussutras",
+    description: "Take free, timed practice tests with instant scorecards and complete question-by-question solutions.",
     url: "https://campussutras.com/assessments",
     siteName: "Campussutras",
     locale: "en_IN",
@@ -17,8 +17,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Assessment Hub — Free Skill Diagnostics | Campussutras",
-    description: "Take free, timed technical evaluations with instant scorecards and verified credentials.",
+    title: "Skill Assessment Hub — Free Online Practice Tests | Campussutras",
+    description: "Take free, timed practice tests with instant scorecards and complete question-by-question solutions.",
   },
 };
 
@@ -27,8 +27,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://campussutras.com";
 const assessmentHubSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Technical Assessment Hub — Free Skill Diagnostics | Campussutras",
-  description: "Take free, timed, high-impact technical evaluations across Full Stack Web Development, Generative AI, Python, DSA, and PostgreSQL Architecture with instant scorecards and verified badges.",
+  name: "Skill Assessment Hub — Free Online Practice Tests | Campussutras",
+  description: "Take free, timed practice tests across Technical, Business, English, Soft Skills, and Marketing with instant scorecards and solutions.",
   url: `${BASE_URL}/assessments`,
   provider: {
     "@type": "EducationalOrganization",

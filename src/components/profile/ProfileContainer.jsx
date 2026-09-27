@@ -42,9 +42,9 @@ export default function ProfileContainer() {
         <div className="container" style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ textAlign: "center", maxWidth: "440px", background: "#ffffff", padding: "2.5rem 2rem", borderRadius: "12px", border: "1px solid #e2e8f0", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
             <h2 style={{ fontSize: "1.4rem", fontWeight: "800", color: "var(--mainBlue)", marginBottom: "0.5rem" }}>Sign in to View Profile</h2>
-            <p style={{ fontSize: "0.92rem", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>Please sign in to your account to view your profile, courses, and technical assessments.</p>
+            <p style={{ fontSize: "0.92rem", color: "var(--text-secondary)", marginBottom: "1.5rem" }}>Please sign in to your account to view your profile, courses, and assessments.</p>
             <Link href="/login" className="btn btn-primary btn-md" style={{ display: "inline-flex", padding: "0.75rem 1.75rem" }}>
-              Sign In to Account
+              Sign In
             </Link>
           </div>
         </div>

@@ -6,18 +6,18 @@ export default function CertificateSection() {
   const features = [
     {
       icon: <QrCode size={20} />,
-      title: "Unique Credential ID & Instant QR Verification",
-      description: "Recruiters and hiring managers can verify your certificate authenticity and completed project milestones in real-time."
+      title: "Unique ID & Instant QR Code Check",
+      description: "Recruiters can scan the QR code or enter your ID to instantly check your certificate details online."
     },
     {
       icon: <ShieldCheck size={20} />,
-      title: "Proof of Practical Work & Capstones",
-      description: "Your credential validates hands-on code contributions, real-world case studies, and engineering sprint evaluations."
+      title: "Proof of Real Project Work",
+      description: "Your certificate shows the live projects you built, validating your practical hands-on skills."
     },
     {
       icon: <Share2 size={20} />,
-      title: "One-Click LinkedIn & Resume Showcase",
-      description: "Directly add verified licenses & certifications to your LinkedIn profile with permanent verification links."
+      title: "Easy to Share on LinkedIn & Resume",
+      description: "Add your certificate directly to LinkedIn or your resume with a permanent verification link."
     }
   ];
 
@@ -27,15 +27,15 @@ export default function CertificateSection() {
         {/* Left Column: Information & Value */}
         <div className={styles.contentCol}>
           <div className="section-eyebrow">
-            Verified Industry Credentials
+            Verified Certificates
           </div>
 
           <h2 className={styles.title}>
-            Earn an Employer-Trusted & Cryptographically Verifiable Certificate
+            Earn a Verified Certificate That Recruiters Trust
           </h2>
 
           <p className={styles.subtitle}>
-            In today’s competitive tech market, generic completion certificates are ignored. Campussutras issues verifiable credentials backed by completed industry capstone projects and rigorous mentor evaluations.
+            Simple PDF certificates are often ignored by companies. Campussutras gives you an online verifiable certificate backed by real project work and mentor evaluations.
           </p>
 
           <div className={styles.featuresList}>
@@ -55,11 +55,11 @@ export default function CertificateSection() {
           <div className={styles.btnGroup}>
             <Link href="/verify-certificate" className="btn btn-primary">
               <ShieldCheck size={16} />
-              <span>Verify Any Certificate Now</span>
+              <span>Verify a Certificate</span>
               <ArrowRight size={16} />
             </Link>
             <Link href="/courses" className="btn btn-secondary">
-              <span>Explore Certified Bootcamps</span>
+              <span>Explore Certified Programs</span>
             </Link>
           </div>
         </div>

@@ -2,7 +2,7 @@ import { SignupForm } from "@/components/auth";
 
 export const metadata = {
   title: "Create Student Account | Campussutras",
-  description: "Join Campussutras to access practical bootcamps, project-based internships, and technical assessments.",
+  description: "Join Campussutras to access practical bootcamps, project-based internships, and assessments.",
 };
 
 export default function SignupPage() {

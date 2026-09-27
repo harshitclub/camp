@@ -90,7 +90,7 @@ export default function AssessmentResult({ assessment }) {
             <div className={styles.statusHeader}>
               <div className={`${styles.statusPill} ${isPassed ? styles.pillPassed : styles.pillFailed}`}>
                 {isPassed ? <Trophy size={16} /> : <AlertCircle size={16} />}
-                <span>{isPassed ? "Assessment Passed & Certified" : "Needs Review & Improvement"}</span>
+                <span>{isPassed ? "Assessment Passed" : "Needs Review & Practice"}</span>
               </div>
               <span className={styles.categoryBadge}>{assessment.category_name}</span>
             </div>
@@ -98,8 +98,8 @@ export default function AssessmentResult({ assessment }) {
             <h1 className={styles.assessmentTitle}>{assessment.title}</h1>
             <p className={styles.scorecardDesc}>
               {isPassed 
-                ? "Congratulations! You demonstrated strong technical mastery across all key concepts tested in this evaluation." 
-                : "You were close to the passing threshold. Review the detailed solution explanations below to master the concepts before retaking."}
+                ? "Congratulations! You demonstrated strong understanding across all key concepts tested in this assessment." 
+                : "You were close to the passing mark. Review the clear explanations below to strengthen your concepts before retaking."}
             </p>
 
             {/* Action Buttons */}
@@ -127,7 +127,7 @@ export default function AssessmentResult({ assessment }) {
             <div className={styles.gaugeCenter}>
               <span className={styles.gaugeScoreNum}>{score}/{totalQuestions}</span>
               <span className={styles.gaugePercentage}>{percentage}%</span>
-              <span className={styles.gaugeLabel}>Final Accuracy</span>
+              <span className={styles.gaugeLabel}>Final Score</span>
             </div>
 
             <div className={styles.metaStatList}>
@@ -147,9 +147,9 @@ export default function AssessmentResult({ assessment }) {
         <section className={styles.solutionsSection}>
           <div className={styles.solutionsHeader}>
             <div>
-              <h2 className={styles.solutionsTitle}>Question-by-Question Solution Breakdown</h2>
+              <h2 className={styles.solutionsTitle}>Detailed Solutions &amp; Explanations</h2>
               <p className={styles.solutionsSubtitle}>
-                Examine your submitted answers alongside verified engineering rationales.
+                Review your answers with clear explanations for every question.
               </p>
             </div>
 

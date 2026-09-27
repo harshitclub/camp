@@ -61,7 +61,7 @@
   --shadow-hover: 0 14px 28px -4px rgba(0, 34, 85, 0.12);
   
   /* Spacing & Layout */
-  --container-max: 1240px;
+  --container-max: 1360px;
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
   --transition-slow: 0.4s ease;

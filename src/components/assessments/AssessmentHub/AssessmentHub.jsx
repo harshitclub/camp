@@ -28,6 +28,7 @@ import {
   X,
   Filter
 } from "lucide-react";
+import { getPaginationRange } from "@/lib/pagination";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -209,18 +210,18 @@ export default function AssessmentHub() {
           <div className={styles.breadcrumbBar}>
             <Link href="/" className={styles.breadcrumbLink}>Home</Link>
             <ChevronRight size={14} className={styles.breadcrumbSep} />
-            <span className={styles.breadcrumbCurrent}>Technical Assessments</span>
+            <span className={styles.breadcrumbCurrent}>Skill Assessments</span>
           </div>
 
           <div className={styles.heroContent}>
             <div className={styles.heroBadge}>
               <Sparkles size={14} className={styles.sparkleIcon} />
-              <span>Dynamic Assessment Engine</span>
+              <span>Free Online Tests</span>
             </div>
-            <h1 className={styles.heroTitle}>Benchmark Your Engineering & Business Skills</h1>
+            <h1 className={styles.heroTitle}>Test Your Skills &amp; Check Your Knowledge</h1>
             <p className={styles.heroSubtitle}>
-              Take timed, 15-question assessments designed for real-world placement readiness. 
-              Earn verified scorecards and validate your domain mastery across AI, Software, Data, and Business.
+              Take timed, 15-question practice tests across Technical, Business, English, Soft Skills, and Marketing. 
+              Get instant scorecards, accuracy analysis, and complete question-by-question solutions.
             </p>
           </div>
         </div>
@@ -404,18 +405,26 @@ export default function AssessmentHub() {
                   </button>
 
                   <div className={styles.pageNumbers}>
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
-                      const isPageActive = pageNum === safePage;
+                    {getPaginationRange(safePage, totalPages).map((item, idx) => {
+                      if (typeof item !== "number" || item === "...") {
+                        return (
+                          <span key={`ellipsis-${idx}`} className={styles.pageEllipsis}>
+                            &hellip;
+                          </span>
+                        );
+                      }
+
+                      const isPageActive = item === safePage;
                       return (
                         <button
-                          key={pageNum}
+                          key={item}
                           type="button"
-                          onClick={() => handlePageChange(pageNum)}
+                          onClick={() => handlePageChange(item)}
                           className={`${styles.pageNumberBtn} ${isPageActive ? styles.pageNumberBtnActive : ""}`}
                           aria-current={isPageActive ? "page" : undefined}
-                          aria-label={`Page ${pageNum}`}
+                          aria-label={`Page ${item}`}
                         >
-                          {pageNum}
+                          {item}
                         </button>
                       );
                     })}
@@ -442,9 +451,9 @@ export default function AssessmentHub() {
               <div className={styles.valueIconWrap} style={{ background: "rgba(11, 87, 208, 0.08)", color: "#002255" }}>
                 <Zap size={22} />
               </div>
-              <h4 className={styles.valueTitle}>Timed Evaluation Engine</h4>
+              <h4 className={styles.valueTitle}>Timed Practice Tests</h4>
               <p className={styles.valueDesc}>
-                Realistic countdown conditions to evaluate your problem solving speed and practical comprehension under placement pressure.
+                Real timer conditions to test your speed, accuracy, and confidence for interviews and exams.
               </p>
             </div>
 
@@ -452,19 +461,19 @@ export default function AssessmentHub() {
               <div className={styles.valueIconWrap} style={{ background: "rgba(5, 150, 105, 0.08)", color: "#059669" }}>
                 <ShieldCheck size={22} />
               </div>
-              <h4 className={styles.valueTitle}>Detailed Solution Scorecards</h4>
+              <h4 className={styles.valueTitle}>Instant Results &amp; Answers</h4>
               <p className={styles.valueDesc}>
-                Instant grading with in-depth engineering explanations for every question to identify key strengths and knowledge gaps.
+                Get your score immediately with clear, simple explanations for every question to learn from your mistakes.
               </p>
             </div>
 
             <div className={styles.valueCard}>
               <div className={styles.valueIconWrap} style={{ background: "rgba(124, 58, 237, 0.08)", color: "#7c3aed" }}>
-                <Award size={22} />
+                <TrendingUp size={22} />
               </div>
-              <h4 className={styles.valueTitle}>Verifiable Certification</h4>
+              <h4 className={styles.valueTitle}>Track Your Progress</h4>
               <p className={styles.valueDesc}>
-                Earn verified credentials shareable on LinkedIn and accessible to corporate recruiters during campus placement drives.
+                Save your test history to your profile and review questions anytime to track your improvement over time.
               </p>
             </div>
           </div>

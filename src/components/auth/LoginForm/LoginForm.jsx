@@ -75,11 +75,11 @@ export default function LoginForm() {
       <div className={styles.header}>
         <div className={styles.eyebrow}>
           <ShieldCheck size={14} className={styles.eyebrowIcon} />
-          <span>Member &amp; Admin Portal</span>
+          <span>Student Portal</span>
         </div>
         <h1 className={styles.title}>Welcome Back</h1>
         <p className={styles.subtitle}>
-          Sign in to access your dashboard, enrolled bootcamps, and technical assessments.
+          Sign in to access your dashboard, enrolled programs, and assessments.
         </p>
       </div>
 
@@ -162,7 +162,7 @@ export default function LoginForm() {
             </span>
           ) : (
             <>
-              <span>Sign In to Account</span>
+              <span>Sign In</span>
               <ArrowRight size={18} />
             </>
           )}
@@ -172,7 +172,7 @@ export default function LoginForm() {
       <div className={styles.footer}>
         <span>Don&apos;t have an account yet?</span>{" "}
         <Link href="/signup" className={styles.switchLink}>
-          Create Free Account
+          Create Account
         </Link>
       </div>
     </div>

@@ -30,9 +30,9 @@ export const statsData = [
 ];
 
 export const highlightPills = [
-  "Campus to Corporate Transition",
+  "Campus to Corporate Training",
   "B.Tech, BCA, MCA, MBA, BBA, Law & More",
-  "100% Practical & Case-Study Driven",
-  "Placement Grooming & Corporate Soft Skills",
-  "Central Verifiable Credentials"
+  "100% Practical & Project-Based",
+  "Interview Prep & Soft Skills",
+  "Online Verified Certificates"
 ];

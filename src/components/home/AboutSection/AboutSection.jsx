@@ -28,23 +28,23 @@ export default function AboutSection() {
 
         {/* Right Column: Mission & Highlights */}
         <div className={styles.contentCol}>
-          <div className={styles.eyebrow}>Campus to Corporate • Multi-Disciplinary Training</div>
+          <div className={styles.eyebrow}>Campus to Corporate Training</div>
           
           <h2 className={styles.title}>
-            Taking Students from College Classrooms to High-Growth Corporate Careers
+            Helping Students Move from College Classrooms to Great Careers
           </h2>
 
           <p className={styles.description}>
-            Founded in 2023, Campussutras bridges the critical gap between traditional college degrees and modern corporate expectations. Whether you are pursuing <strong>B.Tech, BCA, MCA, MBA, BBA, PGDM, Law, or Commerce</strong>, we replace passive lectures with intensive 90-day training sprints, real industry tools, and project-based internships. Having trained over <strong>50,000+ students across 50+ partner colleges in India</strong>, we equip learners with practical skills, workplace communication, and verified credentials.
+            Founded in 2023, Campussutras bridges the gap between college studies and actual job requirements. Whether you are studying <strong>B.Tech, BCA, MCA, MBA, BBA, PGDM, Law, or Commerce</strong>, we replace textbook theory with hands-on practice, modern industry tools, and live projects. Having trained over <strong>50,000+ students across 50+ colleges in India</strong>, we help learners build real skills, confident communication, and verified certificates.
           </p>
 
           <div className={styles.pointsGrid}>
             <div className={styles.pointCard}>
               <GraduationCap size={20} className={styles.pointIcon} />
               <div>
-                <div className={styles.pointTitle}>Multi-Stream Campus Programs</div>
+                <div className={styles.pointTitle}>Programs for All Degree Streams</div>
                 <div className={styles.pointText}>
-                  Hands-on cohorts across B.Tech, BCA, MCA, MBA, BBA, PGDM, Law &amp; Commerce.
+                  Hands-on training for B.Tech, BCA, MCA, MBA, BBA, PGDM, Law &amp; Commerce.
                 </div>
               </div>
             </div>
@@ -52,9 +52,9 @@ export default function AboutSection() {
             <div className={styles.pointCard}>
               <Laptop size={20} className={styles.pointIcon} />
               <div>
-                <div className={styles.pointTitle}>Project &amp; Case-Study Driven</div>
+                <div className={styles.pointTitle}>Real Projects &amp; Case Studies</div>
                 <div className={styles.pointText}>
-                  Work on real production codebases, live business dashboards, and corporate assignments that recruiters value.
+                  Work on live projects, business dashboards, and real assignments that recruiters value.
                 </div>
               </div>
             </div>
@@ -62,9 +62,9 @@ export default function AboutSection() {
             <div className={styles.pointCard}>
               <Briefcase size={20} className={styles.pointIcon} />
               <div>
-                <div className={styles.pointTitle}>Soft Skills &amp; Corporate Polish</div>
+                <div className={styles.pointTitle}>Interview &amp; Communication Skills</div>
                 <div className={styles.pointText}>
-                  Business communication, presentation skills, mock interviews, and corporate etiquette for every stream.
+                  Resume building, mock interviews, presentation practice, and workplace communication tips.
                 </div>
               </div>
             </div>
@@ -72,16 +72,16 @@ export default function AboutSection() {
             <div className={styles.pointCard}>
               <CheckCircle2 size={20} className={styles.pointIcon} />
               <div>
-                <div className={styles.pointTitle}>Central Verifiable Credentials</div>
+                <div className={styles.pointTitle}>Online Verified Certificates</div>
                 <div className={styles.pointText}>
-                  Tamper-proof digital certificates verifiable in real time via our online credential registry.
+                  Get a digital certificate that recruiters can verify online in seconds.
                 </div>
               </div>
             </div>
           </div>
 
           <Link href="/about" className="btn btn-primary">
-            <span>Our Story &amp; Educational Philosophy</span>
+            <span>Learn More About Us</span>
             <ArrowRight size={16} />
           </Link>
         </div>

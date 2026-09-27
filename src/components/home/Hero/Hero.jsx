@@ -102,7 +102,7 @@ export default function Hero() {
           </h1>
 
           <p className={styles.heroSubtitle}>
-            Practical 90-day bootcamps, industry sprints, and project-based internships across <strong>B.Tech, BCA, MCA, MBA, BBA, PGDM, Law &amp; more</strong> — designed to build verified portfolios and accelerate your career.
+            Practical industry bootcamps, project sprints, and career internships across <strong>B.Tech, BCA, MCA, MBA, BBA, PGDM, Law &amp; more</strong> — designed to build verified portfolios and accelerate your career.
           </p>
 
           <div className={styles.ctaGroup}>
@@ -123,11 +123,11 @@ export default function Hero() {
             </div>
             <div className={styles.featureItem}>
               <CheckCircle size={16} className={styles.featureIcon} />
-              <span>Verifiable Credential ID</span>
+              <span>Online Verified Certificate</span>
             </div>
             <div className={styles.featureItem}>
               <CheckCircle size={16} className={styles.featureIcon} />
-              <span>1:1 Mentorship Sprints</span>
+              <span>1:1 Mentor Guidance</span>
             </div>
           </div>
         </div>

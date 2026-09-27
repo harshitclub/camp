@@ -19,9 +19,9 @@ export default function FaqSection() {
       <div className="container">
         <div className="section-header">
           <span className="section-eyebrow">Frequently Asked Questions</span>
-          <h2 className="section-title">Everything You Need to Know About Our Bootcamps</h2>
+          <h2 className="section-title">Common Questions &amp; Answers</h2>
           <p className="section-subtitle">
-            Find answers to common questions regarding our learning format, curriculum, certificates, and internship support.
+            Find quick answers about our training programs, live projects, certificates, and internship support.
           </p>
         </div>
 

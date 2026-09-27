@@ -2,8 +2,8 @@ import { Suspense } from "react";
 import { LoginForm } from "@/components/auth";
 
 export const metadata = {
-  title: "Sign In | Campussutras Student & Admin Portal",
-  description: "Sign in to your Campussutras student portal to access your technical assessments, bootcamps, and profile.",
+  title: "Sign In | Campussutras",
+  description: "Sign in to your Campussutras portal to access your assessments, courses, and profile.",
 };
 
 export default function LoginPage() {

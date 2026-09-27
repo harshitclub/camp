@@ -33,6 +33,7 @@ import {
   Hash,
   ArrowRight
 } from "lucide-react";
+import { getPaginationRange } from "@/lib/pagination";
 
 /**
  * Checks if a value is missing, empty, or marked as Not Applicable ("NA", "N/A", etc.)
@@ -228,6 +229,8 @@ export default function CertificateManagement() {
   const [showBulkModal, setShowBulkModal] = useState(false);
   const [showIdGenModal, setShowIdGenModal] = useState(false);
   const [editingCert, setEditingCert] = useState(null);
+  const [deletingCert, setDeletingCert] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState(null);
   const [copiedId, setCopiedId] = useState(null);
@@ -756,19 +759,29 @@ export default function CertificateManagement() {
   };
 
   // Handle delete certificate
-  const handleDelete = async (cert) => {
-    const certNum = cert.certificateNumber || cert.certificate_number;
-    if (!window.confirm(`Are you sure you want to permanently delete certificate "${certNum}" (${cert.studentName})?`)) {
-      return;
-    }
+  const handleConfirmDeleteCert = async () => {
+    if (!deletingCert) return;
+    setIsDeleting(true);
 
-    const res = await deleteCertificate(cert.id || certNum);
-    if (res.success) {
-      loadData(true);
-      setStatusMessage({ type: "success", text: `Certificate ${certNum} deleted.` });
-      setTimeout(() => setStatusMessage(null), 3500);
-    } else {
-      setStatusMessage({ type: "error", text: res.message || "Failed to delete certificate." });
+    const certNum = deletingCert.certificateNumber || deletingCert.certificate_number;
+    try {
+      const res = await deleteCertificate(deletingCert.id || certNum);
+      if (res.success) {
+        setCertificates((prev) =>
+          prev.filter((c) => c.id !== deletingCert.id && (c.certificateNumber || c.certificate_number) !== certNum)
+        );
+        setTotalCount((prev) => Math.max(0, prev - 1));
+        setStatusMessage({ type: "success", text: `Certificate "${certNum}" deleted successfully.` });
+        setDeletingCert(null);
+        setTimeout(() => setStatusMessage(null), 3500);
+      } else {
+        setStatusMessage({ type: "error", text: res.message || "Failed to delete certificate." });
+      }
+    } catch (err) {
+      console.error("[CertificateManagement] delete error:", err);
+      setStatusMessage({ type: "error", text: "Error deleting certificate record." });
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -1185,7 +1198,7 @@ export default function CertificateManagement() {
 
                           <button
                             type="button"
-                            onClick={() => handleDelete(cert)}
+                            onClick={() => setDeletingCert(cert)}
                             className={`${styles.actionIconBtn} ${styles.actionIconBtnDelete}`}
                             title="Delete Certificate"
                           >
@@ -1219,20 +1232,26 @@ export default function CertificateManagement() {
                 <span>Prev</span>
               </button>
 
-              {Array.from({ length: Math.min(totalPages, 7) }, (_, idx) => {
-                let pageNum = idx + 1;
-                if (totalPages > 7 && currentPage > 4) {
-                  pageNum = currentPage - 3 + idx;
-                  if (pageNum > totalPages) pageNum = totalPages - (6 - idx);
+              {getPaginationRange(currentPage, totalPages).map((item, idx) => {
+                if (typeof item !== "number" || item === "...") {
+                  return (
+                    <span key={`ellipsis-${idx}`} className={styles.pageEllipsis}>
+                      &hellip;
+                    </span>
+                  );
                 }
+
+                const isPageActive = currentPage === item;
                 return (
                   <button
-                    key={pageNum}
+                    key={item}
                     type="button"
-                    onClick={() => setCurrentPage(pageNum)}
-                    className={`${styles.pageBtn} ${currentPage === pageNum ? styles.pageBtnActive : ""}`}
+                    onClick={() => setCurrentPage(item)}
+                    className={`${styles.pageBtn} ${isPageActive ? styles.pageBtnActive : ""}`}
+                    aria-current={isPageActive ? "page" : undefined}
+                    aria-label={`Page ${item}`}
                   >
-                    {pageNum}
+                    {item}
                   </button>
                 );
               })}
@@ -2136,6 +2155,69 @@ export default function CertificateManagement() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Modal 4: Delete Certificate Confirmation Modal */}
+      {deletingCert && (
+        <div className={styles.modalBackdrop}>
+          <div className={styles.deleteModalCard}>
+            <div className={styles.deleteModalHeader}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+                <div className={styles.deleteIconWrap}>
+                  <Trash2 size={18} />
+                </div>
+                <div>
+                  <h3 className={styles.deleteModalTitle}>Delete Certificate Record</h3>
+                  <p className={styles.deleteModalSubtitle}>This action is permanent and cannot be undone.</p>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                onClick={() => setDeletingCert(null)}
+                className={styles.modalCloseBtn}
+                disabled={isDeleting}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className={styles.deleteModalBody}>
+              <div className={styles.deleteCertDetail}>
+                <div><strong>Certificate ID:</strong> <span style={{ fontFamily: "monospace", color: "#002255", fontWeight: 700 }}>{deletingCert.certificateNumber || deletingCert.certificate_number}</span></div>
+                <div><strong>Student Name:</strong> {deletingCert.studentName || deletingCert.student_name}</div>
+                <div><strong>Program / Course:</strong> {deletingCert.program}</div>
+                <div><strong>Institution / College:</strong> {deletingCert.collegeName || deletingCert.college_name || "Direct Candidate (Independent)"}</div>
+                {!isNA(deletingCert.collegeId || deletingCert.college_id) && (
+                  <div><strong>Roll / College ID:</strong> {deletingCert.collegeId || deletingCert.college_id}</div>
+                )}
+              </div>
+
+              <div className={styles.deleteWarningBox}>
+                ⚠️ Deleting this certificate will permanently invalidate its verification URL and remove the credential from the Supabase registry.
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <button
+                type="button"
+                onClick={() => setDeletingCert(null)}
+                className={styles.actionBtnSecondary}
+                disabled={isDeleting}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmDeleteCert}
+                className={styles.btnDanger}
+                disabled={isDeleting}
+              >
+                <Trash2 size={14} />
+                <span>{isDeleting ? "Deleting..." : "Permanently Delete"}</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

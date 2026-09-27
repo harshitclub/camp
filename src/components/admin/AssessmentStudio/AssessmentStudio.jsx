@@ -34,6 +34,7 @@ import {
   ChevronRight,
   Download
 } from "lucide-react";
+import { getPaginationRange } from "@/lib/pagination";
 
 export default function AssessmentStudio() {
   const [assessments, setAssessments] = useState([]);
@@ -58,6 +59,10 @@ export default function AssessmentStudio() {
     badgeBg: "#f0f5fc",
   });
   const [categorySaving, setCategorySaving] = useState(false);
+
+  // Delete Assessment Modal State
+  const [deletingAssessment, setDeletingAssessment] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Notification Banner
   const [notificationMsg, setNotificationMsg] = useState("");
@@ -183,21 +188,23 @@ export default function AssessmentStudio() {
   };
 
   // Delete Assessment
-  const handleDelete = async (assessment) => {
-    if (!assessment) return;
-    const confirmDelete = window.confirm(`Are you sure you want to delete "${assessment.title}"? This will remove the assessment from the active catalog.`);
-    if (!confirmDelete) return;
+  const handleConfirmDeleteAssessment = async () => {
+    if (!deletingAssessment) return;
+    setIsDeleting(true);
 
     try {
-      const targetIdentifier = assessment.id || assessment.slug;
+      const targetIdentifier = deletingAssessment.id || deletingAssessment.slug;
       await deleteAssessment(targetIdentifier);
       setAssessments((prev) => 
-        prev.filter((item) => item.id !== assessment.id && item.slug !== assessment.slug)
+        prev.filter((item) => item.id !== deletingAssessment.id && item.slug !== deletingAssessment.slug)
       );
-      showNotification(`"${assessment.title}" was removed successfully.`);
+      showNotification(`"${deletingAssessment.title}" was removed successfully.`);
+      setDeletingAssessment(null);
     } catch (err) {
       console.error("[AssessmentStudio] Delete error:", err);
-      showNotification(`Error removing "${assessment.title}".`);
+      showNotification(`Error removing "${deletingAssessment.title}".`);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -435,7 +442,7 @@ export default function AssessmentStudio() {
 
                             <button
                               type="button"
-                              onClick={() => handleDelete(a)}
+                              onClick={() => setDeletingAssessment(a)}
                               className={`${styles.actionBtn} ${styles.actionBtnDelete}`}
                               title="Delete Assessment"
                             >
@@ -468,28 +475,26 @@ export default function AssessmentStudio() {
                     <ChevronLeft size={16} />
                   </button>
 
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
-                    // Show first, last, and window around current page
-                    if (
-                      totalPages > 7 &&
-                      pageNum !== 1 &&
-                      pageNum !== totalPages &&
-                      Math.abs(pageNum - currentPage) > 2
-                    ) {
-                      if (pageNum === 2 || pageNum === totalPages - 1) {
-                        return <span key={pageNum} className={styles.pageEllipsis}>...</span>;
-                      }
-                      return null;
+                  {getPaginationRange(currentPage, totalPages).map((item, idx) => {
+                    if (typeof item !== "number" || item === "...") {
+                      return (
+                        <span key={`ellipsis-${idx}`} className={styles.pageEllipsis}>
+                          &hellip;
+                        </span>
+                      );
                     }
 
+                    const isPageActive = currentPage === item;
                     return (
                       <button
-                        key={pageNum}
+                        key={item}
                         type="button"
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`${styles.pageBtn} ${currentPage === pageNum ? styles.pageBtnActive : ""}`}
+                        onClick={() => setCurrentPage(item)}
+                        className={`${styles.pageBtn} ${isPageActive ? styles.pageBtnActive : ""}`}
+                        aria-current={isPageActive ? "page" : undefined}
+                        aria-label={`Page ${item}`}
                       >
-                        {pageNum}
+                        {item}
                       </button>
                     );
                   })}
@@ -593,6 +598,66 @@ export default function AssessmentStudio() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Assessment Confirmation Modal */}
+      {deletingAssessment && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.deleteModalCard}>
+            <div className={styles.deleteModalHeader}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
+                <div className={styles.deleteIconWrap}>
+                  <Trash2 size={18} />
+                </div>
+                <div>
+                  <h3 className={styles.deleteModalTitle}>Delete Assessment</h3>
+                  <p className={styles.deleteModalSubtitle}>This action cannot be undone.</p>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                onClick={() => setDeletingAssessment(null)}
+                className={styles.modalCloseBtn}
+                disabled={isDeleting}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className={styles.deleteModalBody}>
+              <div className={styles.deleteDetailBox}>
+                <div><strong>Title:</strong> {deletingAssessment.title}</div>
+                <div><strong>Category:</strong> {deletingAssessment.category_name || "General"}</div>
+                <div><strong>Questions:</strong> {deletingAssessment.questions?.length || deletingAssessment.total_questions || 15} questions</div>
+                <div><strong>Duration:</strong> {deletingAssessment.duration_minutes || 15} mins ({deletingAssessment.passing_percentage || 60}% pass score)</div>
+              </div>
+
+              <div className={styles.deleteWarningBox}>
+                ⚠️ Deleting this assessment will permanently remove it from the active catalog and candidate evaluations.
+              </div>
+            </div>
+
+            <div className={styles.modalFooter}>
+              <button
+                type="button"
+                onClick={() => setDeletingAssessment(null)}
+                className="btn btn-secondary"
+                disabled={isDeleting}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmDeleteAssessment}
+                className={styles.btnDanger}
+                disabled={isDeleting}
+              >
+                <Trash2 size={14} />
+                <span>{isDeleting ? "Deleting..." : "Permanently Delete"}</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

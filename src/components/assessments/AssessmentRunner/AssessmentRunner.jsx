@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./AssessmentRunner.module.css";
@@ -25,7 +25,7 @@ import {
 
 export default function AssessmentRunner({ assessment }) {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, isAdmin } = useAuth();
 
   const totalQuestions = assessment?.questions?.length || 0;
   const initialDurationSeconds = (assessment?.duration_minutes || 10) * 60;
@@ -41,115 +41,21 @@ export default function AssessmentRunner({ assessment }) {
 
   const timerRef = useRef(null);
 
-  // Early return if assessment has no questions configured
-  if (!loading && totalQuestions === 0) {
-    return (
-      <div className="container" style={{ padding: "4rem 1.5rem", maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
-        <div style={{ background: "#ffffff", padding: "2.5rem", borderRadius: "10px", border: "1px solid #e2e8f0", boxShadow: "0 4px 16px rgba(0,34,85,0.06)" }}>
-          <AlertCircle size={44} style={{ color: "#d97706", margin: "0 auto 1rem auto" }} />
-          <h2 style={{ fontSize: "1.35rem", fontWeight: 800, color: "#091e42", marginBottom: "0.5rem" }}>
-            {assessment?.title || "Assessment"} - Questions Pending
-          </h2>
-          <p style={{ color: "#64748b", fontSize: "0.9rem", lineHeight: 1.5, marginBottom: "1.5rem" }}>
-            This technical assessment does not have question items published yet. Please configure questions in the Admin Studio or explore other active evaluations.
-          </p>
-          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/assessments" className="btn btn-primary">
-              Explore Active Assessments
-            </Link>
-            <Link href="/admin/assessments" className="btn btn-secondary">
-              Admin Studio
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Start test countdown ONLY when user is authenticated and not loading
-  useEffect(() => {
-    if (loading || !user) return;
-
-    setHasStarted(true);
-
-    timerRef.current = setInterval(() => {
-      setTimeRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(timerRef.current);
-          handleAutoSubmit();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [loading, user]);
-
-
-  // Format time remaining MM:SS
-  const formatTime = (secs) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  };
-
-  const timerPercentage = (timeRemaining / initialDurationSeconds) * 100;
-  const isTimeWarning = timeRemaining < 180 && timeRemaining >= 60;
-  const isTimeCritical = timeRemaining < 60;
-
-  // Options letter mapper
-  const optionLetters = ["A", "B", "C", "D"];
-
-  const currentQuestion = assessment.questions[currentIdx];
-  const selectedOption = answers[currentIdx];
-  const isCurrentFlagged = Boolean(flagged[currentIdx]);
-
-  const answeredCount = Object.keys(answers).length;
-  const unansweredCount = totalQuestions - answeredCount;
-
-  // Handle Option Select
-  const handleSelectOption = (optionIndex) => {
-    setAnswers((prev) => ({
-      ...prev,
-      [currentIdx]: optionIndex,
-    }));
-  };
-
-  // Toggle Flag
-  const handleToggleFlag = () => {
-    setFlagged((prev) => ({
-      ...prev,
-      [currentIdx]: !prev[currentIdx],
-    }));
-  };
-
   // Submit Logic
-  const handleAutoSubmit = async () => {
-    await finalizeSubmission("expired");
-  };
-
-  const handleManualSubmit = async () => {
-    setShowConfirmModal(false);
-    await finalizeSubmission("completed");
-  };
-
-  const finalizeSubmission = async (status = "completed") => {
-    if (isSubmitting) return;
+  const finalizeSubmission = useCallback(async (status = "completed") => {
+    if (isSubmitting || totalQuestions === 0) return;
     setIsSubmitting(true);
 
     // Calculate score
     let correctCount = 0;
-    assessment.questions.forEach((q, idx) => {
+    (assessment?.questions || []).forEach((q, idx) => {
       if (answers[idx] === q.correct_option_index) {
         correctCount += 1;
       }
     });
 
     const percentage = Number(((correctCount / totalQuestions) * 100).toFixed(1));
-    const isPassed = percentage >= assessment.passing_percentage;
+    const isPassed = percentage >= (assessment?.passing_percentage || 60);
     const timeSpentSeconds = initialDurationSeconds - timeRemaining;
 
     const attemptId = `att_${Date.now()}`;
@@ -160,13 +66,13 @@ export default function AssessmentRunner({ assessment }) {
       user_id: user?.id || "guest",
       user_email: user?.email || null,
       user_name: user?.full_name || user?.user_metadata?.full_name || user?.name || null,
-      assessment_id: assessment.id || assessment.slug,
-      assessment_slug: assessment.slug,
-      assessment_title: assessment.title,
-      category_name: assessment.category_name,
-      difficulty: assessment.difficulty,
+      assessment_id: assessment?.id || assessment?.slug,
+      assessment_slug: assessment?.slug,
+      assessment_title: assessment?.title,
+      category_name: assessment?.category_name,
+      difficulty: assessment?.difficulty,
       total_questions: totalQuestions,
-      total_answered: answeredCount,
+      total_answered: Object.keys(answers).length,
       score: correctCount,
       percentage,
       is_passed: isPassed,
@@ -216,13 +122,13 @@ export default function AssessmentRunner({ assessment }) {
           user_id: user.id,
           user_email: user.email || null,
           user_name: user.full_name || user.user_metadata?.full_name || user.name || null,
-          assessment_id: assessment.id || assessment.slug,
-          assessment_slug: assessment.slug,
-          assessment_title: assessment.title,
-          category_name: assessment.category_name || "General",
-          difficulty: assessment.difficulty || "Intermediate",
+          assessment_id: assessment?.id || assessment?.slug,
+          assessment_slug: assessment?.slug,
+          assessment_title: assessment?.title,
+          category_name: assessment?.category_name || "General",
+          difficulty: assessment?.difficulty || "Intermediate",
           total_questions: totalQuestions,
-          total_answered: answeredCount,
+          total_answered: Object.keys(answers).length,
           score: correctCount,
           percentage: Number(percentage) || 0,
           is_passed: Boolean(isPassed),
@@ -240,12 +146,11 @@ export default function AssessmentRunner({ assessment }) {
 
         if (insertErr) {
           console.warn("[AssessmentRunner] Full insert notice, attempting standard payload:", insertErr);
-          // Fallback with minimal standard columns
           await supabase.from("assessment_attempts").insert({
             id: attemptId,
             user_id: user.id,
             user_email: user.email || null,
-            assessment_id: assessment.id || assessment.slug,
+            assessment_id: assessment?.id || assessment?.slug,
             score: correctCount,
             total_questions: totalQuestions,
             percentage: Number(percentage) || 0,
@@ -262,9 +167,76 @@ export default function AssessmentRunner({ assessment }) {
       }
     }
 
-    router.push(`/assessments/${assessment.slug}/result?attemptId=${attemptId}`);
+    router.push(`/assessments/${assessment?.slug}/result?attemptId=${attemptId}`);
+  }, [isSubmitting, totalQuestions, assessment, answers, initialDurationSeconds, timeRemaining, user, router]);
+
+  const handleAutoSubmit = useCallback(async () => {
+    await finalizeSubmission("expired");
+  }, [finalizeSubmission]);
+
+  // Start test countdown ONLY when user is authenticated, not loading, and has questions
+  useEffect(() => {
+    if (loading || !user || totalQuestions === 0) return;
+
+    setHasStarted(true);
+
+    timerRef.current = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current);
+          handleAutoSubmit();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [loading, user, totalQuestions, handleAutoSubmit]);
+
+  // Format time remaining MM:SS
+  const formatTime = (secs) => {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
   };
 
+  const timerPercentage = (timeRemaining / initialDurationSeconds) * 100;
+  const isTimeWarning = timeRemaining < 180 && timeRemaining >= 60;
+  const isTimeCritical = timeRemaining < 60;
+
+  // Options letter mapper
+  const optionLetters = ["A", "B", "C", "D"];
+
+  const currentQuestion = assessment?.questions?.[currentIdx] || null;
+  const selectedOption = answers[currentIdx];
+  const isCurrentFlagged = Boolean(flagged[currentIdx]);
+
+  const answeredCount = Object.keys(answers).length;
+  const unansweredCount = Math.max(0, totalQuestions - answeredCount);
+
+  // Handle Option Select
+  const handleSelectOption = (optionIndex) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [currentIdx]: optionIndex,
+    }));
+  };
+
+  // Toggle Flag
+  const handleToggleFlag = () => {
+    setFlagged((prev) => ({
+      ...prev,
+      [currentIdx]: !prev[currentIdx],
+    }));
+  };
+
+  const handleManualSubmit = async () => {
+    setShowConfirmModal(false);
+    await finalizeSubmission("completed");
+  };
 
   // 1. Loading State
   if (loading) {
@@ -276,9 +248,36 @@ export default function AssessmentRunner({ assessment }) {
     );
   }
 
-  // 2. Unauthenticated User Gate: User must login before starting assessment
+  // 2. Early return if assessment has no questions configured
+  if (totalQuestions === 0) {
+    return (
+      <div className="container" style={{ padding: "4rem 1.5rem", maxWidth: "600px", margin: "0 auto", textAlign: "center" }}>
+        <div style={{ background: "#ffffff", padding: "2.5rem", borderRadius: "10px", border: "1px solid #e2e8f0", boxShadow: "0 4px 16px rgba(0,34,85,0.06)" }}>
+          <AlertCircle size={44} style={{ color: "#d97706", margin: "0 auto 1rem auto" }} />
+          <h2 style={{ fontSize: "1.35rem", fontWeight: 800, color: "#091e42", marginBottom: "0.5rem" }}>
+            {assessment?.title || "Assessment"} – Coming Soon
+          </h2>
+          <p style={{ color: "#64748b", fontSize: "0.95rem", lineHeight: 1.6, marginBottom: "1.5rem" }}>
+            This assessment is currently being prepared with curated questions. Please check back shortly or explore our other live practice tests.
+          </p>
+          <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
+            <Link href="/assessments" className="btn btn-primary">
+              Explore Active Assessments
+            </Link>
+            {isAdmin && (
+              <Link href="/admin/assessments" className="btn btn-secondary">
+                Edit in Admin Studio
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 3. Unauthenticated User Gate: User must login before starting assessment
   if (!user) {
-    const passQuestions = Math.ceil((assessment.total_questions * assessment.passing_percentage) / 100);
+    const passQuestions = Math.ceil(((assessment?.total_questions || totalQuestions) * (assessment?.passing_percentage || 60)) / 100);
 
     return (
       <div className={styles.authGateWrapper}>
@@ -385,7 +384,7 @@ export default function AssessmentRunner({ assessment }) {
               <div className={styles.qCardHeader}>
                 <div className={styles.qNumRow}>
                   <span className={styles.qNumBadge}>Question {currentIdx + 1} of {totalQuestions}</span>
-                  {currentQuestion.topic && (
+                  {currentQuestion?.topic && (
                     <span className={styles.topicBadge}>{currentQuestion.topic}</span>
                   )}
                 </div>
@@ -401,10 +400,10 @@ export default function AssessmentRunner({ assessment }) {
               </div>
 
               {/* Question Prompt */}
-              <h2 className={styles.questionPrompt}>{currentQuestion.question_text}</h2>
+              <h2 className={styles.questionPrompt}>{currentQuestion?.question_text}</h2>
 
               {/* Optional Syntax-Highlighted Code Snippet */}
-              {currentQuestion.code_snippet && (
+              {currentQuestion?.code_snippet && (
                 <div className={styles.codeSnippetBox}>
                   <div className={styles.codeHeader}>
                     <Code2 size={14} />
@@ -418,7 +417,7 @@ export default function AssessmentRunner({ assessment }) {
 
               {/* Multiple Choice Options List */}
               <div className={styles.optionsList}>
-                {currentQuestion.options.map((optText, optIdx) => {
+                {(currentQuestion?.options || []).map((optText, optIdx) => {
                   const isSelected = selectedOption === optIdx;
 
                   return (

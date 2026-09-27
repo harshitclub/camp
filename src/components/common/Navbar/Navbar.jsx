@@ -21,7 +21,8 @@ import {
   Mail,
   Briefcase,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Calendar
 } from "lucide-react";
 
 export default function Navbar() {
@@ -82,6 +83,7 @@ export default function Navbar() {
   };
 
   const displayName = profile?.full_name || user?.user_metadata?.full_name || "Student";
+  const firstName = displayName.trim().split(/\s+/)[0] || displayName;
   const userInitials = displayName
     .split(" ")
     .map((n) => n[0])
@@ -94,6 +96,8 @@ export default function Navbar() {
     switch (iconName) {
       case "FileCheck":
         return <FileCheck size={18} className={styles.itemIcon} />;
+      case "Calendar":
+        return <Calendar size={18} className={styles.itemIcon} />;
       case "Building2":
         return <Building2 size={18} className={styles.itemIcon} />;
       case "Mail":
@@ -101,7 +105,7 @@ export default function Navbar() {
       case "Briefcase":
         return <Briefcase size={18} className={styles.itemIcon} />;
       default:
-        return <Building2 size={18} className={styles.itemIcon} />;
+        return <Sparkles size={18} className={styles.itemIcon} />;
     }
   };
 
@@ -144,7 +148,7 @@ export default function Navbar() {
                       className={`${styles.navLink} ${styles.dropdownTrigger} ${
                         isChildActive ? styles.navLinkActive : ""
                       }`}
-                      onClick={() => setCompanyDropdownOpen(!companyDropdownOpen)}
+                      onClick={() => setCompanyDropdownOpen((prev) => !prev)}
                       aria-expanded={companyDropdownOpen}
                       aria-haspopup="true"
                     >
@@ -157,17 +161,20 @@ export default function Navbar() {
                       />
                     </button>
 
-                    {companyDropdownOpen && (
-                      <div className={styles.megaDropdownMenu} role="menu">
-                        <div className={styles.dropdownPointer}></div>
-                        
+                    <div 
+                      className={`${styles.megaDropdownMenu} ${
+                        companyDropdownOpen ? styles.megaDropdownMenuOpen : ""
+                      }`} 
+                      role="menu"
+                    >
+                      <div className={`container ${styles.megaInner}`}>
                         {/* Top Header */}
                         <div className={styles.megaHeader}>
                           <span className={styles.megaLabel}>Campussutras Ecosystem</span>
-                          <span className={styles.megaSubText}>50,000+ Learners • 50+ Partner Campuses</span>
+                          <span className={styles.megaSubText}>50,000+ Learners • 50+ Partner Campuses Across India</span>
                         </div>
 
-                        {/* 2-Column Horizontal Grid */}
+                        {/* Parallel Horizontal Grid (5 columns) */}
                         <div className={styles.dropdownGrid}>
                           {item.children.map((subItem) => {
                             const isSubActive = pathname === subItem.href;
@@ -204,7 +211,7 @@ export default function Navbar() {
                         <div className={styles.megaFooter}>
                           <div className={styles.megaFooterLeft}>
                             <Sparkles size={14} className={styles.megaFooterIcon} />
-                            <span>Looking for campus training drives or corporate hiring?</span>
+                            <span>Looking for campus training drives, hackathons, or corporate hiring?</span>
                           </div>
                           <Link 
                             href="/hire" 
@@ -216,7 +223,7 @@ export default function Navbar() {
                           </Link>
                         </div>
                       </div>
-                    )}
+                    </div>
                   </li>
                 );
               }
@@ -236,15 +243,15 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        {/* Right Actions Container (Equal Height Action Buttons) */}
+        {/* Right Actions Container (Equal Height & Balanced Width Action Buttons) */}
         <div className={styles.navActions}>
           <Link
             href="/verify-certificate"
             className={styles.verifyBtn}
             title="Verify Student Certificate Authenticity"
           >
-            <ShieldCheck size={17} className={styles.verifyIcon} />
-            <span>Verify Certificate</span>
+            <ShieldCheck size={16} className={styles.verifyIcon} />
+            <span>Verify</span>
           </Link>
 
           {!loading && (
@@ -261,7 +268,7 @@ export default function Navbar() {
                   >
                     <div className={styles.userAvatarInitial}>{userInitials}</div>
                     <div className={styles.userMeta}>
-                      <span className={styles.userNameText}>{displayName}</span>
+                      <span className={styles.userNameText}>{firstName}</span>
                       {isAdmin && <span className={styles.adminBadge}>Admin</span>}
                     </div>
                     <ChevronDown
@@ -293,7 +300,7 @@ export default function Navbar() {
                         onClick={() => setUserDropdownOpen(false)}
                       >
                         <User size={15} />
-                        <span>My Profile & Transcripts</span>
+                        <span>Profile</span>
                       </Link>
 
                       {isAdmin && (
@@ -303,7 +310,7 @@ export default function Navbar() {
                           onClick={() => setUserDropdownOpen(false)}
                         >
                           <LayoutDashboard size={15} />
-                          <span>Admin Command Center</span>
+                          <span>Admin Portal</span>
                         </Link>
                       )}
 
@@ -446,7 +453,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                 >
                   <User size={18} />
-                  <span>My Profile ({displayName})</span>
+                  <span>Profile ({firstName})</span>
                 </Link>
 
                 {isAdmin && (
@@ -456,7 +463,7 @@ export default function Navbar() {
                     onClick={() => setIsOpen(false)}
                   >
                     <LayoutDashboard size={18} />
-                    <span>Admin Dashboard</span>
+                    <span>Admin Portal</span>
                   </Link>
                 )}
 
@@ -476,7 +483,7 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 <LogIn size={18} />
-                <span>Sign In to Account</span>
+                <span>Sign In</span>
               </Link>
             )}
           </div>

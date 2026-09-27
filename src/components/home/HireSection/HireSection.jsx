@@ -32,7 +32,7 @@ export default function HireSection() {
               </h2>
 
               <p className={styles.description}>
-                Skip the generic resume pile. Access job-ready candidates across <strong>B.Tech, BCA, MCA, MBA, BBA, and Law</strong> trained on live production tools, verified projects, and workplace soft skills. Zero sourcing fees.
+                Save time on screening hundreds of resumes. Hire trained freshers across <strong>B.Tech, BCA, MCA, MBA, BBA, and Law</strong> with real project experience and verified skills. 100% free hiring support.
               </p>
 
               <div className={styles.ctaGroup}>
@@ -53,11 +53,11 @@ export default function HireSection() {
                 </div>
                 <div className={styles.badgeItem}>
                   <CheckCircle2 size={16} className={styles.badgeCheck} />
-                  <span>Zero Agency Fees</span>
+                  <span>Zero Hiring Fees</span>
                 </div>
                 <div className={styles.badgeItem}>
                   <CheckCircle2 size={16} className={styles.badgeCheck} />
-                  <span>50+ Partner Campuses</span>
+                  <span>50+ Partner Colleges</span>
                 </div>
               </div>
             </div>
@@ -69,9 +69,9 @@ export default function HireSection() {
                   <Users size={22} />
                 </div>
                 <div>
-                  <h3 className={styles.cardHeading}>50,000+ Pre-Assessed Talent Pool</h3>
+                  <h3 className={styles.cardHeading}>50,000+ Pre-Screened Candidates</h3>
                   <p className={styles.cardText}>
-                    Candidates across 50+ universities nationwide, filtered by technical test percentiles and practical capstone deliverables.
+                    Students from 50+ partner colleges across India, evaluated through practical tests and real project performance.
                   </p>
                 </div>
               </div>
@@ -81,9 +81,9 @@ export default function HireSection() {
                   <Clock size={22} />
                 </div>
                 <div>
-                  <h3 className={styles.cardHeading}>Fast 48-Hour Shortlist Delivery</h3>
+                  <h3 className={styles.cardHeading}>Quick 48-Hour Shortlist</h3>
                   <p className={styles.cardText}>
-                    Tell us your tech stack and location budget. We deliver 5 to 10 handpicked, verified candidate profiles ready for immediate interview.
+                    Share your job requirements. We will send 5 to 10 verified profiles ready for interviews in 48 hours.
                   </p>
                 </div>
               </div>
@@ -93,9 +93,9 @@ export default function HireSection() {
                   <ShieldCheck size={22} />
                 </div>
                 <div>
-                  <h3 className={styles.cardHeading}>Production Proof-of-Work</h3>
+                  <h3 className={styles.cardHeading}>Real Project Proof</h3>
                   <p className={styles.cardText}>
-                    No theoretical paper coders. Every candidate has working GitHub repos, live cloud URLs, Power BI dashboards, or corporate case studies.
+                    Every candidate has live projects, working GitHub code, Power BI dashboards, or practical business case studies.
                   </p>
                 </div>
               </div>

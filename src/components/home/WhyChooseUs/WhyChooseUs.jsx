@@ -5,23 +5,23 @@ export default function WhyChooseUs() {
   const pillars = [
     {
       icon: <Target size={22} />,
-      title: "Outcome-Oriented Career Tracks",
-      description: "Structured timeline focused on delivering concrete technical depth rather than passive video lectures."
+      title: "Job-Oriented Learning",
+      description: "Learn practical skills that companies look for in interviews, instead of just watching passive videos."
     },
     {
       icon: <Terminal size={22} />,
-      title: "Real Industry Project Sprints",
-      description: "Build production-grade applications that mirror actual corporate workflows and pull requests."
+      title: "Real Industry Projects",
+      description: "Build live projects using modern tools, real datasets, and actual company workflows."
     },
     {
       icon: <ShieldCheck size={22} />,
-      title: "Tamper-Proof Verified Certificates",
-      description: "Every credential has a permanent verification URL allowing recruiters to instantly confirm your skill mastery."
+      title: "Online Verified Certificates",
+      description: "Get a unique certificate link that HR and recruiters can easily verify online."
     },
     {
       icon: <Users size={22} />,
-      title: "1:1 Code Reviews & Mentorship",
-      description: "Direct feedback on architecture, clean coding standards, and algorithmic optimizations."
+      title: "1:1 Mentor Guidance",
+      description: "Get direct help, project reviews, and career advice from experienced industry mentors."
     }
   ];
 
@@ -35,11 +35,11 @@ export default function WhyChooseUs() {
           </div>
 
           <h2 className={styles.title}>
-            Engineered Specifically to Make College Students Career-Ready
+            Built to Help College Students Get Job-Ready
           </h2>
 
           <p className={styles.subtitle}>
-            Traditional college degrees often leave students unprepared for modern technical stacks. Campussutras delivers practical, hands-on mastery designed to get you hired.
+            College exams focus on theory, but companies look for practical skills. Campussutras gives you real hands-on experience so you can clear interviews with confidence.
           </p>
 
           <div className={styles.pillarsGrid}>

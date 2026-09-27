@@ -18,17 +18,17 @@ export async function generateMetadata({ params }) {
   if (!assessment) {
     return {
       title: "Assessment Not Found",
-      description: "The requested skill diagnostic assessment could not be found.",
+      description: "The requested skill assessment could not be found.",
     };
   }
 
-  const title = `${assessment.title} — Free Skill Diagnostic Assessment`;
-  const description = assessment.description || `Take the 15-question ${assessment.title} evaluation on Campussutras. Get an instant score, detailed solution breakdown, and certified credential badge.`;
+  const title = `${assessment.title} — Free Online Skill Test`;
+  const description = assessment.description || `Take the 15-question ${assessment.title} test on Campussutras. Get an instant score, detailed solution breakdown, and topic-wise accuracy analysis.`;
 
   return {
     title,
     description,
-    keywords: `${assessment.title}, online test, skill evaluation, campussutras assessment, technical mcq test`,
+    keywords: `${assessment.title}, online test, skill evaluation, campussutras assessment, practice test`,
     alternates: {
       canonical: `/assessments/${id}`,
     },

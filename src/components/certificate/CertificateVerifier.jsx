@@ -20,7 +20,9 @@ import {
   Sparkles, 
   ExternalLink, 
   Award, 
-  AlertCircle 
+  AlertCircle,
+  Info,
+  GraduationCap
 } from "lucide-react";
 
 /**
@@ -194,10 +196,10 @@ function VerifierContent() {
             </button>
             <button
               type="button"
-              onClick={() => handleSampleClick("CSAI002")}
+              onClick={() => handleSampleClick("CSAITIBT426001")}
               className={styles.sampleBtn}
             >
-              CSAI002
+              CSAITIBT426001
             </button>
           </div>
         </div>
@@ -216,7 +218,7 @@ function VerifierContent() {
               <strong>Tips for troubleshooting:</strong>
               <ul>
                 <li>Ensure there are no leading or trailing spaces in the certificate ID.</li>
-                <li>Verify you entered the full alphanumeric ID (e.g. <code>CSAI001</code>).</li>
+                <li>Verify you entered the complete alphanumeric ID (e.g. <code>CSAI001</code> or <code>CSAITIBT426001</code>).</li>
                 <li>For support or manual verification, write to <a href="mailto:info@campussutras.com">info@campussutras.com</a>.</li>
               </ul>
             </div>
@@ -394,6 +396,54 @@ function VerifierContent() {
         </div>
       )}
 
+      {/* Minimalist Certificate ID Pattern Guide */}
+      <div className={styles.idFormatCard}>
+        <div className={styles.idFormatHeader}>
+          <h3 className={styles.idFormatTitle}>Certificate ID Structure</h3>
+          <p className={styles.idFormatSub}>
+            Standard alphanumeric pattern: <span className={styles.sampleMono}>CSAITIBT426001</span>
+          </p>
+        </div>
+
+        {/* Clean Segmented Ribbon */}
+        <div className={styles.segmentedBar}>
+          <div className={styles.segItem}>
+            <span className={styles.segCode}>CS</span>
+            <span className={styles.segName}>Organization</span>
+            <span className={styles.segDetail}>Campussutras</span>
+          </div>
+          <div className={styles.segItem}>
+            <span className={styles.segCode}>AI</span>
+            <span className={styles.segName}>Program Track</span>
+            <span className={styles.segDetail}>e.g. AI, FS, PY, DA</span>
+          </div>
+          <div className={styles.segItem}>
+            <span className={styles.segCode}>TI</span>
+            <span className={styles.segName}>College / Campus</span>
+            <span className={styles.segDetail}>e.g. TI, DU, IIT</span>
+          </div>
+          <div className={styles.segItem}>
+            <span className={styles.segCode}>BT4</span>
+            <span className={styles.segName}>Degree &amp; Year</span>
+            <span className={styles.segDetail}>B.Tech 4th Year</span>
+          </div>
+          <div className={styles.segItem}>
+            <span className={styles.segCode}>26</span>
+            <span className={styles.segName}>Issue Year</span>
+            <span className={styles.segDetail}>2026</span>
+          </div>
+          <div className={styles.segItem}>
+            <span className={styles.segCode}>001</span>
+            <span className={styles.segName}>Student Serial</span>
+            <span className={styles.segDetail}>#001 – #999</span>
+          </div>
+        </div>
+
+        <p className={styles.idFormatFooter}>
+          Direct cohort certificates (e.g. <code>CSAI001</code>) are also fully recognized and valid in our registry.
+        </p>
+      </div>
+
       {/* Guide & Trust Information */}
       <div className={styles.trustGuide}>
         <h3 className={styles.guideTitle}>About Credential Verification</h3>
@@ -404,7 +454,7 @@ function VerifierContent() {
             </div>
             <h4 className={styles.guideCardTitle}>Where is my Certificate ID?</h4>
             <p className={styles.guideCardDesc}>
-              Look at the bottom-right corner or top header of your Campussutras certificate. It starts with prefixes like <code>CSAI...</code> or <code>CS...</code>.
+              Look at the bottom-right corner or top header of your Campussutras certificate. It follows our standardized ID format (e.g., <code>CSAITIBT426001</code> or <code>CSAI001</code>).
             </p>
           </div>
 

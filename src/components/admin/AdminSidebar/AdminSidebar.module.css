@@ -21,6 +21,31 @@
   gap: 0.6rem;
 }
 
+.brandTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mobileCloseBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mobileCloseBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .logoLink {
   display: inline-block;
   background: #ffffff;
@@ -167,17 +192,25 @@
 @media (max-width: 1024px) {
   .sidebar {
     transform: translateX(-100%);
+    width: 280px;
+    max-width: 85vw;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   }
 
   .sidebarMobileOpen {
     transform: translateX(0);
   }
 
+  .mobileCloseBtn {
+    display: flex;
+  }
+
   .mobileBackdrop {
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 20, 50, 0.6);
+    backdrop-filter: blur(3px);
     z-index: 99;
   }
 }

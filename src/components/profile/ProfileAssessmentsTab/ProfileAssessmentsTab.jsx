@@ -83,7 +83,7 @@ export default function ProfileAssessmentsTab({ user }) {
         const assessmentDef = getAssessmentById(attempt.assessment_id || attempt.assessment_slug);
         return {
           ...attempt,
-          title: attempt.assessment_title || assessmentDef?.title || "Technical Assessment",
+          title: attempt.assessment_title || assessmentDef?.title || "Assessment",
           category_name: attempt.category_name || assessmentDef?.category_name || "General",
           slug: attempt.assessment_slug || assessmentDef?.slug || attempt.assessment_id || "agentic-ai",
         };
@@ -129,7 +129,7 @@ export default function ProfileAssessmentsTab({ user }) {
             <Award size={20} />
           </div>
           <div className={styles.statInfo}>
-            <span className={styles.statLabel}>Passed &amp; Certified</span>
+            <span className={styles.statLabel}>Passed Tests</span>
             <span className={styles.statValue}>{passedCount}</span>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function ProfileAssessmentsTab({ user }) {
           <div>
             <h2 className={styles.sectionTitle}>My Assessment Transcripts</h2>
             <p className={styles.sectionDesc}>
-              Review your technical evaluation history, scores, and scorecard performance.
+              Review your evaluation history, scores, and scorecard performance.
             </p>
           </div>
           <Link href="/assessments" className={`btn btn-primary btn-sm ${styles.browseBtn}`}>

@@ -6,6 +6,7 @@ import styles from "./CoursesCatalog.module.css";
 import CourseCard from "../CourseCard/CourseCard";
 import { allCourses, courseCategories } from "@/data/courses";
 import { Search, RotateCcw, ChevronLeft, ChevronRight } from "lucide-react";
+import { getPaginationRange } from "@/lib/pagination";
 
 export default function CoursesCatalog() {
   const router = useRouter();
@@ -159,20 +160,31 @@ export default function CoursesCatalog() {
                 </button>
 
                 <div className={styles.minimalPageList}>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-                    <button
-                      key={pageNum}
-                      type="button"
-                      onClick={() => handlePageChange(pageNum)}
-                      className={`${styles.minimalPageBtn} ${
-                        currentPage === pageNum ? styles.minimalPageBtnActive : ""
-                      }`}
-                      aria-label={`Page ${pageNum}`}
-                      aria-current={currentPage === pageNum ? "page" : undefined}
-                    >
-                      {pageNum}
-                    </button>
-                  ))}
+                  {getPaginationRange(currentPage, totalPages).map((item, idx) => {
+                    if (typeof item !== "number" || item === "...") {
+                      return (
+                        <span key={`ellipsis-${idx}`} className={styles.minimalPageEllipsis}>
+                          &hellip;
+                        </span>
+                      );
+                    }
+
+                    const isPageActive = currentPage === item;
+                    return (
+                      <button
+                        key={item}
+                        type="button"
+                        onClick={() => handlePageChange(item)}
+                        className={`${styles.minimalPageBtn} ${
+                          isPageActive ? styles.minimalPageBtnActive : ""
+                        }`}
+                        aria-label={`Page ${item}`}
+                        aria-current={isPageActive ? "page" : undefined}
+                      >
+                        {item}
+                      </button>
+                    );
+                  })}
                 </div>
 
                 <button

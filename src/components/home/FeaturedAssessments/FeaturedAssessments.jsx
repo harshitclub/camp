@@ -79,15 +79,15 @@ export default function FeaturedAssessments() {
           <div>
             <div className={styles.eyebrow}>
               <Sparkles size={13} className={styles.eyebrowIcon} />
-              <span>Skill Benchmarking &amp; Diagnostics</span>
+              <span>Free Online Tests</span>
             </div>
             <h2 className={styles.title}>
-              Test Your Knowledge with Free Skill Assessments
+              Test Your Skills with Free Practice Tests
             </h2>
           </div>
 
           <Link href="/assessments" className={styles.viewAllBtn}>
-            <span>Explore All 30 Assessments</span>
+            <span>Explore All Assessments</span>
             <ArrowRight size={15} />
           </Link>
         </div>
@@ -169,7 +169,7 @@ export default function FeaturedAssessments() {
         {/* Mobile View All CTA */}
         <div className={styles.mobileCta}>
           <Link href="/assessments" className="btn btn-primary btn-block">
-            <span>Explore All 30 Assessments</span>
+            <span>Explore All Assessments</span>
             <ArrowRight size={15} />
           </Link>
         </div>

@@ -10,7 +10,7 @@
 
 .contentGrid {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: minmax(0, 1fr) 480px;
   gap: 2.75rem;
   align-items: flex-start;
 }
@@ -23,17 +23,18 @@
 
 .sidebarCol {
   min-width: 0;
+  width: 100%;
 }
 
 /* Responsive adjustments */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .contentGrid {
-    grid-template-columns: 1fr 340px;
+    grid-template-columns: minmax(0, 1fr) 440px;
     gap: 2rem;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 980px) {
   .layoutContainer {
     padding-top: 2rem;
     padding-bottom: 3rem;

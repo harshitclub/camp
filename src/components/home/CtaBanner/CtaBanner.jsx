@@ -9,15 +9,15 @@ export default function CtaBanner() {
         <div className={styles.bannerCard}>
           <div className={styles.badge}>
             <Sparkles size={15} />
-            <span>Transform Your Technical Trajectory</span>
+            <span>Start Your Career Today</span>
           </div>
 
           <h2 className={styles.title}>
-            Ready to Build Real Projects & Land Your Dream Tech Role?
+            Ready to Build Real Projects &amp; Get Your Dream Job?
           </h2>
 
           <p className={styles.subtitle}>
-            Join thousands of ambitious students in India’s leading practical bootcamps. Learn by coding, build verifiable capstones, and get direct mentorship.
+            Join thousands of college students learning practical skills. Learn with hands-on coding, build real projects, and get guidance from expert mentors.
           </p>
 
           <div className={styles.btnGroup}>
@@ -32,13 +32,13 @@ export default function CtaBanner() {
               }}
             >
               <BookOpen size={18} />
-              <span>Explore All Bootcamps</span>
+              <span>Explore All Programs</span>
               <ArrowRight size={18} />
             </Link>
 
             <Link href="/internship" className="btn btn-outline-white btn-lg">
               <Briefcase size={18} />
-              <span>Apply for Project Internship</span>
+              <span>Apply for Internship</span>
             </Link>
           </div>
         </div>

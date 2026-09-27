@@ -36,6 +36,7 @@
 .navMenu {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .navLinks {
@@ -45,6 +46,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 .navLink {
@@ -76,13 +78,17 @@
 
 /* Dropdown Container & Menu */
 .dropdownContainer {
-  position: relative;
+  position: static;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .dropdownTrigger {
   cursor: pointer;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
 }
 
 .dropdownChevron {
@@ -95,42 +101,56 @@
   color: var(--mainBlue);
 }
 
-/* Ultra-Modern Horizontal Mega Dropdown Menu */
+/* Full-Width Mega Dropdown Bar (Matches Navbar Container Width) */
 .megaDropdownMenu {
   position: absolute;
-  top: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 590px;
-  max-width: calc(100vw - 24px);
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 45px -10px rgba(0, 34, 85, 0.16), 0 4px 16px rgba(0, 0, 0, 0.05);
-  padding: 1rem 1.15rem;
-  z-index: 1001;
-  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.megaDropdownMenu::before {
-  content: '';
-  position: absolute;
-  top: -14px;
+  top: 100%;
   left: 0;
   right: 0;
-  height: 14px;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #cbd5e1;
+  box-shadow: 0 20px 45px -8px rgba(0, 34, 85, 0.14), 0 4px 16px rgba(0, 0, 0, 0.04);
+  padding: 1.35rem 0 1.15rem;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Invisible bridge so mouse movement between navbar and dropdown never loses hover state */
+.megaDropdownMenu::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
   background: transparent;
 }
 
-@keyframes dropdownFadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -8px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+/* Dropdown Open State */
+.megaDropdownMenu.megaDropdownMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.dropdownChevronOpen {
+  transform: rotate(180deg);
+  color: var(--mainBlue);
+}
+
+.megaInner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /* Mega Menu Header */
@@ -138,49 +158,54 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0.25rem 0.75rem;
+  padding: 0 0.25rem 0.65rem;
   border-bottom: 1px solid #f1f5f9;
-  margin-bottom: 0.85rem;
 }
 
 .megaLabel {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #0b57d0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .megaSubText {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: #64748b;
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* 2-Column Horizontal Grid */
+/* 5-Column Parallel Horizontal Grid */
 .dropdownGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.85rem;
 }
 
 .dropdownLinkCard {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 0.85rem;
-  padding: 0.85rem 0.95rem;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
   background: #f8fafc;
   border: 1px solid #edf2f7;
-  transition: all 0.18s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .dropdownLinkCard:hover {
   background-color: #ffffff;
-  border-color: #bfdbfe;
-  box-shadow: 0 8px 18px -4px rgba(11, 87, 208, 0.1);
-  transform: translateY(-2px);
+  border-color: #93c5fd;
+  box-shadow: 0 8px 20px -4px rgba(11, 87, 208, 0.12);
+  transform: translateY(-3px);
 }
 
 .dropdownLinkCardActive {
@@ -189,18 +214,18 @@
 }
 
 .dropdownLinkCardHire {
-  background: linear-gradient(135deg, #f8fafc 0%, #f0fdf4 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, #f0fdf4 100%);
   border-color: #e2e8f0;
 }
 
 .dropdownLinkCardHire:hover {
   border-color: #86efac;
-  box-shadow: 0 8px 18px -4px rgba(5, 150, 105, 0.12);
+  box-shadow: 0 8px 20px -4px rgba(5, 150, 105, 0.14);
 }
 
 .itemIconWrapper {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
   background-color: #e8f0fe;
   color: #0b57d0;
@@ -226,6 +251,7 @@
   background-color: #0b57d0;
   color: #ffffff;
   border-color: #0b57d0;
+  transform: scale(1.05);
 }
 
 .dropdownLinkCardHire:hover .itemIconHire {
@@ -237,43 +263,44 @@
 .itemTextWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.2rem;
-  flex: 1;
-  min-width: 0;
+  gap: 0.25rem;
+  width: 100%;
 }
 
 .itemTitleRow {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.35rem;
 }
 
 .itemTitle {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   font-weight: 750;
   color: var(--text-heading);
   line-height: 1.25;
 }
 
 .hiringBadge {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background-color: #ecfdf5;
   color: #059669;
   border: 1px solid #a7f3d0;
-  padding: 0.1rem 0.45rem;
+  padding: 0.1rem 0.35rem;
   border-radius: var(--radius-xs);
+  white-space: nowrap;
 }
 
 .itemArrow {
   color: #94a3b8;
   opacity: 0;
-  margin-left: auto;
   transform: translateX(-4px);
   transition: all 0.15s ease;
+  flex-shrink: 0;
 }
 
 .dropdownLinkCard:hover .itemArrow {
@@ -283,9 +310,9 @@
 }
 
 .itemDescription {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: #64748b;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 /* Mega Menu Bottom Strip */
@@ -294,11 +321,11 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 0.85rem;
-  padding: 0.75rem 0.95rem;
+  padding: 0.75rem 1.15rem;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-sm);
+  margin-top: 0.25rem;
 }
 
 .megaFooterLeft {
@@ -333,7 +360,7 @@
 }
 
 /* ==========================================================================
-   Right Hand Action Buttons - Strictly Uniform Height (40px)
+   Right Hand Action Buttons - Strictly Uniform Height (40px) & Symmetrical Width
    ========================================================================== */
 .navActions {
   display: flex;
@@ -342,19 +369,20 @@
   flex-shrink: 0;
 }
 
-/* 1. Verify Certificate Button */
+/* 1. Verify Certificate Button (Outline & Balanced Width) */
 .verifyBtn {
   height: 40px;
+  min-width: 104px;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--mainBlue);
+  color: #1e293b;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0 1rem;
+  gap: 0.45rem;
+  padding: 0 1.15rem;
   border-radius: var(--radius-sm);
   border: 1.5px solid #cbd5e1;
   background-color: #ffffff;
@@ -365,7 +393,8 @@
 
 .verifyBtn:hover {
   background-color: #f8fafc;
-  border-color: var(--mainBlue);
+  border-color: #94a3b8;
+  color: var(--mainBlue);
   box-shadow: 0 2px 6px rgba(0, 34, 85, 0.06);
 }
 
@@ -374,9 +403,10 @@
   flex-shrink: 0;
 }
 
-/* 2. Sign In Button (Logged Out) */
+/* 2. Sign In Button (Solid & Balanced Width) */
 .signInBtn {
   height: 40px;
+  min-width: 104px;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   font-size: 0.875rem;
@@ -386,12 +416,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0 1.25rem;
+  gap: 0.45rem;
+  padding: 0 1.15rem;
   border-radius: var(--radius-sm);
   border: 1.5px solid var(--mainBlue);
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 34, 85, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 34, 85, 0.18);
   transition: all 0.15s ease;
   white-space: nowrap;
 }

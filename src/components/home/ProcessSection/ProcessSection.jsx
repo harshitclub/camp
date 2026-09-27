@@ -6,27 +6,27 @@ export default function ProcessSection() {
   const steps = [
     {
       num: "01",
-      timeline: "Phase 1: Foundations",
-      title: "Core Foundations & Live Labs",
-      description: "Deconstruct core syntax, mental models, algorithmic thinking, and best practices through daily coding challenges.",
+      timeline: "Step 1: Basics",
+      title: "Core Concepts & Practice Labs",
+      description: "Master fundamental concepts, problem-solving, and daily exercises with hands-on practical lessons.",
     },
     {
       num: "02",
-      timeline: "Phase 2: Advanced Stacks",
-      title: "Advanced Stacks & Architecture",
-      description: "Dive deep into modern frameworks, databases, state management, and backend system designs used in tech companies.",
+      timeline: "Step 2: Modern Tools",
+      title: "Industry Tech Stacks & Tools",
+      description: "Learn modern frameworks, databases, and real-world tools used by companies today.",
     },
     {
       num: "03",
-      timeline: "Phase 3: Live Capstones",
-      title: "Live Capstones & Internship Sprints",
-      description: "Work on multi-tier production projects, pull requests, automated tests, and real user flows under mentor guidance.",
+      timeline: "Step 3: Real Projects",
+      title: "Live Projects & Sprints",
+      description: "Build complete, working projects with mentor guidance to showcase on your resume and GitHub.",
     },
     {
       num: "04",
-      timeline: "Phase 4: Career & Review",
-      title: "Verified Credential & Placement",
-      description: "Final code defense, portfolio publishing, verified certificate generation, and interview referral pipelines.",
+      timeline: "Step 4: Career Ready",
+      title: "Verified Certificate & Job Prep",
+      description: "Get your online verified certificate, polish your resume, and prepare for interviews.",
     }
   ];
 
@@ -34,10 +34,10 @@ export default function ProcessSection() {
     <section className={styles.processSection}>
       <div className="container">
         <div className="section-header">
-          <span className="section-eyebrow">Our Methodology</span>
-          <h2 className="section-title">The Proven Roadmap to Mastery</h2>
+          <span className="section-eyebrow">How You Learn</span>
+          <h2 className="section-title">Step-by-Step Learning Roadmap</h2>
           <p className="section-subtitle">
-            A clear, battle-tested learning path that takes you from college-level fundamentals to job-ready engineering proficiency.
+            A structured 4-step path that takes you from basics to building real projects and getting job-ready.
           </p>
         </div>
 
@@ -55,14 +55,14 @@ export default function ProcessSection() {
         <div className={styles.processFooterBanner}>
           <div>
             <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--mainBlue)' }}>
-              Ready to embark on your learning transformation?
+              Ready to start your career journey?
             </h4>
             <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-              Select a track and join thousands of students preparing for top tech roles.
+              Choose a program and join thousands of students learning practical skills.
             </p>
           </div>
           <Link href="/courses" className="btn btn-primary">
-            <span>Browse All Bootcamps</span>
+            <span>Browse All Programs</span>
             <ArrowRight size={16} />
           </Link>
         </div>

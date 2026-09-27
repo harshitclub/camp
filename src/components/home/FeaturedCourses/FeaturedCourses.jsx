@@ -17,11 +17,11 @@ export default function FeaturedCourses() {
               <Sparkles size={13} />
               <span>Industry Career Tracks</span>
             </div>
-            <h2 className={styles.title}>Flagship 90-Day Bootcamps</h2>
+            <h2 className={styles.title}>Featured Career Bootcamps</h2>
           </div>
 
           <Link href="/courses" className={styles.viewAllBtn}>
-            <span>View All 12 Programs</span>
+            <span>View All Programs</span>
             <ArrowRight size={15} />
           </Link>
         </div>
@@ -84,7 +84,7 @@ export default function FeaturedCourses() {
         {/* Mobile View All CTA */}
         <div className={styles.mobileCta}>
           <Link href="/courses" className="btn btn-primary btn-block">
-            <span>Explore All 12 Career Tracks</span>
+            <span>Explore All Programs</span>
             <ArrowRight size={15} />
           </Link>
         </div>

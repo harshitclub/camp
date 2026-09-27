@@ -365,12 +365,14 @@ export default function EventsGallery() {
             <div className={styles.dialogHeader}>
               <div className={styles.dialogTitleGroup}>
                 <span className={styles.dialogBadge}>{currentEvent.categoryLabel}</span>
-                <h3 className={styles.dialogTitle}>{currentEvent.title}</h3>
+                <h3 className={styles.dialogTitle} title={currentEvent.title}>
+                  {currentEvent.title}
+                </h3>
               </div>
 
               <div className={styles.dialogActions}>
                 <span className={styles.counterText}>
-                  Photo {photoIndex + 1} of {currentEvent.images.length}
+                  {photoIndex + 1} / {currentEvent.images.length}
                 </span>
                 <button
                   type="button"
@@ -378,7 +380,7 @@ export default function EventsGallery() {
                   className={styles.closeModalBtn}
                   aria-label="Close Preview"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
             </div>

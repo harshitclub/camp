@@ -517,27 +517,46 @@ export async function deleteAssessment(idOrSlug) {
   return true;
 }
 
-// Get All Users (Supabase + Local Fallback)
+// Get All Users (Admin API + Local Fallback)
 export async function getAllUsers() {
   const usersMap = new Map();
 
-  // 1. Fetch from Supabase profiles database table
-  try {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (!error && Array.isArray(data) && data.length > 0) {
-      data.forEach((u) => {
-        if (u?.id) usersMap.set(u.id, u);
+  // 1. Fetch from live Admin API Route (bypasses RLS with Service Role and forces fresh fetch)
+  if (typeof window !== "undefined") {
+    try {
+      const res = await fetch(`/api/admin/users?t=${Date.now()}`, {
+        cache: "no-store",
       });
+      const result = await res.json().catch(() => ({}));
+      if (result?.success && Array.isArray(result?.data)) {
+        result.data.forEach((u) => {
+          if (u?.id) usersMap.set(u.id, u);
+        });
+      }
+    } catch (apiErr) {
+      console.warn("[AdminService] Live users API fetch error:", apiErr);
     }
-  } catch (e) {
-    console.warn("[AdminService] Supabase fetch profiles notice:", e);
   }
 
-  // 2. Aggregate from local registered users
+  // 2. Direct Supabase Fallback
+  if (usersMap.size === 0) {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (!error && Array.isArray(data) && data.length > 0) {
+        data.forEach((u) => {
+          if (u?.id) usersMap.set(u.id, u);
+        });
+      }
+    } catch (e) {
+      console.warn("[AdminService] Supabase fetch profiles notice:", e);
+    }
+  }
+
+  // 3. Aggregate from local registered users
   if (typeof window !== "undefined") {
     try {
       const localUsers = JSON.parse(localStorage.getItem("campussutras_admin_users") || "[]");
@@ -552,7 +571,7 @@ export async function getAllUsers() {
     }
   }
 
-  // 3. Populate initial demo users only if zero total users exist
+  // 4. Populate initial demo users only if zero total users exist
   if (usersMap.size === 0) {
     INITIAL_DEMO_USERS.forEach((u) => usersMap.set(u.id, u));
   }
@@ -576,9 +595,24 @@ export async function updateUserByAdmin(userId, updateData) {
     } catch (e) {
       console.warn("[AdminService] Local user update notice:", e);
     }
+
+    // 2. Update via Admin API Route
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: userId, ...payload }),
+      });
+      const result = await res.json().catch(() => ({}));
+      if (result?.success && result?.data) {
+        return result.data;
+      }
+    } catch (apiErr) {
+      console.warn("[AdminService] Update user API error:", apiErr);
+    }
   }
 
-  // 2. Update in Supabase
+  // 3. Direct Supabase Fallback
   try {
     const { data, error } = await supabase
       .from("profiles")
@@ -595,22 +629,99 @@ export async function updateUserByAdmin(userId, updateData) {
   return payload;
 }
 
+// Delete User Profile and Auth by Admin
+export async function deleteUserByAdmin(userId) {
+  if (!userId) return false;
+  const cleanId = String(userId).trim();
+
+  // 1. Remove from local storage
+  if (typeof window !== "undefined") {
+    try {
+      const localUsers = JSON.parse(localStorage.getItem("campussutras_admin_users") || "[]");
+      const filtered = localUsers.filter((u) => u.id !== cleanId);
+      localStorage.setItem("campussutras_admin_users", JSON.stringify(filtered));
+    } catch (e) {
+      console.warn("[AdminService] Local user delete notice:", e);
+    }
+
+    // 2. Delete via Admin API Route
+    try {
+      const res = await fetch(`/api/admin/users?id=${encodeURIComponent(cleanId)}`, {
+        method: "DELETE",
+      });
+      const result = await res.json().catch(() => ({}));
+      if (res.ok && result?.success) {
+        return true;
+      }
+    } catch (apiErr) {
+      console.warn("[AdminService] Delete user API error:", apiErr);
+    }
+  }
+
+  // 3. Direct Supabase Fallback
+  try {
+    await supabase.from("profiles").delete().eq("id", cleanId);
+  } catch (err) {
+    console.warn("[AdminService] Direct delete profile error:", err);
+  }
+
+  return true;
+}
+
 // Get All Assessment Attempts across all students for Analytics & Audits
 export async function getAllAttempts() {
   const attemptsMap = new Map();
 
-  // 1. Read from localStorage
+  // 1. Read from Admin API (live database via Service Role)
+  if (typeof window !== "undefined") {
+    try {
+      const res = await fetch(`/api/admin/attempts?t=${Date.now()}`, {
+        cache: "no-store",
+      });
+      const result = await res.json().catch(() => ({}));
+      if (result?.success && Array.isArray(result?.data)) {
+        result.data.forEach((att) => {
+          const key = att.id || `${att.user_id}_${att.assessment_id}_${att.submitted_at}`;
+          attemptsMap.set(key, att);
+        });
+      }
+    } catch (apiErr) {
+      console.warn("[AdminService] Live attempts API error:", apiErr);
+    }
+  }
+
+  // 2. Direct Supabase query fallback
+  if (attemptsMap.size === 0) {
+    try {
+      const { data, error } = await supabase
+        .from("assessment_attempts")
+        .select("*")
+        .order("submitted_at", { ascending: false });
+
+      if (!error && Array.isArray(data)) {
+        data.forEach((att) => {
+          const key = att.id || `${att.user_id}_${att.assessment_id}_${att.submitted_at}`;
+          attemptsMap.set(key, { ...attemptsMap.get(key), ...att });
+        });
+      }
+    } catch (e) {
+      console.warn("[AdminService] Supabase fetch attempts notice:", e);
+    }
+  }
+
+  // 3. Read from localStorage fallbacks
   if (typeof window !== "undefined") {
     try {
       const globalAttempts = JSON.parse(localStorage.getItem("campussutras_all_attempts") || "[]");
       globalAttempts.forEach((att) => {
         if (att?.id || att?.assessment_id) {
           const key = att.id || `${att.user_id || "guest"}_${att.assessment_id || att.assessment_slug}_${att.submitted_at || Date.now()}`;
-          attemptsMap.set(key, att);
+          if (!attemptsMap.has(key)) {
+            attemptsMap.set(key, att);
+          }
         }
       });
 
-      // Also read any individual user keys
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key && key.startsWith("campussutras_attempts_")) {
@@ -618,7 +729,9 @@ export async function getAllAttempts() {
           userAtts.forEach((att) => {
             if (att?.id || att?.assessment_id) {
               const attemptKey = att.id || `${att.user_id || "guest"}_${att.assessment_id || att.assessment_slug}_${att.submitted_at || Date.now()}`;
-              attemptsMap.set(attemptKey, att);
+              if (!attemptsMap.has(attemptKey)) {
+                attemptsMap.set(attemptKey, att);
+              }
             }
           });
         }
@@ -626,23 +739,6 @@ export async function getAllAttempts() {
     } catch (e) {
       console.warn("[AdminService] Local storage attempts read notice:", e);
     }
-  }
-
-  // 2. Read from Supabase assessment_attempts
-  try {
-    const { data, error } = await supabase
-      .from("assessment_attempts")
-      .select("*")
-      .order("submitted_at", { ascending: false });
-
-    if (!error && Array.isArray(data)) {
-      data.forEach((att) => {
-        const key = att.id || `${att.user_id}_${att.assessment_id}_${att.submitted_at}`;
-        attemptsMap.set(key, { ...attemptsMap.get(key), ...att });
-      });
-    }
-  } catch (e) {
-    console.warn("[AdminService] Supabase fetch attempts notice:", e);
   }
 
   return Array.from(attemptsMap.values());
