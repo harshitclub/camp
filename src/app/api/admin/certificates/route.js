@@ -1,45 +1,9 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { normalizeCertificate } from "@/lib/certificateUtils";
+import { memoryCache } from "@/lib/cache";
 
 export const dynamic = "force-dynamic";
-
-/**
- * Normalizes certificate payload keys for Supabase PostgreSQL
- */
-function normalizeCertificate(input) {
-  if (!input || typeof input !== "object") return null;
-
-  const certificateNumber = (input.certificateNumber || input.certificate_number || "").toString().trim();
-  const studentName = (input.studentName || input.student_name || "").toString().trim();
-  const program = (input.program || "").toString().trim();
-  const collegeName = (input.collegeName || input.college_name || "").toString().trim();
-  const collegeId = input.collegeId !== undefined && input.collegeId !== null
-    ? String(input.collegeId).trim()
-    : input.college_id !== undefined && input.college_id !== null
-    ? String(input.college_id).trim()
-    : null;
-  const duration = (input.duration || "").toString().trim() || null;
-  const status = (input.status || "VERIFIED_AUTHENTIC").toString().trim();
-  const issueDate = input.issueDate || input.issue_date || new Date().toISOString();
-  const completionDate = input.completionDate || input.completion_date || null;
-
-  if (!certificateNumber || !studentName || !program) {
-    return null;
-  }
-
-  return {
-    certificate_number: certificateNumber,
-    student_name: studentName,
-    program,
-    college_name: collegeName || null,
-    college_id: collegeId,
-    duration,
-    status,
-    issue_date: issueDate,
-    completion_date: completionDate,
-    updated_at: new Date().toISOString(),
-  };
-}
 
 // GET /api/admin/certificates - Fetch certificates list from Supabase
 export async function GET(request) {
@@ -117,6 +81,9 @@ export async function POST(request) {
     const body = await request.json().catch(() => ({}));
     const supabase = createAdminClient();
 
+    // Invalidate cache immediately on write
+    memoryCache.invalidateTag("certificates");
+
     // Check if bulk upload
     if (Array.isArray(body.certificates) || Array.isArray(body)) {
       const rawList = Array.isArray(body.certificates) ? body.certificates : body;
@@ -143,7 +110,7 @@ export async function POST(request) {
         );
       }
 
-      // Upsert in chunks of 50
+      // Upsert in chunks of 50 to avoid payload size and connection limits
       const BATCH_SIZE = 50;
       let insertedCount = 0;
 
@@ -222,6 +189,9 @@ export async function PUT(request) {
     const body = await request.json().catch(() => ({}));
     const supabase = createAdminClient();
 
+    // Invalidate cache immediately on update
+    memoryCache.invalidateTag("certificates");
+
     const id = body.id;
     const certNumber = body.certificateNumber || body.certificate_number;
 
@@ -248,7 +218,7 @@ export async function PUT(request) {
       updateQuery = updateQuery.eq("certificate_number", certNumber);
     }
 
-    const { data, error } = await updateQuery.select().maybeSingle();
+    const { data, error } = await updateQuery.select().single();
 
     if (error) {
       throw error;
@@ -257,7 +227,18 @@ export async function PUT(request) {
     return NextResponse.json({
       success: true,
       message: "Certificate updated successfully.",
-      data,
+      data: {
+        id: data.id,
+        certificateNumber: data.certificate_number,
+        studentName: data.student_name,
+        collegeId: data.college_id,
+        program: data.program,
+        duration: data.duration,
+        collegeName: data.college_name,
+        issueDate: data.issue_date,
+        completionDate: data.completion_date,
+        status: data.status,
+      },
     });
   } catch (error) {
     console.error("[API ERROR] admin/certificates PUT:", error);
@@ -268,21 +249,25 @@ export async function PUT(request) {
   }
 }
 
-// DELETE /api/admin/certificates - Delete a certificate
+// DELETE /api/admin/certificates?id=... OR ?certificateNumber=...
 export async function DELETE(request) {
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
-    const certNumber = searchParams.get("certificateNumber") || searchParams.get("certificate_number");
+    const certNumber = searchParams.get("certificateNumber") || searchParams.get("certNumber");
 
     if (!id && !certNumber) {
       return NextResponse.json(
-        { success: false, message: "Missing certificate identifier to delete." },
+        { success: false, message: "Please provide either ?id or ?certificateNumber to delete." },
         { status: 400 }
       );
     }
 
     const supabase = createAdminClient();
+
+    // Invalidate cache immediately on deletion
+    memoryCache.invalidateTag("certificates");
+
     let deleteQuery = supabase.from("certificates").delete();
 
     if (id) {
@@ -299,7 +284,7 @@ export async function DELETE(request) {
 
     return NextResponse.json({
       success: true,
-      message: `Certificate record removed successfully.`,
+      message: `Certificate ${id || certNumber} deleted successfully from Supabase.`,
     });
   } catch (error) {
     console.error("[API ERROR] admin/certificates DELETE:", error);

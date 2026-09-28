@@ -9,6 +9,7 @@ import ProfileDetailsTab from "./ProfileDetailsTab/ProfileDetailsTab";
 import ProfileSecurityTab from "./ProfileSecurityTab/ProfileSecurityTab";
 import ProfileAssessmentsTab from "./ProfileAssessmentsTab/ProfileAssessmentsTab";
 import styles from "./ProfileContainer.module.css";
+import { calculateCompletion } from "@/lib/profileUtils";
 import { 
   User, 
   Lock, 
@@ -52,20 +53,7 @@ export default function ProfileContainer() {
     );
   }
 
-  // Calculate profile completion percentage based on fields filled
-  const calculateCompletion = () => {
-    const fields = [
-      Boolean(profile?.full_name || user?.user_metadata?.full_name),
-      Boolean(user?.email),
-      Boolean(profile?.user_type || user?.user_metadata?.user_type),
-      Boolean(profile?.phone || user?.user_metadata?.phone),
-      Boolean(profile?.college_name || profile?.company || user?.user_metadata?.college_name || user?.user_metadata?.company),
-      Boolean(profile?.course || profile?.degree_branch || user?.user_metadata?.course || user?.user_metadata?.degree_branch),
-      Boolean(profile?.github_url || user?.user_metadata?.github_url || profile?.linkedin_url || user?.user_metadata?.linkedin_url),
-    ];
-    const filledCount = fields.filter(Boolean).length;
-    return Math.round((filledCount / fields.length) * 100);
-  };
+  const completionPercentage = calculateCompletion(user, profile);
 
   const handleProfileUpdate = async (fields) => {
     await updateProfile(fields);
@@ -90,7 +78,7 @@ export default function ProfileContainer() {
         <ProfileHero 
           profile={profile} 
           user={user} 
-          completionPercentage={calculateCompletion()} 
+          completionPercentage={completionPercentage} 
         />
 
         {/* Verification Status & Resend Link Banner */}

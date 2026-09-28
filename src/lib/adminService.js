@@ -1,5 +1,25 @@
+/**
+ * Admin Service & Database Operations Layer
+ * 
+ * Provides unified, production-level CRUD operations for:
+ * - Categories (Catalog pillars & custom categories)
+ * - Assessments & Questions (Curated static + live database + authoring studio)
+ * - User Directory & RBAC management
+ * - Student Assessment Attempts & Transcripts Analytics
+ * - Form Inquiries (Contact, Internship, Hiring, Course Enrollment)
+ * - Certificate Registry (Single creation, bulk batch uploads, updates, deletions)
+ * 
+ * Supabase Free Tier Protection:
+ * - Implements in-memory TTL caching with immediate mutation invalidation
+ * - Uses selective column projections where possible
+ * - Resilient client-side and offline fallbacks
+ */
+
 import { supabase } from "@/lib/supabase/client";
 import { assessmentsList, assessmentCategories } from "@/data/assessmentsData";
+import { memoryCache } from "@/lib/cache";
+import { isUuid, slugify } from "@/lib/validators";
+import { normalizeCertificate } from "@/lib/certificateUtils";
 
 // Initial Demo/Fallback Users for development and offline testing
 const INITIAL_DEMO_USERS = [
@@ -77,13 +97,8 @@ const INITIAL_DEMO_USERS = [
     is_verified: false,
     is_admin: false,
     created_at: "2024-04-05T11:20:00Z",
-  }
+  },
 ];
-
-function isUuid(str) {
-  if (!str || typeof str !== "string") return false;
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(str.trim());
-}
 
 // Helper to get local stored custom categories
 export function getCustomCategories() {
@@ -95,10 +110,19 @@ export function getCustomCategories() {
   }
 }
 
-// Helper to get all categories (Supabase DB + Custom + Static fallback)
+/**
+ * Retrieves all categories with in-memory caching to protect Supabase quota.
+ * Combines: Static catalog + Supabase DB + LocalStorage custom categories.
+ * 
+ * @returns {Promise<Array<object>>} Unified categories list
+ */
 export async function getAllCategories() {
+  const cacheKey = "categories:all";
+  const cached = memoryCache.get(cacheKey);
+  if (cached) return cached;
+
   const map = new Map();
-  
+
   // 1. Static fallback categories
   assessmentCategories.forEach((cat) => map.set(cat.slug, cat));
 
@@ -134,22 +158,34 @@ export async function getAllCategories() {
       map.set(cat.slug, { ...cat, is_custom: true });
     }
   });
-  
+
   const list = Array.from(map.values());
   const allCat = list.find((c) => c.slug === "all") || { id: "all", slug: "all", name: "All Categories" };
   const rest = list.filter((c) => c.slug !== "all");
+  const result = [allCat, ...rest];
 
-  return [allCat, ...rest];
+  // Cache for 60 seconds
+  memoryCache.set(cacheKey, result, 60, ["categories"]);
+  return result;
 }
 
-// Helper to save a custom category
+/**
+ * Saves a new custom category (LocalStorage + API Route + Supabase fallback)
+ * Immediately invalidates category caches.
+ * 
+ * @param {object} category - Category payload
+ * @returns {Promise<object>} Created category
+ */
 export async function saveCustomCategory(category) {
-  const slug = category.slug || category.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const slug = category.slug || slugify(category.name);
   const payload = {
     ...category,
     slug,
     id: category.id || `cat_${Date.now()}`,
   };
+
+  // Invalidate categories cache
+  memoryCache.invalidateTag("categories");
 
   if (typeof window !== "undefined") {
     try {
@@ -178,12 +214,19 @@ export async function saveCustomCategory(category) {
   }
 
   try {
-    const { data } = await supabase.from("categories").upsert({
-      slug: payload.slug,
-      name: payload.name,
-      description: payload.description,
-      color_code: payload.color || payload.color_code || "#0b57d0",
-    }, { onConflict: "slug" }).select().maybeSingle();
+    const { data } = await supabase
+      .from("categories")
+      .upsert(
+        {
+          slug: payload.slug,
+          name: payload.name,
+          description: payload.description,
+          color_code: payload.color || payload.color_code || "#0b57d0",
+        },
+        { onConflict: "slug" }
+      )
+      .select()
+      .maybeSingle();
 
     if (data?.id) {
       payload.id = data.id;
@@ -205,8 +248,17 @@ export function getCustomAssessments() {
   }
 }
 
-// Helper to get all assessments (Supabase DB + Static Catalog + Custom Created)
+/**
+ * Retrieves all assessments (Static Catalog + Supabase DB + Local Storage).
+ * Uses in-memory caching to avoid repeated full table scans on Supabase.
+ * 
+ * @returns {Promise<Array<object>>} Assessments list
+ */
 export async function getAllAssessments() {
+  const cacheKey = "assessments:all";
+  const cached = memoryCache.get(cacheKey);
+  if (cached) return cached;
+
   const map = new Map();
 
   // 1. Static list first as initial fallback
@@ -240,11 +292,11 @@ export async function getAllAssessments() {
           (x, y) => (x.question_number || 0) - (y.question_number || 0)
         );
         const fallbackAsm = map.get(a.slug) || {};
-        const catSlug = 
-          catIdToSlug.get(a.category_id) || 
-          catNameToSlug.get((a.category_name || "").toLowerCase().trim()) || 
-          fallbackAsm.category_id || 
-          fallbackAsm.category_slug || 
+        const catSlug =
+          catIdToSlug.get(a.category_id) ||
+          catNameToSlug.get((a.category_name || "").toLowerCase().trim()) ||
+          fallbackAsm.category_id ||
+          fallbackAsm.category_slug ||
           "all";
 
         map.set(a.slug || a.id, {
@@ -253,7 +305,7 @@ export async function getAllAssessments() {
           category_slug: catSlug,
           category_id: a.category_id || catSlug,
           category_name: a.category_name || fallbackAsm.category_name,
-          questions: sortedQuestions.length > 0 ? sortedQuestions : (fallbackAsm.questions || []),
+          questions: sortedQuestions.length > 0 ? sortedQuestions : fallbackAsm.questions || [],
           total_questions: a.total_questions || sortedQuestions.length || fallbackAsm.total_questions || 15,
           is_custom: false,
         });
@@ -273,13 +325,24 @@ export async function getAllAssessments() {
     });
   });
 
-  return Array.from(map.values());
+  const result = Array.from(map.values());
+  memoryCache.set(cacheKey, result, 60, ["assessments"]);
+  return result;
 }
 
-// Helper to fetch a single assessment by ID or Slug (Supabase DB with Fallback)
+/**
+ * Retrieves a single assessment by ID or Slug with caching and full fallbacks.
+ * 
+ * @param {string} idOrSlug - Assessment identifier or slug
+ * @returns {Promise<object|null>} Assessment object or null
+ */
 export async function getAssessmentById(idOrSlug) {
   if (!idOrSlug) return null;
   const cleanId = String(idOrSlug).trim();
+  const cacheKey = `assessment:${cleanId}`;
+  const cached = memoryCache.get(cacheKey);
+  if (cached) return cached;
+
   const isTargetUuid = isUuid(cleanId);
 
   // 1. Query Supabase
@@ -298,75 +361,87 @@ export async function getAssessmentById(idOrSlug) {
         (a, b) => (a.question_number || 0) - (b.question_number || 0)
       );
 
+      let finalAssessment = null;
+
       // If database has questions, return full assessment
       if (sortedQuestions.length > 0) {
-        return {
+        finalAssessment = {
           ...data,
           questions: sortedQuestions,
           total_questions: data.total_questions || sortedQuestions.length,
         };
+      } else {
+        // If questions missing in DB row, check static or local fallback
+        const staticMatch = assessmentsList.find((a) => a.slug === cleanId || a.id === cleanId);
+        if (staticMatch && staticMatch.questions?.length > 0) {
+          finalAssessment = {
+            ...data,
+            questions: staticMatch.questions,
+            total_questions: staticMatch.questions.length,
+          };
+        } else if (typeof window !== "undefined") {
+          try {
+            const customList = JSON.parse(localStorage.getItem("campussutras_custom_assessments") || "[]");
+            const customFound = customList.find((a) => a.id === cleanId || a.slug === cleanId);
+            if (customFound && customFound.questions?.length > 0) {
+              finalAssessment = {
+                ...data,
+                questions: customFound.questions,
+                total_questions: customFound.questions.length,
+              };
+            }
+          } catch (e) {}
+        }
+
+        if (!finalAssessment) {
+          finalAssessment = {
+            ...data,
+            questions: sortedQuestions,
+            total_questions: data.total_questions || sortedQuestions.length || 0,
+          };
+        }
       }
 
-      // If database has assessment row but questions are missing, check static or local fallback
-      const staticMatch = assessmentsList.find((a) => a.slug === cleanId || a.id === cleanId);
-      if (staticMatch && staticMatch.questions?.length > 0) {
-        return {
-          ...data,
-          questions: staticMatch.questions,
-          total_questions: staticMatch.questions.length,
-        };
-      }
-
-      if (typeof window !== "undefined") {
-        try {
-          const customList = JSON.parse(localStorage.getItem("campussutras_custom_assessments") || "[]");
-          const customFound = customList.find((a) => a.id === cleanId || a.slug === cleanId);
-          if (customFound && customFound.questions?.length > 0) {
-            return {
-              ...data,
-              questions: customFound.questions,
-              total_questions: customFound.questions.length,
-            };
-          }
-        } catch (e) {}
-      }
-
-      // Return assessment even with whatever questions exist
-      return {
-        ...data,
-        questions: sortedQuestions,
-        total_questions: data.total_questions || sortedQuestions.length || 0,
-      };
+      memoryCache.set(cacheKey, finalAssessment, 60, ["assessment", `assessment:${cleanId}`]);
+      return finalAssessment;
     }
   } catch (err) {
     console.warn("[AdminService] getAssessmentById db error:", err);
   }
 
   // 2. Static catalog fallback
-  const staticFound = assessmentsList.find(
-    (a) => a.id === cleanId || a.slug === cleanId
-  );
-  if (staticFound) return staticFound;
+  const staticFound = assessmentsList.find((a) => a.id === cleanId || a.slug === cleanId);
+  if (staticFound) {
+    memoryCache.set(cacheKey, staticFound, 60, ["assessment", `assessment:${cleanId}`]);
+    return staticFound;
+  }
 
   // 3. Custom localStorage fallback
   if (typeof window !== "undefined") {
     try {
       const customList = JSON.parse(localStorage.getItem("campussutras_custom_assessments") || "[]");
-      const customFound = customList.find(
-        (a) => a.id === cleanId || a.slug === cleanId
-      );
-      if (customFound) return customFound;
+      const customFound = customList.find((a) => a.id === cleanId || a.slug === cleanId);
+      if (customFound) {
+        memoryCache.set(cacheKey, customFound, 60, ["assessment", `assessment:${cleanId}`]);
+        return customFound;
+      }
     } catch (e) {}
   }
 
   return null;
 }
 
-// Save or Update Assessment
+/**
+ * Saves or updates an assessment and its questions.
+ * Invalidates assessment caches immediately.
+ * 
+ * @param {object} assessmentData - Complete assessment payload
+ * @returns {Promise<object>} Saved assessment
+ */
 export async function saveAssessment(assessmentData) {
   const id = assessmentData.id || `custom_${Date.now()}`;
-  const slug = assessmentData.slug || assessmentData.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-  
+  const slug = assessmentData.slug || slugify(assessmentData.title);
+
   const payload = {
     ...assessmentData,
     id,
@@ -375,6 +450,10 @@ export async function saveAssessment(assessmentData) {
     updated_at: new Date().toISOString(),
     created_at: assessmentData.created_at || new Date().toISOString(),
   };
+
+  // Invalidate caches
+  memoryCache.invalidateTag("assessments");
+  memoryCache.invalidateTag("assessment");
 
   // 1. Save to LocalStorage for instant client responsiveness
   if (typeof window !== "undefined") {
@@ -390,7 +469,7 @@ export async function saveAssessment(assessmentData) {
     }
   }
 
-  // 2. Save via Backend API Route (resolves category UUID & inserts questions)
+  // 2. Save via Backend API Route
   if (typeof window !== "undefined") {
     try {
       const res = await fetch("/api/admin/assessments", {
@@ -480,11 +559,21 @@ export async function saveAssessment(assessmentData) {
   return payload;
 }
 
-// Delete Assessment
+/**
+ * Deletes an assessment by ID or Slug.
+ * Clears assessment caches.
+ * 
+ * @param {string} idOrSlug - Assessment identifier
+ * @returns {Promise<boolean>}
+ */
 export async function deleteAssessment(idOrSlug) {
   if (!idOrSlug) return false;
   const cleanId = String(idOrSlug).trim();
   const isTargetUuid = isUuid(cleanId);
+
+  // Invalidate caches
+  memoryCache.invalidateTag("assessments");
+  memoryCache.invalidateTag("assessment");
 
   if (typeof window !== "undefined") {
     try {
@@ -510,18 +599,24 @@ export async function deleteAssessment(idOrSlug) {
       query = query.eq("slug", cleanId);
     }
     await query;
-  } catch (err) {
-    // Silently ignore
-  }
+  } catch (err) {}
 
   return true;
 }
 
-// Get All Users (Admin API + Local Fallback)
+/**
+ * Retrieves all registered users from Admin API / Supabase with 30s cache.
+ * 
+ * @returns {Promise<Array<object>>} Users array
+ */
 export async function getAllUsers() {
+  const cacheKey = "users:all";
+  const cached = memoryCache.get(cacheKey);
+  if (cached) return cached;
+
   const usersMap = new Map();
 
-  // 1. Fetch from live Admin API Route (bypasses RLS with Service Role and forces fresh fetch)
+  // 1. Fetch from live Admin API Route
   if (typeof window !== "undefined") {
     try {
       const res = await fetch(`/api/admin/users?t=${Date.now()}`, {
@@ -566,9 +661,7 @@ export async function getAllUsers() {
           usersMap.set(u.id, { ...existing, ...u });
         }
       });
-    } catch (e) {
-      // ignore
-    }
+    } catch (e) {}
   }
 
   // 4. Populate initial demo users only if zero total users exist
@@ -576,15 +669,26 @@ export async function getAllUsers() {
     INITIAL_DEMO_USERS.forEach((u) => usersMap.set(u.id, u));
   }
 
-  return Array.from(usersMap.values());
+  const result = Array.from(usersMap.values());
+  memoryCache.set(cacheKey, result, 30, ["users"]);
+  return result;
 }
 
-// Update User Profile by Admin
+/**
+ * Updates user profile by Admin.
+ * Invalidates users cache.
+ * 
+ * @param {string} userId
+ * @param {object} updateData
+ * @returns {Promise<object>}
+ */
 export async function updateUserByAdmin(userId, updateData) {
   const payload = {
     ...updateData,
     updated_at: new Date().toISOString(),
   };
+
+  memoryCache.invalidateTag("users");
 
   // 1. Update in local storage
   if (typeof window !== "undefined") {
@@ -629,10 +733,18 @@ export async function updateUserByAdmin(userId, updateData) {
   return payload;
 }
 
-// Delete User Profile and Auth by Admin
+/**
+ * Deletes user account and profile.
+ * Invalidates users cache.
+ * 
+ * @param {string} userId
+ * @returns {Promise<boolean>}
+ */
 export async function deleteUserByAdmin(userId) {
   if (!userId) return false;
   const cleanId = String(userId).trim();
+
+  memoryCache.invalidateTag("users");
 
   // 1. Remove from local storage
   if (typeof window !== "undefined") {
@@ -668,11 +780,20 @@ export async function deleteUserByAdmin(userId) {
   return true;
 }
 
-// Get All Assessment Attempts across all students for Analytics & Audits
+/**
+ * Retrieves all assessment attempts across all students for Admin analytics.
+ * Cached for 30s.
+ * 
+ * @returns {Promise<Array<object>>}
+ */
 export async function getAllAttempts() {
+  const cacheKey = "attempts:all";
+  const cached = memoryCache.get(cacheKey);
+  if (cached) return cached;
+
   const attemptsMap = new Map();
 
-  // 1. Read from Admin API (live database via Service Role)
+  // 1. Read from Admin API
   if (typeof window !== "undefined") {
     try {
       const res = await fetch(`/api/admin/attempts?t=${Date.now()}`, {
@@ -715,7 +836,9 @@ export async function getAllAttempts() {
       const globalAttempts = JSON.parse(localStorage.getItem("campussutras_all_attempts") || "[]");
       globalAttempts.forEach((att) => {
         if (att?.id || att?.assessment_id) {
-          const key = att.id || `${att.user_id || "guest"}_${att.assessment_id || att.assessment_slug}_${att.submitted_at || Date.now()}`;
+          const key =
+            att.id ||
+            `${att.user_id || "guest"}_${att.assessment_id || att.assessment_slug}_${att.submitted_at || Date.now()}`;
           if (!attemptsMap.has(key)) {
             attemptsMap.set(key, att);
           }
@@ -728,7 +851,9 @@ export async function getAllAttempts() {
           const userAtts = JSON.parse(localStorage.getItem(key) || "[]");
           userAtts.forEach((att) => {
             if (att?.id || att?.assessment_id) {
-              const attemptKey = att.id || `${att.user_id || "guest"}_${att.assessment_id || att.assessment_slug}_${att.submitted_at || Date.now()}`;
+              const attemptKey =
+                att.id ||
+                `${att.user_id || "guest"}_${att.assessment_id || att.assessment_slug}_${att.submitted_at || Date.now()}`;
               if (!attemptsMap.has(attemptKey)) {
                 attemptsMap.set(attemptKey, att);
               }
@@ -741,20 +866,29 @@ export async function getAllAttempts() {
     }
   }
 
-  return Array.from(attemptsMap.values());
+  const result = Array.from(attemptsMap.values());
+  memoryCache.set(cacheKey, result, 30, ["attempts"]);
+  return result;
 }
 
-// --------------------------------------------------------------------------
-// Form Submissions Management (Contact, Internship, Hiring, Course Enrollment)
-// --------------------------------------------------------------------------
-
+/**
+ * Retrieves all form submissions (Contact, Internship, Hire, Course Enroll).
+ * Cached for 30s.
+ * 
+ * @returns {Promise<object>}
+ */
 export async function getAllFormSubmissions() {
+  const cacheKey = "forms:all";
+  const cached = memoryCache.get(cacheKey);
+  if (cached) return cached;
+
   try {
     const res = await fetch("/api/admin/forms?type=all", {
       cache: "no-store",
     });
     const result = await res.json().catch(() => ({}));
     if (result?.success && result?.data) {
+      memoryCache.set(cacheKey, result, 30, ["forms"]);
       return result;
     }
   } catch (err) {
@@ -775,7 +909,7 @@ export async function getAllFormSubmissions() {
       supabase.from("course_registrations").select("*").order("created_at", { ascending: false }),
     ]);
 
-    return {
+    const fallbackResult = {
       success: true,
       data: {
         contact: contactData || [],
@@ -795,6 +929,9 @@ export async function getAllFormSubmissions() {
           (courseData || []).length,
       },
     };
+
+    memoryCache.set(cacheKey, fallbackResult, 30, ["forms"]);
+    return fallbackResult;
   } catch (supabaseErr) {
     console.warn("[AdminService] Supabase direct fallback error:", supabaseErr);
     return {
@@ -805,7 +942,13 @@ export async function getAllFormSubmissions() {
   }
 }
 
+/**
+ * Deletes a form submission by type and ID.
+ * Invalidates forms cache.
+ */
 export async function deleteFormSubmission(type, id) {
+  memoryCache.invalidateTag("forms");
+
   try {
     const res = await fetch(`/api/admin/forms?type=${encodeURIComponent(type)}&id=${encodeURIComponent(id)}`, {
       method: "DELETE",
@@ -832,7 +975,13 @@ export async function deleteFormSubmission(type, id) {
   return false;
 }
 
+/**
+ * Updates form submission review status.
+ * Invalidates forms cache.
+ */
 export async function updateFormSubmissionStatus(type, id, status) {
+  memoryCache.invalidateTag("forms");
+
   try {
     const res = await fetch("/api/admin/forms", {
       method: "PATCH",
@@ -869,14 +1018,26 @@ export async function updateFormSubmissionStatus(type, id, status) {
   return null;
 }
 
-// ==============================================================================
-// CERTIFICATES MANAGEMENT
-// ==============================================================================
-
 /**
- * Fetch all certificates with optional search and program filter
+ * Retrieves certificates with optional search and program filter.
+ * Caches default views for 30s to safeguard Supabase free plan.
+ * 
+ * @param {object} params
+ * @param {string} [params.query=""]
+ * @param {string} [params.program="all"]
+ * @param {number} [params.page=1]
+ * @param {number} [params.limit=1000]
+ * @returns {Promise<{ certificates: Array<object>, total: number, source: string }>}
  */
 export async function getAllCertificates({ query = "", program = "all", page = 1, limit = 1000 } = {}) {
+  const isDefaultQuery = !query.trim() && program === "all";
+  const cacheKey = isDefaultQuery ? `certificates:p${page}_l${limit}` : null;
+
+  if (cacheKey) {
+    const cached = memoryCache.get(cacheKey);
+    if (cached) return cached;
+  }
+
   // 1. Try Admin API Route
   try {
     const params = new URLSearchParams();
@@ -893,11 +1054,13 @@ export async function getAllCertificates({ query = "", program = "all", page = 1
     if (res.ok) {
       const json = await res.json();
       if (json.success && Array.isArray(json.data)) {
-        return {
+        const payload = {
           certificates: json.data,
           total: json.count || json.data.length,
           source: json.source || "supabase",
         };
+        if (cacheKey) memoryCache.set(cacheKey, payload, 30, ["certificates"]);
+        return payload;
       }
     }
   } catch (apiErr) {
@@ -940,11 +1103,14 @@ export async function getAllCertificates({ query = "", program = "all", page = 1
         updatedAt: item.updated_at,
       }));
 
-      return {
+      const payload = {
         certificates: mapped,
         total: count ?? mapped.length,
         source: "supabase",
       };
+
+      if (cacheKey) memoryCache.set(cacheKey, payload, 30, ["certificates"]);
+      return payload;
     }
   } catch (dbErr) {
     console.warn("[AdminService] getAllCertificates Supabase direct error:", dbErr);
@@ -958,9 +1124,12 @@ export async function getAllCertificates({ query = "", program = "all", page = 1
 }
 
 /**
- * Create a single certificate
+ * Creates a single certificate.
+ * Invalidates certificates cache.
  */
 export async function createCertificate(certData) {
+  memoryCache.invalidateTag("certificates");
+
   try {
     const res = await fetch("/api/admin/certificates", {
       method: "POST",
@@ -980,9 +1149,12 @@ export async function createCertificate(certData) {
 }
 
 /**
- * Bulk upload certificates (array of objects)
+ * Bulk upload certificates (array of objects).
+ * Invalidates certificates cache.
  */
 export async function bulkUploadCertificates(certList) {
+  memoryCache.invalidateTag("certificates");
+
   try {
     const res = await fetch("/api/admin/certificates", {
       method: "POST",
@@ -1012,9 +1184,12 @@ export async function bulkUploadCertificates(certList) {
 }
 
 /**
- * Update an existing certificate
+ * Updates an existing certificate.
+ * Invalidates certificates cache.
  */
 export async function updateCertificate(certData) {
+  memoryCache.invalidateTag("certificates");
+
   try {
     const res = await fetch("/api/admin/certificates", {
       method: "PUT",
@@ -1034,9 +1209,12 @@ export async function updateCertificate(certData) {
 }
 
 /**
- * Delete a certificate
+ * Deletes a certificate.
+ * Invalidates certificates cache.
  */
 export async function deleteCertificate(idOrNumber) {
+  memoryCache.invalidateTag("certificates");
+
   try {
     const params = new URLSearchParams();
     if (isUuid(idOrNumber)) {

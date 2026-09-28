@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { validateEmail } from "@/lib/validators";
 import styles from "./LoginForm.module.css";
 import { 
   Mail, 
@@ -38,6 +39,11 @@ export default function LoginForm() {
 
     if (!email.trim() || !password) {
       setErrorMessage("Please fill in both email and password.");
+      return;
+    }
+
+    if (!validateEmail(email.trim())) {
+      setErrorMessage("Please enter a valid email address.");
       return;
     }
 

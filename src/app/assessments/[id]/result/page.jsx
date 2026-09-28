@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getAssessmentById } from "@/lib/adminService";
 import { assessmentsList } from "@/data/assessmentsData";
 import AssessmentResult from "@/components/assessments/AssessmentResult/AssessmentResult";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "auto";
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   return assessmentsList.map((a) => ({
@@ -35,5 +37,9 @@ export default async function AssessmentResultPage({ params }) {
     notFound();
   }
 
-  return <AssessmentResult assessment={assessment} />;
+  return (
+    <Suspense fallback={<div style={{ minHeight: "400px", display: "flex", alignItems: "center", justifyContent: "center" }}>Loading scorecard...</div>}>
+      <AssessmentResult assessment={assessment} />
+    </Suspense>
+  );
 }

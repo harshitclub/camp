@@ -2,38 +2,16 @@
  * 04 - Form & Input Validation Logic Unit Tests
  */
 
-// Production validators mirror
-export function validateEmail(email) {
-  if (!email || typeof email !== "string") return false;
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-}
+import {
+  validateEmail,
+  validatePhone,
+  validatePassword,
+  validateUrl,
+  isUuid,
+  isNA,
+} from "../../src/lib/validators.js";
 
-export function validatePhone(phone) {
-  if (!phone || typeof phone !== "string") return false;
-  const clean = phone.replace(/[\s\-()]+/g, "");
-  return /^\+?[0-9]{10,15}$/.test(clean);
-}
-
-export function validatePassword(password, confirmPassword = null) {
-  if (!password || typeof password !== "string") return { valid: false, message: "Password is required" };
-  if (password.length < 6) return { valid: false, message: "Password must be at least 6 characters" };
-  if (confirmPassword !== null && password !== confirmPassword) {
-    return { valid: false, message: "Passwords do not match" };
-  }
-  return { valid: true };
-}
-
-export function validateUrl(url, type = "generic") {
-  if (!url || typeof url !== "string") return false;
-  const clean = url.trim();
-  if (type === "github") {
-    return /^https?:\/\/(www\.)?github\.com\/[a-zA-Z0-9_\-\/]+$/i.test(clean);
-  }
-  if (type === "linkedin") {
-    return /^https?:\/\/(www\.)?linkedin\.com\/(in|company)\/[a-zA-Z0-9_\-\/]+$/i.test(clean);
-  }
-  return /^https?:\/\/[^\s$.?#].[^\s]*$/i.test(clean);
-}
+export { validateEmail, validatePhone, validatePassword, validateUrl, isUuid, isNA };
 
 export function runFormValidatorsTests() {
   const results = { name: "Form & Input Validators", passed: 0, failed: 0, tests: [] };

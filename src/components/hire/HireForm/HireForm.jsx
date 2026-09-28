@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import styles from "./HireForm.module.css";
+import { validateEmail, validatePhone } from "@/lib/validators";
 import { 
   Building2, 
   User, 
@@ -50,12 +51,12 @@ export default function HireForm() {
     }
     if (!formData.workEmail.trim()) {
       errors.workEmail = "Official work email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail)) {
+    } else if (!validateEmail(formData.workEmail)) {
       errors.workEmail = "Please enter a valid work email";
     }
     if (!formData.phone.trim()) {
       errors.phone = "Phone or WhatsApp number is required";
-    } else if (!/^\+?[0-9\s-]{10,15}$/.test(formData.phone.replace(/\s+/g, ""))) {
+    } else if (!validatePhone(formData.phone)) {
       errors.phone = "Enter valid 10-digit phone number";
     }
     return errors;

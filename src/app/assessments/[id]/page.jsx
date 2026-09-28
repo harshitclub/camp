@@ -3,7 +3,8 @@ import { getAssessmentById } from "@/lib/adminService";
 import { assessmentsList } from "@/data/assessmentsData";
 import AssessmentRunner from "@/components/assessments/AssessmentRunner/AssessmentRunner";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "auto";
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   return assessmentsList.map((a) => ({
@@ -23,7 +24,9 @@ export async function generateMetadata({ params }) {
   }
 
   const title = `${assessment.title} — Free Online Skill Test`;
-  const description = assessment.description || `Take the 15-question ${assessment.title} test on Campussutras. Get an instant score, detailed solution breakdown, and topic-wise accuracy analysis.`;
+  const description =
+    assessment.description ||
+    `Take the 15-question ${assessment.title} test on Campussutras. Get an instant score, detailed solution breakdown, and topic-wise accuracy analysis.`;
 
   return {
     title,

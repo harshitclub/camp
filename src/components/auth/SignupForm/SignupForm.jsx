@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { validateEmail, validatePhone } from "@/lib/validators";
 import styles from "./SignupForm.module.css";
 import { 
   User, 
@@ -67,8 +68,12 @@ export default function SignupForm() {
       setErrorMessage("Please enter your Full Name.");
       return;
     }
-    if (!formData.email.trim()) {
+    if (!validateEmail(formData.email.trim())) {
       setErrorMessage("Please enter a valid Email Address.");
+      return;
+    }
+    if (formData.phone?.trim() && !validatePhone(formData.phone.trim())) {
+      setErrorMessage("Please enter a valid 10-digit mobile number.");
       return;
     }
     if (formData.password.length < 6) {

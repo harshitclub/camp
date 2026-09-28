@@ -24,27 +24,7 @@ import {
   Info,
   GraduationCap
 } from "lucide-react";
-
-/**
- * Checks if a value is missing, empty, or marked as Not Applicable ("NA", "N/A", etc.)
- */
-function isNA(val) {
-  if (val === null || val === undefined) return true;
-  const s = String(val).trim().toLowerCase();
-  return (
-    s === "" ||
-    s === "na" ||
-    s === "n/a" ||
-    s === "n.a." ||
-    s === "none" ||
-    s === "null" ||
-    s === "undefined" ||
-    s === "-" ||
-    s === "--" ||
-    s === "nil" ||
-    s === "not applicable"
-  );
-}
+import { isNA } from "@/lib/validators";
 
 function VerifierContent() {
   const searchParams = useSearchParams();

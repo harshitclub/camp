@@ -1,31 +1,16 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/server";
+import { formatCertificateDate } from "@/lib/certificateUtils";
+import { isNA } from "@/lib/validators";
+import { memoryCache } from "@/lib/cache";
 
 export const dynamic = "force-dynamic";
 
 /**
- * Formats a raw timestamp or ISO string into localized date
- * @param {string|Date|number} rawDate
- * @returns {string|null}
- */
-function formatDate(rawDate) {
-  if (!rawDate) return null;
-  try {
-    const d = new Date(rawDate);
-    if (isNaN(d.getTime())) return String(rawDate);
-    return d.toLocaleDateString("en-IN", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
-  } catch {
-    return String(rawDate);
-  }
-}
-
-/**
  * Core certificate lookup service function querying Supabase PostgreSQL DB
- * @param {string} rawId
+ * with in-memory caching to safeguard the Supabase free plan.
+ * 
+ * @param {string} rawId - Candidate Certificate ID
  * @returns {Promise<{ found: boolean, data?: object, message?: string, status: number }>}
  */
 async function lookupCertificate(rawId) {
@@ -38,6 +23,13 @@ async function lookupCertificate(rawId) {
   }
 
   const cleanId = rawId.trim();
+  const cacheKey = `cert_lookup:${cleanId.toUpperCase()}`;
+
+  // Check in-memory cache first (prevents redundant hits on Supabase)
+  const cachedResult = memoryCache.get(cacheKey);
+  if (cachedResult) {
+    return cachedResult;
+  }
 
   try {
     const supabase = createAdminClient();
@@ -59,30 +51,33 @@ async function lookupCertificate(rawId) {
     }
 
     if (!certDoc) {
-      return {
+      const notFoundResult = {
         found: false,
         message: `No certificate record found matching "${cleanId}". Please check the ID and try again.`,
         status: 404,
       };
+      // Cache 404 lookups for 15 seconds to deter brute-force scraping against Supabase
+      memoryCache.set(cacheKey, notFoundResult, 15);
+      return notFoundResult;
     }
 
     const formattedIssueDate = certDoc.issue_date || certDoc.created_at
-      ? formatDate(certDoc.issue_date || certDoc.created_at)
+      ? formatCertificateDate(certDoc.issue_date || certDoc.created_at)
       : "Verified Official";
 
     const formattedCompletionDate = certDoc.completion_date
-      ? formatDate(certDoc.completion_date)
+      ? formatCertificateDate(certDoc.completion_date)
       : null;
 
-    return {
+    const successResult = {
       found: true,
       data: {
         certificateNumber: certDoc.certificate_number,
         studentName: certDoc.student_name,
         program: certDoc.program,
-        collegeName: certDoc.college_name,
-        collegeId: certDoc.college_id || "N/A",
-        duration: certDoc.duration || "N/A",
+        collegeName: isNA(certDoc.college_name) ? null : certDoc.college_name,
+        collegeId: isNA(certDoc.college_id) ? "N/A" : certDoc.college_id,
+        duration: isNA(certDoc.duration) ? "N/A" : certDoc.duration,
         issueDate: formattedIssueDate,
         completionDate: formattedCompletionDate,
         status: certDoc.status || "VERIFIED_AUTHENTIC",
@@ -90,6 +85,10 @@ async function lookupCertificate(rawId) {
       },
       status: 200,
     };
+
+    // Cache verified certificate for 60 seconds
+    memoryCache.set(cacheKey, successResult, 60, ["certificates"]);
+    return successResult;
   } catch (err) {
     console.error("[Certificate Lookup Exception]:", err);
     return {
@@ -120,7 +119,7 @@ export async function GET(request) {
       {
         status: 200,
         headers: {
-          "Cache-Control": "public, s-maxage=30, stale-while-revalidate=120",
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=180",
         },
       }
     );

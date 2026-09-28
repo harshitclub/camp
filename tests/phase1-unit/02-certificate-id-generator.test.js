@@ -2,71 +2,12 @@
  * 02 - Certificate ID Generator & Acronym Engine Unit Tests
  */
 
-// Production logic mirror
-export function extractAcronym(text) {
-  if (!text || typeof text !== "string") return "";
-  const clean = text.trim();
-  if (!clean) return "";
+import {
+  extractAcronym,
+  generateCertificateIds,
+} from "../../src/lib/certificateUtils.js";
 
-  const stopwords = new Set(["of", "and", "&", "the", "in", "for", "to", "at", "a", "an"]);
-  const words = clean.split(/[\s\-_,]+/).filter((w) => w.length > 0 && !stopwords.has(w.toLowerCase()));
-
-  if (words.length === 1) {
-    return words[0].slice(0, 3).toUpperCase();
-  }
-
-  return words.map((w) => w[0]).join("").toUpperCase();
-}
-
-export function generateCertificateIds({
-  programCode = "",
-  collegeCode = "",
-  courseCode = "",
-  customCourseName = "",
-  courseYear = "",
-  issueYear = "",
-  startSeq = 1,
-  count = 1,
-  padding = 3,
-  separator = "",
-}) {
-  const prefix = "CS";
-  const prog = (programCode || "").trim().toUpperCase();
-  const col = (collegeCode || "").trim().toUpperCase();
-
-  const effectiveCourseCode =
-    courseCode === "CUSTOM"
-      ? extractAcronym(customCourseName || "")
-      : (courseCode || "");
-  const course = effectiveCourseCode.trim().toUpperCase();
-
-  const cYear = (courseYear || "").trim();
-  const iYear = (issueYear || "").trim();
-  const pad = Math.max(1, Math.min(6, parseInt(padding, 10) || 3));
-  const start = Math.max(1, parseInt(startSeq, 10) || 1);
-  const total = Math.max(1, Math.min(500, parseInt(count, 10) || 1));
-  const sep = separator || "";
-
-  const courseSegment = course && cYear ? `${course}${cYear}` : course || cYear;
-
-  const buildSingle = (seqNumber) => {
-    const seqStr = String(seqNumber).padStart(pad, "0");
-    const segments = [prefix];
-    if (prog) segments.push(prog);
-    if (col) segments.push(col);
-    if (courseSegment) segments.push(courseSegment);
-    if (iYear) segments.push(iYear);
-    segments.push(seqStr);
-    return segments.join(sep);
-  };
-
-  const idList = [];
-  for (let i = 0; i < total; i++) {
-    idList.push(buildSingle(start + i));
-  }
-
-  return idList;
-}
+export { extractAcronym, generateCertificateIds };
 
 export function runCertificateIdGeneratorTests() {
   const results = { name: "Certificate ID Generator & Acronym Engine", passed: 0, failed: 0, tests: [] };

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./InternshipHero.module.css";
 import { internshipProgramNames } from "@/data/internships";
+import { validateEmail, validatePhone } from "@/lib/validators";
 import { 
   CheckCircle2, 
   ShieldCheck, 
@@ -40,12 +41,12 @@ export default function InternshipHero() {
     }
     if (!formData.email.trim()) {
       errors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!validateEmail(formData.email)) {
       errors.email = "Please enter a valid email";
     }
     if (!formData.phone.trim()) {
       errors.phone = "Phone number is required";
-    } else if (!/^\+?[0-9\s-]{10,15}$/.test(formData.phone.replace(/\s+/g, ''))) {
+    } else if (!validatePhone(formData.phone)) {
       errors.phone = "Enter valid 10-digit number";
     }
     if (!formData.college.trim()) {

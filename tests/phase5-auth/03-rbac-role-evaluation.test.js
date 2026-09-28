@@ -1,3 +1,8 @@
+import {
+  evaluateAdminStatus,
+  getVerificationBadge,
+} from "../../src/lib/profileUtils.js";
+
 /**
  * 03 - Role-Based Access Control (RBAC) & Verification Status Unit Tests
  */
@@ -21,11 +26,6 @@ export function runRbacRoleEvaluationTests() {
   }
 
   // 1. Admin Clearance Evaluator
-  function evaluateAdminStatus(user, profile) {
-    if (!user) return false;
-    return Boolean(profile?.is_admin === true || user?.user_metadata?.is_admin === true);
-  }
-
   assert(
     evaluateAdminStatus({ id: "1" }, { is_admin: true }) === true,
     "RBAC: User with profile.is_admin = true has Admin Clearance"
@@ -40,23 +40,6 @@ export function runRbacRoleEvaluationTests() {
   );
 
   // 2. Student Verification Badge Evaluator
-  function getVerificationBadge(profile) {
-    if (profile?.is_verified === true) {
-      return {
-        status: "VERIFIED_AUTHENTIC",
-        label: "Verified Authentic Student",
-        badgeColor: "#059669",
-        badgeBg: "#ecfdf5",
-      };
-    }
-    return {
-      status: "PENDING",
-      label: "Pending Verification",
-      badgeColor: "#d97706",
-      badgeBg: "#fffbeb",
-    };
-  }
-
   const verified = getVerificationBadge({ is_verified: true });
   assert(
     verified.status === "VERIFIED_AUTHENTIC" && verified.label === "Verified Authentic Student",

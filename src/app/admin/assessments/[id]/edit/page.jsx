@@ -1,6 +1,7 @@
 "use client";
 
 import { use, useEffect, useState } from "react";
+import Link from "next/link";
 import AssessmentEditor from "@/components/admin/AssessmentEditor/AssessmentEditor";
 import { getAssessmentById } from "@/lib/adminService";
 
@@ -41,9 +42,9 @@ export default function EditAssessmentPage({ params }) {
       <div style={{ padding: "3rem", textAlign: "center", background: "#ffffff", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
         <h2 style={{ fontSize: "1.25rem", color: "#091e42", marginBottom: "0.5rem" }}>Assessment Not Found</h2>
         <p style={{ color: "#64748b", marginBottom: "1.5rem" }}>The requested assessment could not be located in the studio catalog.</p>
-        <a href="/admin/assessments" className="btn btn-secondary">
+        <Link href="/admin/assessments" className="btn btn-secondary">
           Return to Assessment Studio
-        </a>
+        </Link>
       </div>
     );
   }

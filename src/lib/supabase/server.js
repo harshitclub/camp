@@ -12,7 +12,10 @@ const supabaseKey =
   "sb_publishable_tVCMRU8aH-8btRIhZC6vCA_1emR7tzK";
 
 /**
- * Creates a server client for Server Components, Server Actions, and Route Handlers
+ * Creates a server client for Server Components, Server Actions, and Route Handlers.
+ * Connects to Next.js cookie jar for session maintenance.
+ * 
+ * @returns {Promise<import("@supabase/supabase-js").SupabaseClient>}
  */
 export async function createClient() {
   const cookieStore = await cookies();
@@ -29,7 +32,7 @@ export async function createClient() {
           );
         } catch {
           // The `setAll` method was called from a Server Component.
-          // This can be ignored if you have middleware refreshing user sessions.
+          // This can be ignored if proxy/middleware refreshes user sessions.
         }
       },
     },
@@ -37,8 +40,25 @@ export async function createClient() {
 }
 
 /**
- * Admin server client instance
+ * Singleton Admin server client instance cache.
+ * Avoids spawning hundreds of individual HTTP connection pools on serverless functions,
+ * drastically reducing memory usage and preventing connection pool exhaustion on Supabase Free Plan.
+ */
+let cachedAdminClient = null;
+
+/**
+ * Admin server client instance with disabled session persistence for pure API routes
+ * @returns {import("@supabase/supabase-js").SupabaseClient}
  */
 export function createAdminClient() {
-  return createSupabaseClient(supabaseUrl, supabaseKey);
+  if (!cachedAdminClient) {
+    cachedAdminClient = createSupabaseClient(supabaseUrl, supabaseKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+      },
+    });
+  }
+  return cachedAdminClient;
 }
+

@@ -7,10 +7,27 @@ const supabaseKey =
   "sb_publishable_tVCMRU8aH-8btRIhZC6vCA_1emR7tzK";
 
 /**
- * Creates a browser client for client-side Supabase interactions
+ * Singleton Browser Client Reference
+ * Safeguards Supabase Free Plan by preventing multiple WebSocket/realtime connections
+ * and duplicate client instantiations on the frontend.
+ */
+let clientInstance = null;
+
+/**
+ * Creates or retrieves the singleton browser client
+ * @returns {import("@supabase/supabase-js").SupabaseClient}
  */
 export function createClient() {
-  return createBrowserClient(supabaseUrl, supabaseKey);
+  if (typeof window === "undefined") {
+    // During SSR, return a fresh client per render pass
+    return createBrowserClient(supabaseUrl, supabaseKey);
+  }
+
+  // In the browser, maintain a strict singleton
+  if (!clientInstance) {
+    clientInstance = createBrowserClient(supabaseUrl, supabaseKey);
+  }
+  return clientInstance;
 }
 
 export const supabase = createClient();

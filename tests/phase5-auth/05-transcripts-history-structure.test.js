@@ -1,3 +1,5 @@
+import { formatTranscripts } from "../../src/lib/profileUtils.js";
+
 /**
  * 05 - Assessment Transcripts History Formatting Unit Tests (/profile)
  */
@@ -18,35 +20,6 @@ export function runTranscriptsHistoryStructureTests() {
       results.failed++;
       results.tests.push({ pass: false, name: testName, error: details });
     }
-  }
-
-  // Format raw database transcript records
-  function formatTranscripts(records) {
-    if (!Array.isArray(records)) return [];
-
-    return records
-      .map((r) => {
-        const score = r.score_percentage || 0;
-        const isPassed = r.passed !== undefined ? r.passed : score >= 60;
-        const dateStr = r.completed_at
-          ? new Date(r.completed_at).toLocaleDateString("en-IN", {
-              day: "numeric",
-              month: "short",
-              year: "numeric",
-            })
-          : "Recent";
-
-        return {
-          id: r.id,
-          assessmentTitle: r.assessment_title || "Technical Assessment",
-          categoryName: r.category_name || "General",
-          scorePercentage: `${score}%`,
-          scoreBadge: isPassed ? "PASSED" : "NEEDS_IMPROVEMENT",
-          formattedDate: dateStr,
-          rawDate: new Date(r.completed_at || 0).getTime(),
-        };
-      })
-      .sort((a, b) => b.rawDate - a.rawDate);
   }
 
   const rawSubmissions = [

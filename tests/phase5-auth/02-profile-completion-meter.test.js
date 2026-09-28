@@ -1,3 +1,5 @@
+import { calculateCompletion } from "../../src/lib/profileUtils.js";
+
 /**
  * 02 - Profile Completion Meter Unit Tests (/profile)
  */
@@ -18,21 +20,6 @@ export function runProfileCompletionMeterTests() {
       results.failed++;
       results.tests.push({ pass: false, name: testName, error: details });
     }
-  }
-
-  // Production calculation mirror from ProfileContainer.jsx
-  function calculateCompletion(user, profile) {
-    const fields = [
-      Boolean(profile?.full_name || user?.user_metadata?.full_name),
-      Boolean(user?.email),
-      Boolean(profile?.user_type || user?.user_metadata?.user_type),
-      Boolean(profile?.phone || user?.user_metadata?.phone),
-      Boolean(profile?.college_name || profile?.company || user?.user_metadata?.college_name || user?.user_metadata?.company),
-      Boolean(profile?.course || profile?.degree_branch || user?.user_metadata?.course || user?.user_metadata?.degree_branch),
-      Boolean(profile?.github_url || user?.user_metadata?.github_url || profile?.linkedin_url || user?.user_metadata?.linkedin_url),
-    ];
-    const filledCount = fields.filter(Boolean).length;
-    return Math.round((filledCount / fields.length) * 100);
   }
 
   // 1. 100% Complete Profile
