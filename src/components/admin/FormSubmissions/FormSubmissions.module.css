@@ -61,7 +61,7 @@
   gap: 0.45rem;
   font-size: 0.84rem;
   padding: 0 1rem;
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -74,22 +74,25 @@
 
 .actionBtn:hover {
   background: #f8fafc;
-  border-color: #cbd5e1;
-  color: var(--mainBlue);
+  border-color: #0b57d0;
+  color: #0b57d0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(11, 87, 208, 0.08);
 }
 
 .actionBtnPrimary {
-  background: var(--mainBlue);
+  background: var(--mainBlue, #002255);
   color: #ffffff;
-  border-color: var(--mainBlue);
-  box-shadow: 0 1px 3px rgba(0, 34, 85, 0.12);
+  border-color: var(--mainBlue, #002255);
+  box-shadow: 0 2px 6px rgba(0, 34, 85, 0.15);
 }
 
 .actionBtnPrimary:hover {
-  background: var(--mainBlue-dark);
-  border-color: var(--mainBlue-dark);
+  background: #003380;
+  border-color: #003380;
   color: #ffffff;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 34, 85, 0.2);
 }
 
 /* Alert Banner */
@@ -98,7 +101,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.25rem;
-  border-radius: 6px;
+  border-radius: 4px;
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
   font-weight: 500;
@@ -122,26 +125,26 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .metricCard {
   background: #ffffff;
   border: 1px solid var(--border-default, #e2e8f0);
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
+  border-radius: 4px;
+  padding: 1.15rem 1.35rem;
   display: flex;
   align-items: center;
   gap: 1.2rem;
   cursor: pointer;
-  transition: all 0.15s ease;
-  box-shadow: 0 1px 3px rgba(0, 34, 85, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 34, 85, 0.02);
 }
 
 .metricCard:hover {
-  border-color: var(--accentBlue, #0b57d0);
+  border-color: #bfdbfe;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 34, 85, 0.08);
+  box-shadow: 0 8px 24px -4px rgba(0, 34, 85, 0.08);
 }
 
 .metricCardActive {
@@ -151,9 +154,9 @@
 }
 
 .metricIconWrap {
-  width: 46px;
-  height: 46px;
-  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -186,8 +189,8 @@
 .workspace {
   background: #ffffff;
   border: 1px solid var(--border-default, #e2e8f0);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 34, 85, 0.04);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 3px 10px rgba(0, 34, 85, 0.03);
   overflow: hidden;
 }
 
@@ -229,7 +232,7 @@
 .tabPill {
   font-size: 11px;
   padding: 2px 7px;
-  border-radius: 12px;
+  border-radius: 4px;
   background: #f1f5f9;
   color: #475569;
   font-weight: 700;
