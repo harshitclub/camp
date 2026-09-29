@@ -15,7 +15,8 @@ import {
   Award,
   X,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Cpu
 } from "lucide-react";
 
 export default function AdminSidebar({ 
@@ -61,6 +62,11 @@ export default function AdminSidebar({
       href: "/admin/assessments/new",
       icon: <PlusCircle size={19} />,
       isNew: true,
+    },
+    {
+      label: "System Observatory",
+      href: "/admin/system",
+      icon: <Cpu size={19} />,
     },
   ];
 

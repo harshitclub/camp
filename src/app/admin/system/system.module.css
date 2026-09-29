@@ -1,0 +1,1156 @@
+/* ==============================================================================
+   CAMPUSSUTRAS - SYSTEM OBSERVATORY & ARCHITECTURE BLUEPRINT STYLESHEET
+   Strict adherence to minimal 4px border-radius, deep navy theme, and mobile responsiveness
+   ============================================================================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* 1. Header & Quick Actions */
+.headerCard {
+  background: linear-gradient(135deg, #001e47 0%, #002b66 60%, #0b57d0 100%);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 1.75rem 2rem;
+  box-shadow: 0 4px 20px rgba(0, 30, 71, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.headerCard::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 780px;
+  position: relative;
+  z-index: 1;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.pulseBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.versionBadge {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.smtpBadge {
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(14, 165, 233, 0.4);
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  margin: 0;
+  line-height: 1.45;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.runDiagBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 38px;
+  padding: 0 1.15rem;
+  background: #ffffff;
+  color: #001e47;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+}
+
+.runDiagBtn:hover {
+  background: #f0f7ff;
+  color: #0b57d0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.exportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 38px;
+  padding: 0 1rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.exportBtn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 2. Top Metric Cards Grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.kpiCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 34, 85, 0.03), 0 2px 8px rgba(0, 34, 85, 0.02);
+  transition: all 0.15s ease;
+}
+
+.kpiCard:hover {
+  border-color: #0b57d0;
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.08);
+  transform: translateY(-1px);
+}
+
+.kpiMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.kpiLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.kpiValue {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #091e42;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.kpiHint {
+  font-size: 0.725rem;
+  color: #059669;
+  font-weight: 600;
+}
+
+.kpiIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: #f0f7ff;
+  color: #0b57d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 3. Navigation Tabs Bar */
+.tabsBar {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 1px 3px rgba(0, 34, 85, 0.03);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.95rem;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  color: #475569;
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.tabBtn:hover {
+  background: #f1f5f9;
+  color: #091e42;
+}
+
+.tabBtnActive {
+  background: #002255 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0, 34, 85, 0.2);
+}
+
+.tabBadge {
+  font-size: 0.675rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.tabBtnActive .tabBadge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* 4. Tab 1: System Topology & Flow */
+.topologySection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.topologyCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.cardHeadingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #091e42;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cardSubtitle {
+  font-size: 0.775rem;
+  color: #64748b;
+  margin: 0.2rem 0 0;
+}
+
+.flowDiagram {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  position: relative;
+  align-items: stretch;
+}
+
+.flowNode {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 1.15rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.flowNode:hover {
+  background: #ffffff;
+  border-color: #0b57d0;
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.08);
+  transform: translateY(-2px);
+}
+
+.flowNodeActive {
+  border-color: #0b57d0;
+  background: #f0f7ff;
+}
+
+.flowStepNum {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #0b57d0;
+  background: #e0edff;
+  width: fit-content;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.flowNodeTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #091e42;
+  margin: 0;
+}
+
+.flowNodeDesc {
+  font-size: 0.735rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.flowNodeTech {
+  font-size: 0.675rem;
+  font-weight: 600;
+  color: #002255;
+  background: #e2e8f0;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  width: fit-content;
+  margin-top: auto;
+}
+
+/* Highlighted Subsystem Cards (Grid of 3) */
+.subsystemGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.subsystemCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease;
+}
+
+.subsystemCard:hover {
+  border-color: #0b57d0;
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.06);
+}
+
+.subsystemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subsystemTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: #091e42;
+}
+
+.subsystemRole {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.subsystemProvider {
+  font-size: 0.75rem;
+  color: #0b57d0;
+  font-weight: 600;
+  background: #f0f7ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.765rem;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.checkIcon {
+  color: #16a34a;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.subsystemNote {
+  font-size: 0.7rem;
+  color: #64748b;
+  background: #f8fafc;
+  border-left: 2px solid #0b57d0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0 4px 4px 0;
+  margin-top: auto;
+}
+
+/* 5. Tab 2: Database Schema & ERD */
+.dbSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  flex-wrap: wrap;
+}
+
+.searchInputWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 0.35rem 0.75rem;
+  width: 320px;
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.825rem;
+  color: #091e42;
+  width: 100%;
+}
+
+.filterTags {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.filterTag {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.filterTagActive {
+  background: #002255;
+  color: #ffffff;
+  border-color: #002255;
+}
+
+.tablesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.tableCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.tableCard:hover {
+  border-color: #0b57d0;
+  box-shadow: 0 6px 16px rgba(11, 87, 208, 0.08);
+}
+
+.tableHeader {
+  padding: 0.85rem 1.15rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tableNameWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tableName {
+  font-family: monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #002255;
+}
+
+.tableCategoryBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #0b57d0;
+  background: #e0edff;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+}
+
+.tableRlsBadge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #166534;
+  background: #dcfce7;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+}
+
+.tableDesc {
+  padding: 0.65rem 1.15rem 0.35rem;
+  font-size: 0.775rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.columnsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.columnsTable th {
+  text-align: left;
+  padding: 0.45rem 1.15rem;
+  background: #f1f5f9;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.columnsTable td {
+  padding: 0.45rem 1.15rem;
+  border-top: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.colName {
+  font-family: monospace;
+  font-weight: 600;
+  color: #091e42;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pkPill {
+  font-size: 0.575rem;
+  font-weight: 800;
+  color: #991b1b;
+  background: #fee2e2;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+}
+
+.fkPill {
+  font-size: 0.575rem;
+  font-weight: 800;
+  color: #075985;
+  background: #e0f2fe;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+}
+
+.colType {
+  font-family: monospace;
+  color: #0b57d0;
+  font-size: 0.72rem;
+}
+
+.colDesc {
+  color: #64748b;
+}
+
+.tableFooterRelations {
+  padding: 0.65rem 1.15rem;
+  background: #fafbfc;
+  border-top: 1px solid #e2e8f0;
+  margin-top: auto;
+  font-size: 0.725rem;
+  color: #475569;
+}
+
+.relationTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: monospace;
+  font-weight: 600;
+  color: #0b57d0;
+  background: #f0f7ff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  margin-left: 0.35rem;
+}
+
+/* 6. Tab 3: Supabase APIs & Health Probes */
+.apiSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.apiGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.apiCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.apiCard:hover {
+  border-color: #0b57d0;
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.06);
+}
+
+.apiLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.methodBadges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.methodBadge {
+  font-family: monospace;
+  font-size: 0.675rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  text-align: center;
+}
+
+.methodGET {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.methodPOST {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.methodPUT {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.methodDELETE {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.apiMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.apiEndpointRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.apiEndpoint {
+  font-family: monospace;
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: #091e42;
+}
+
+.authBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+}
+
+.apiSummary {
+  font-size: 0.775rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.apiTags {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.apiTableTag {
+  font-family: monospace;
+  font-size: 0.675rem;
+  color: #0b57d0;
+  background: #f0f7ff;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.apiCacheTag {
+  font-size: 0.675rem;
+  color: #059669;
+  background: #ecfdf5;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.apiRight {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.probeResult {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+}
+
+.probeSuccess {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.probePending {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.probeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 32px;
+  padding: 0 0.8rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.probeBtn:hover {
+  background: #0b57d0;
+  color: #ffffff;
+  border-color: #0b57d0;
+}
+
+/* 7. Tab 4: Website Pages & Route Monitor */
+.pagesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pagesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.pageCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.pageCard:hover {
+  border-color: #0b57d0;
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.06);
+  transform: translateY(-1px);
+}
+
+.pageTopRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagePath {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #002255;
+}
+
+.pageLink {
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  transition: color 0.12s ease;
+}
+
+.pageLink:hover {
+  color: #0b57d0;
+}
+
+.pageTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #091e42;
+  margin: 0;
+}
+
+.pageDesc {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+.pageBottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 0.55rem;
+  margin-top: 0.35rem;
+}
+
+.pageModeBadge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f1f5f9;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.pageAuthBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+.authPublic {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.authStudent {
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.authAdmin {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* 8. Tab 5: Subsystems & Bluehost SMTP */
+.subsystemsDeepSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.smtpBanner {
+  background: linear-gradient(135deg, #091e42 0%, #002255 100%);
+  color: #ffffff;
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  border-left: 4px solid #0284c7;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.smtpBannerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.smtpTitle {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.smtpSpecsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.smtpSpecItem {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.smtpSpecLabel {
+  font-size: 0.675rem;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.smtpSpecVal {
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .kpiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flowDiagram {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .subsystemGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pagesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .headerCard {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.25rem;
+  }
+
+  .headerActions {
+    flex-wrap: wrap;
+  }
+
+  .flowDiagram {
+    grid-template-columns: 1fr;
+  }
+
+  .tablesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .subsystemGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pagesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .smtpSpecsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .kpiGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .searchInputWrap {
+    width: 100%;
+  }
+
+  .filterBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .apiCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .apiRight {
+    justify-content: space-between;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 0.65rem;
+    margin-top: 0.35rem;
+  }
+
+  .smtpSpecsGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -22,7 +22,8 @@ import {
   Sparkles,
   ArrowRight,
   ShieldCheck,
-  X
+  X,
+  Cpu
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -187,6 +188,13 @@ export default function AdminHeader({
         href: "/",
         icon: <ExternalLink size={15} />,
         hint: "Open main student web portal",
+      },
+      {
+        title: "System Observatory & Architecture",
+        category: "Architecture",
+        href: "/admin/system",
+        icon: <Cpu size={15} />,
+        hint: "Supabase APIs, DB ERD, Bluehost SMTP, route monitor",
       },
     ],
     []
