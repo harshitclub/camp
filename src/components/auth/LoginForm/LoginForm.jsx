@@ -53,12 +53,21 @@ export default function LoginForm() {
       const res = await login(email.trim(), password);
       setSuccessMessage("Login successful! Redirecting...");
 
-      // Determine redirect path
+      // Determine redirect path safely
       let targetPath = "/profile";
       if (res?.profile?.is_admin) {
         targetPath = "/admin";
       } else if (redirectUrl) {
-        targetPath = decodeURIComponent(redirectUrl);
+        try {
+          const decoded = decodeURIComponent(redirectUrl);
+          if (decoded.startsWith("/") && !decoded.startsWith("//")) {
+            targetPath = decoded;
+          }
+        } catch (e) {
+          if (redirectUrl.startsWith("/") && !redirectUrl.startsWith("//")) {
+            targetPath = redirectUrl;
+          }
+        }
       }
 
       setTimeout(() => {
@@ -177,7 +186,10 @@ export default function LoginForm() {
 
       <div className={styles.footer}>
         <span>Don&apos;t have an account yet?</span>{" "}
-        <Link href="/signup" className={styles.switchLink}>
+        <Link 
+          href={redirectUrl ? `/signup?redirect=${encodeURIComponent(redirectUrl)}` : "/signup"} 
+          className={styles.switchLink}
+        >
           Create Account
         </Link>
       </div>

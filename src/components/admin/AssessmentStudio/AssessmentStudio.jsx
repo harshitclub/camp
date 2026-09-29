@@ -32,7 +32,8 @@ import {
   ExternalLink,
   ChevronLeft,
   ChevronRight,
-  Download
+  Download,
+  QrCode
 } from "lucide-react";
 import { getPaginationRange } from "@/lib/pagination";
 
@@ -260,6 +261,15 @@ export default function AssessmentStudio() {
             <Download size={15} />
             <span>Export CSV</span>
           </button>
+
+          <Link
+            href="/admin/drives"
+            className={styles.driveBtn}
+            title="Campus Drive QR Generator & College Excel Exporter"
+          >
+            <QrCode size={16} />
+            <span>Campus Drive QR</span>
+          </Link>
 
           <button
             type="button"

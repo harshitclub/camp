@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { validateEmail, validatePhone } from "@/lib/validators";
+import { getActiveDriveSession, saveActiveDriveSession } from "@/lib/driveUtils";
 import styles from "./SignupForm.module.css";
 import { 
   User, 
@@ -26,7 +27,8 @@ import {
 
 export default function SignupForm() {
   const router = useRouter();
-  const { signup } = useAuth();
+  const searchParams = useSearchParams();
+  const { signup, user, loading } = useAuth();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -42,10 +44,89 @@ export default function SignupForm() {
     phone: "",
   });
 
+  const [driveSession, setDriveSession] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  // Helper to determine destination URL safely
+  const getDestinationUrl = () => {
+    const explicitRedirect = searchParams?.get("redirect");
+    if (explicitRedirect) {
+      try {
+        const decoded = decodeURIComponent(explicitRedirect);
+        if (decoded.startsWith("/") && !decoded.startsWith("//")) {
+          return decoded;
+        }
+      } catch (e) {
+        if (explicitRedirect.startsWith("/") && !explicitRedirect.startsWith("//")) {
+          return explicitRedirect;
+        }
+      }
+    }
+    if (driveSession?.assessmentSlug) {
+      return `/assessments/${encodeURIComponent(driveSession.assessmentSlug)}`;
+    }
+    return "/profile";
+  };
+
+  // If already authenticated (e.g. phone camera scanned QR while already logged in), redirect immediately
+  useEffect(() => {
+    if (!loading && user) {
+      router.replace(getDestinationUrl());
+    }
+  }, [user, loading, searchParams, driveSession, router]);
+
+  // Detect and auto-fill Campus Drive session
+  useEffect(() => {
+    const urlCollege = searchParams?.get("college");
+    const urlCourse = searchParams?.get("course");
+    const urlDrive = searchParams?.get("drive");
+    const urlRedirect = searchParams?.get("redirect");
+
+    let extractedSlug = "";
+    if (urlRedirect) {
+      try {
+        const decoded = decodeURIComponent(urlRedirect);
+        if (decoded.includes("/assessments/")) {
+          extractedSlug = decoded.split("/assessments/")[1]?.split("?")[0] || "";
+        }
+      } catch (e) {
+        if (urlRedirect.includes("/assessments/")) {
+          extractedSlug = urlRedirect.split("/assessments/")[1]?.split("?")[0] || "";
+        }
+      }
+    }
+
+    if (urlCollege || urlDrive) {
+      const sessionData = {
+        college: urlCollege || "",
+        course: urlCourse || "",
+        code: urlDrive || "",
+        assessmentSlug: extractedSlug || "",
+      };
+      saveActiveDriveSession(sessionData);
+      setDriveSession(sessionData);
+      setFormData((prev) => ({
+        ...prev,
+        userType: "Student",
+        collegeName: urlCollege || prev.collegeName,
+        course: urlCourse || prev.course,
+      }));
+    } else {
+      const stored = getActiveDriveSession();
+      if (stored && (stored.college || stored.code)) {
+        setDriveSession(stored);
+        setFormData((prev) => ({
+          ...prev,
+          userType: "Student",
+          collegeName: stored.college || prev.collegeName,
+          course: stored.course || prev.course,
+        }));
+      }
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,8 +183,9 @@ export default function SignupForm() {
       });
 
       setSuccessMessage("Account created successfully! Welcome to Campussutras.");
+      const destination = getDestinationUrl();
       setTimeout(() => {
-        router.push("/");
+        router.push(destination);
         router.refresh();
       }, 800);
     } catch (err) {
@@ -144,6 +226,20 @@ export default function SignupForm() {
         <div className={styles.alertSuccess}>
           <CheckCircle2 size={18} className={styles.alertIconSuccess} />
           <span>{successMessage}</span>
+        </div>
+      )}
+
+      {/* Campus Drive Banner if detected */}
+      {driveSession?.college && (
+        <div className={styles.driveBanner}>
+          <GraduationCap size={20} className={styles.driveBannerIcon} />
+          <div className={styles.driveBannerText}>
+            <strong>Campus Drive Session Verified</strong>
+            <span>
+              Auto-registered under <strong>{driveSession.college}</strong>
+              {driveSession.course ? ` • ${driveSession.course}` : ""}
+            </span>
+          </div>
         </div>
       )}
 
@@ -433,7 +529,14 @@ export default function SignupForm() {
 
       <div className={styles.footer}>
         <span>Already have an account?</span>{" "}
-        <Link href="/login" className={styles.switchLink}>
+        <Link 
+          href={
+            searchParams?.get("redirect")
+              ? `/login?redirect=${encodeURIComponent(searchParams.get("redirect"))}`
+              : (driveSession?.assessmentSlug ? `/login?redirect=${encodeURIComponent(`/assessments/${driveSession.assessmentSlug}`)}` : "/login")
+          } 
+          className={styles.switchLink}
+        >
           Sign In Here
         </Link>
       </div>

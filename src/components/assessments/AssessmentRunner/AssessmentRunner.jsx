@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import styles from "./AssessmentRunner.module.css";
 import { useAuth } from "@/context/AuthContext";
 import { supabase } from "@/lib/supabase/client";
+import { getActiveDriveSession, saveActiveDriveSession } from "@/lib/driveUtils";
 import { 
   Clock, 
   Flag, 
@@ -25,6 +26,7 @@ import {
 
 export default function AssessmentRunner({ assessment }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { user, loading, isAdmin } = useAuth();
 
   const totalQuestions = assessment?.questions?.length || 0;
@@ -40,6 +42,22 @@ export default function AssessmentRunner({ assessment }) {
   const [hasStarted, setHasStarted] = useState(false);
 
   const timerRef = useRef(null);
+
+  // Pick up drive session from URL parameters if present
+  useEffect(() => {
+    if (!searchParams) return;
+    const urlCollege = searchParams.get("college");
+    const urlCourse = searchParams.get("course");
+    const urlDrive = searchParams.get("drive");
+    if (urlCollege || urlDrive) {
+      saveActiveDriveSession({
+        college: urlCollege || "",
+        course: urlCourse || "",
+        code: urlDrive || "",
+        assessmentSlug: assessment?.slug || "",
+      });
+    }
+  }, [searchParams, assessment?.slug]);
 
   // Submit Logic
   const finalizeSubmission = useCallback(async (status = "completed") => {
@@ -61,6 +79,20 @@ export default function AssessmentRunner({ assessment }) {
     const attemptId = `att_${Date.now()}`;
     const timestamp = new Date().toISOString();
 
+    // Check for active campus drive session
+    const activeDrive = getActiveDriveSession();
+    const sessionAnswers = activeDrive?.college
+      ? {
+          ...answers,
+          _campus_session: {
+            code: activeDrive.code || null,
+            college: activeDrive.college || null,
+            course: activeDrive.course || null,
+            taggedAt: timestamp,
+          },
+        }
+      : answers;
+
     const attemptPayload = {
       id: attemptId,
       user_id: user?.id || "guest",
@@ -78,7 +110,7 @@ export default function AssessmentRunner({ assessment }) {
       is_passed: isPassed,
       status,
       time_spent_seconds: timeSpentSeconds,
-      student_answers: answers,
+      student_answers: sessionAnswers,
       started_at: timestamp,
       submitted_at: timestamp,
     };
@@ -134,7 +166,7 @@ export default function AssessmentRunner({ assessment }) {
           is_passed: Boolean(isPassed),
           status: status || "completed",
           time_spent_seconds: timeSpentSeconds,
-          student_answers: answers,
+          student_answers: sessionAnswers,
           started_at: timestamp,
           submitted_at: timestamp,
           expires_at: timestamp,
@@ -156,11 +188,24 @@ export default function AssessmentRunner({ assessment }) {
             percentage: Number(percentage) || 0,
             is_passed: Boolean(isPassed),
             status: status || "completed",
-            student_answers: answers,
+            student_answers: sessionAnswers,
             started_at: timestamp,
             submitted_at: timestamp,
             expires_at: timestamp,
           });
+        }
+
+        // Also asynchronously ensure user profile has college and course saved
+        if (activeDrive?.college) {
+          supabase
+            .from("profiles")
+            .update({
+              college: activeDrive.college,
+              degree: activeDrive.course || undefined,
+            })
+            .eq("id", user.id)
+            .then(() => {})
+            .catch(() => {});
         }
       } catch (dbErr) {
         console.warn("[AssessmentRunner] Supabase attempt sync error:", dbErr);
@@ -275,9 +320,15 @@ export default function AssessmentRunner({ assessment }) {
     );
   }
 
-  // 3. Unauthenticated User Gate: User must login before starting assessment
+  // 3. Unauthenticated User Gate: User must register/login before starting assessment
   if (!user) {
     const passQuestions = Math.ceil(((assessment?.total_questions || totalQuestions) * (assessment?.passing_percentage || 60)) / 100);
+    const currentParams = searchParams?.toString();
+    const targetAssessmentPath = `/assessments/${assessment.slug}`;
+    const signupRedirectHref = currentParams 
+      ? `/signup?redirect=${encodeURIComponent(targetAssessmentPath)}&${currentParams}`
+      : `/signup?redirect=${encodeURIComponent(targetAssessmentPath)}`;
+    const loginRedirectHref = `/login?redirect=${encodeURIComponent(targetAssessmentPath)}`;
 
     return (
       <div className={styles.authGateWrapper}>
@@ -290,7 +341,7 @@ export default function AssessmentRunner({ assessment }) {
             <span className={styles.categoryBadge}>{assessment.category_name}</span>
             <h1 className={styles.authGateTitle}>{assessment.title}</h1>
             <p className={styles.authGateSubtitle}>
-              Please sign in to take this assessment. Your score, time, and complete solution explanations will be recorded on your verified student transcript.
+              Please create a free account or sign in to take this assessment. Your score, time, and complete solution explanations will be recorded on your verified student transcript.
             </p>
           </div>
 
@@ -311,18 +362,19 @@ export default function AssessmentRunner({ assessment }) {
 
           <div className={styles.authGateActions}>
             <Link 
-              href={`/login?redirect=/assessments/${assessment.slug}`}
+              href={signupRedirectHref}
               className={`btn btn-primary ${styles.authGatePrimaryBtn}`}
             >
-              <LogIn size={18} />
-              <span>Sign In to Start Assessment</span>
+              <Sparkles size={18} />
+              <span>Create Free Account &amp; Start Test</span>
             </Link>
 
             <Link 
-              href={`/signup?redirect=/assessments/${assessment.slug}`}
+              href={loginRedirectHref}
               className={`btn btn-secondary ${styles.authGateSecondaryBtn}`}
             >
-              <span>Create Student Account</span>
+              <LogIn size={18} />
+              <span>Already have an account? Sign In</span>
             </Link>
           </div>
 

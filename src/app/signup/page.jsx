@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { SignupForm } from "@/components/auth";
 
 export const metadata = {
@@ -16,7 +17,9 @@ export default function SignupPage() {
       backgroundColor: "var(--bg-page)",
       background: "radial-gradient(circle at 50% 10%, rgba(11, 87, 208, 0.08) 0%, transparent 60%)",
     }}>
-      <SignupForm />
+      <Suspense fallback={<div style={{ textAlign: "center", padding: "2rem", color: "#64748b" }}>Loading signup form...</div>}>
+        <SignupForm />
+      </Suspense>
     </div>
   );
 }

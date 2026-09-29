@@ -16,7 +16,8 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  Cpu
+  Cpu,
+  QrCode
 } from "lucide-react";
 
 export default function AdminSidebar({ 
@@ -62,6 +63,11 @@ export default function AdminSidebar({
       href: "/admin/assessments/new",
       icon: <PlusCircle size={19} />,
       isNew: true,
+    },
+    {
+      label: "Campus Drives & QR",
+      href: "/admin/drives",
+      icon: <QrCode size={19} />,
     },
     {
       label: "System Observatory",

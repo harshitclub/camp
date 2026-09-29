@@ -23,7 +23,8 @@ import {
   ArrowRight,
   ShieldCheck,
   X,
-  Cpu
+  Cpu,
+  QrCode
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -188,6 +189,13 @@ export default function AdminHeader({
         href: "/",
         icon: <ExternalLink size={15} />,
         hint: "Open main student web portal",
+      },
+      {
+        title: "Campus Drives & QR Sessions",
+        category: "Assessments",
+        href: "/admin/drives",
+        icon: <QrCode size={15} />,
+        hint: "Auditorium QR codes, auto-tag college, Excel export",
       },
       {
         title: "System Observatory & Architecture",

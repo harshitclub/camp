@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { getAssessmentById } from "@/lib/adminService";
 import { assessmentsList } from "@/data/assessmentsData";
@@ -59,5 +60,9 @@ export default async function AssessmentTakePage({ params }) {
     notFound();
   }
 
-  return <AssessmentRunner assessment={assessment} />;
+  return (
+    <Suspense fallback={<div style={{ textAlign: "center", padding: "3rem", color: "#64748b" }}>Loading assessment...</div>}>
+      <AssessmentRunner assessment={assessment} />
+    </Suspense>
+  );
 }
