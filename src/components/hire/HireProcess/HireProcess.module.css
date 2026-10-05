@@ -16,10 +16,10 @@
   align-items: center;
   gap: 0.45rem;
   background-color: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -28,16 +28,16 @@
 }
 
 .eyebrowIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: var(--mainBlue);
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -66,7 +66,7 @@
 
 .stepCard:hover {
   transform: translateY(-5px);
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 20px 40px -10px rgba(11, 87, 208, 0.12);
 }
 
@@ -79,8 +79,8 @@
 
 .stepBadge {
   font-size: 1.2rem;
-  font-weight: 850;
-  color: #0b57d0;
+  font-weight: 650;
+  color: var(--accentBlue);
   background: #eef4ff;
   border: 1px solid #d0e1fd;
   width: 44px;
@@ -95,9 +95,9 @@
   width: 44px;
   height: 44px;
   border-radius: var(--radius-sm);
-  background: #f8fafc;
-  color: #0b57d0;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-page);
+  color: var(--accentBlue);
+  border: 1px solid var(--border-default);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,7 +105,7 @@
 
 .stepTitle {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 0.75rem;
   line-height: 1.35;
@@ -119,7 +119,7 @@
 }
 
 .guaranteeBox {
-  background: linear-gradient(135deg, #0b57d0, #1e40af);
+  background: linear-gradient(135deg, var(--accentBlue), #1e40af);
   color: #ffffff;
   border-radius: var(--radius-lg);
   padding: 2rem 2.5rem;
@@ -136,14 +136,14 @@
 
 .guaranteeTitle {
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 650;
   margin-bottom: 0.35rem;
   color: #ffffff;
 }
 
 .guaranteeText {
   font-size: 0.92rem;
-  color: #e2e8f0;
+  color: var(--border-default);
   line-height: 1.55;
   margin: 0;
 }

@@ -19,7 +19,7 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--text-heading);
   margin-bottom: 1.15rem;
   padding-bottom: 0.65rem;
@@ -105,7 +105,7 @@
 
 .supportHeading {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-heading);
   margin-bottom: 0.35rem;
 }

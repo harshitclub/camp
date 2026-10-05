@@ -1,20 +1,37 @@
 {
   "name": "camp",
   "version": "1.0.0",
-  "description": "",
+  "description": "Campussutras — Industry Bootcamps, Verified Internships & Workforce Credentialing Platform",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node tests/run-all.js",
+    "test:unit": "node tests/phase1-unit/run-phase1.js",
+    "test:api": "node tests/phase2-api/run-phase2.js",
+    "test:forms": "node tests/phase3-forms/run-phase3.js",
+    "test:quiz": "node tests/phase4-quiz/run-phase4.js",
+    "test:auth": "node tests/phase5-auth/run-phase5.js",
+    "test:admin": "node tests/phase6-admin/run-phase6.js",
+    "test:e2e": "node tests/phase7-e2e/run-phase7.js",
+    "check": "node tests/run-all.js && next build"
   },
-  "keywords": [],
-  "author": "",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "keywords": ["edtech", "bootcamps", "internships", "credentials", "campussutras"],
+  "author": "Harshit Kumar",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@ai-sdk/google": "^4.0.87",
+    "@google/generative-ai": "^0.24.1",
     "@supabase/ssr": "^0.12.5",
     "@supabase/supabase-js": "^2.115.0",
+    "ai": "^7.0.127",
+    "geist": "^1.7.2",
     "lucide-react": "^1.40.0",
     "mongodb": "^7.6.0",
     "next": "16.3.5",

@@ -39,6 +39,17 @@
   --border-strong: #cbd5e1;
   --border-focus: #0b57d0;
   
+  /* Semantic Feedback Palette */
+  --color-danger: #dc2626;
+  --color-danger-light: #fee2e2;
+  --color-danger-dark: #b91c1c;
+  --color-success: #059669;
+  --color-success-light: #d1fae5;
+  --color-warning: #d97706;
+  --color-warning-light: #fef3c7;
+  --color-info: #0b57d0;
+  --color-info-light: #e8f0fe;
+
   /* Strict Small Border Radius Standard (Uniform Crisp Radii) */
   --radius-xs: 2px;
   --radius-sm: 4px;
@@ -46,6 +57,25 @@
   --radius-lg: 8px;
   --radius-xl: 8px;
   --radius-pill: 4px;
+  --radius-full: 9999px;
+
+  /* Typography Stacks (Official Next.js Geist) */
+  --font-sans: var(--font-geist-sans), "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), "Geist Mono", monospace;
+  --font-body: var(--font-sans);
+  --font-heading: var(--font-sans);
+  --font-inter: var(--font-sans);
+
+  /* Standardized Typography Scale */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
 
   /* Cohesive Brand Gradients */
   --grad-primary: linear-gradient(135deg, #002255 0%, #0b57d0 100%);
@@ -79,13 +109,15 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: normal;
 }
 
 body {
-  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
   background-color: var(--bg-page);
   color: var(--text-primary);
   line-height: 1.6;
+  letter-spacing: normal;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -93,11 +125,16 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), 'Plus Jakarta Sans', var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   color: var(--text-heading);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.25;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
+}
+
+strong, b {
+  font-weight: 600;
+  color: var(--text-heading);
 }
 
 p {
@@ -184,7 +221,7 @@ button {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--mainBlue);
@@ -197,6 +234,7 @@ button {
 
 .section-title {
   font-size: 2.25rem;
+  font-weight: 650;
   margin-bottom: 1rem;
   color: var(--mainBlue);
 }
@@ -364,6 +402,84 @@ button {
   border: 1px solid rgba(234, 88, 12, 0.25);
 }
 
+.badge-danger,
+.badge-red {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger-dark);
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+/* =========================================================
+   Standard Form Controls (Consistent Cross-Project Forms)
+   ========================================================= */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--text-primary);
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--accentBlue);
+  box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
+  background-color: var(--bg-white);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-light);
+}
+
+.form-input:disabled,
+.form-select:disabled,
+.form-textarea:disabled {
+  background-color: var(--bg-alt);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.form-error {
+  font-size: 0.8125rem;
+  color: var(--color-danger);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.form-hint {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
 /* Grid Layouts */
 .grid-2 {
   display: grid;
@@ -404,7 +520,7 @@ button {
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 .font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
+.font-bold { font-weight: 650; }
 .text-mainBlue { color: var(--mainBlue); }
 .text-accentBlue { color: var(--accentBlue); }
 .text-muted { color: var(--text-muted); }

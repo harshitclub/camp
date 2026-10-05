@@ -39,7 +39,7 @@
 
 .badgeText {
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -47,11 +47,11 @@
 
 .title {
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.2;
   margin-bottom: 1.15rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .highlight {
@@ -81,7 +81,7 @@
 
 .programsTitle {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -118,7 +118,7 @@
 
 .chipCheck {
   color: var(--accentEmerald);
-  font-weight: 800;
+  font-weight: 650;
 }
 
 /* Highlights */
@@ -169,7 +169,7 @@
 
 .formEyebrow {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--accentBlue);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -212,7 +212,7 @@
 }
 
 .req {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .inputWrap {
@@ -255,13 +255,13 @@
 }
 
 .inputError {
-  border-color: #dc2626 !important;
+  border-color: var(--color-danger) !important;
   background-color: #fff8f8 !important;
 }
 
 .errText {
   font-size: 0.725rem;
-  color: #dc2626;
+  color: var(--color-danger);
   font-weight: 500;
 }
 

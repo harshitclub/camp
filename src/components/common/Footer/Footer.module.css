@@ -1,7 +1,7 @@
 /* Footer Styles - Fully Responsive & Clean Layout */
 .footer {
   background-color: var(--mainBlue);
-  color: #e2e8f0;
+  color: var(--border-default);
   padding-top: 4.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.9rem;
@@ -34,7 +34,7 @@
 }
 
 .brandDesc {
-  color: #cbd5e1;
+  color: var(--border-strong);
   font-size: 0.875rem;
   line-height: 1.65;
 }
@@ -64,12 +64,12 @@
 }
 
 .colTitle {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #ffffff;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.01em;
+  letter-spacing: normal;
 }
 
 .linkList {
@@ -82,7 +82,7 @@
 }
 
 .footerLink {
-  color: #cbd5e1;
+  color: var(--border-strong);
   font-size: 0.875rem;
   transition: color 0.15s ease;
   display: inline-flex;
@@ -108,7 +108,7 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
   font-size: 0.875rem;
 }
 
@@ -132,7 +132,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.8125rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
 }
 
 /* Sub-footer Bottom Bar */
@@ -147,7 +147,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.84rem;
-  color: #94a3b8;
+  color: var(--text-light);
   gap: 1rem;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .legalLink {
-  color: #cbd5e1;
+  color: var(--border-strong);
   transition: color 0.15s ease;
   white-space: nowrap;
 }

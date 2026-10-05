@@ -31,7 +31,7 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
+  color: var(--text-light);
   pointer-events: none;
 }
 
@@ -39,7 +39,7 @@
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.6rem;
   background-color: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   font-size: 0.925rem;
   color: var(--text-primary);
@@ -71,8 +71,8 @@
 
 .categoryTab {
   background-color: #ffffff;
-  color: #475569;
-  border: 1px solid #cbd5e1;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -126,7 +126,7 @@
   font-weight: 600;
   color: var(--text-secondary);
   background-color: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -143,8 +143,8 @@
   opacity: 0.35;
   cursor: not-allowed;
   background-color: transparent;
-  border-color: #e2e8f0;
-  color: #94a3b8;
+  border-color: var(--border-default);
+  color: var(--text-light);
 }
 
 .minimalPageList {
@@ -164,7 +164,7 @@
   font-weight: 600;
   color: var(--text-secondary);
   background-color: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -181,7 +181,7 @@
   background-color: var(--mainBlue) !important;
   color: #ffffff !important;
   border-color: var(--mainBlue) !important;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .minimalPageEllipsis {
@@ -190,7 +190,7 @@
   justify-content: center;
   min-width: 28px;
   height: 36px;
-  color: #94a3b8;
+  color: var(--text-light);
   font-size: 0.875rem;
   font-weight: 700;
   user-select: none;
@@ -202,7 +202,7 @@
   text-align: center;
   padding: 4rem 1.5rem;
   background-color: #ffffff;
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed var(--border-strong);
   border-radius: var(--radius-md);
   max-width: 540px;
   margin: 0 auto;
@@ -210,7 +210,7 @@
 
 .emptyTitle {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 0.5rem;
 }

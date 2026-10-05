@@ -14,10 +14,10 @@
   align-items: center;
   gap: 0.45rem;
   background-color: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -26,16 +26,16 @@
 }
 
 .eyebrowIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: var(--mainBlue);
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -63,7 +63,7 @@
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 20px 40px -10px rgba(11, 87, 208, 0.15);
 }
 
@@ -71,8 +71,8 @@
   width: 58px;
   height: 58px;
   border-radius: var(--radius-sm);
-  background-color: #e8f0fe;
-  color: #0b57d0;
+  background-color: var(--accentBlue-subtle);
+  color: var(--accentBlue);
   border: 1px solid #bfdbfe;
   display: flex;
   align-items: center;
@@ -82,9 +82,9 @@
 
 .roleBadge {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #0b57d0;
+  color: var(--accentBlue);
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 0.4rem;
@@ -92,7 +92,7 @@
 
 .cardTitle {
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 0.85rem;
   line-height: 1.3;

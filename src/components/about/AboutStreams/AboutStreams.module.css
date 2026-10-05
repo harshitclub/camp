@@ -15,10 +15,10 @@
   align-items: center;
   gap: 0.45rem;
   background-color: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -27,16 +27,16 @@
 }
 
 .eyebrowIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: var(--mainBlue);
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -64,7 +64,7 @@
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 20px 40px -10px rgba(11, 87, 208, 0.12);
 }
 
@@ -79,8 +79,8 @@
   width: 52px;
   height: 52px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #e8f0fe, #dbeafe);
-  color: #0b57d0;
+  background: linear-gradient(135deg, var(--accentBlue-subtle), #dbeafe);
+  color: var(--accentBlue);
   border: 1px solid #bfdbfe;
   display: flex;
   align-items: center;
@@ -89,19 +89,19 @@
 
 .badge {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background-color: #f1f5f9;
+  background-color: var(--bg-alt);
   color: #334155;
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-xs);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-default);
 }
 
 .degrees {
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 0.75rem;
 }
@@ -115,18 +115,18 @@
 }
 
 .skillsWrapper {
-  background-color: #f8fafc;
-  border: 1px solid #edf2f7;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 1rem;
 }
 
 .skillsTitle {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--text-muted);
   margin-bottom: 0.65rem;
 }
 
@@ -142,21 +142,21 @@
   gap: 0.3rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-default);
   padding: 0.25rem 0.55rem;
   border-radius: var(--radius-xs);
 }
 
 .skillCheck {
-  color: #059669;
+  color: var(--accentEmerald);
   flex-shrink: 0;
 }
 
 .footerBanner {
   margin-top: 3.5rem;
-  background: linear-gradient(135deg, #0b57d0, #1e40af);
+  background: linear-gradient(135deg, var(--accentBlue), #1e40af);
   color: #ffffff;
   border-radius: var(--radius-lg);
   padding: 2.25rem 2.75rem;
@@ -173,14 +173,14 @@
 
 .footerTitle {
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 650;
   margin-bottom: 0.5rem;
   color: #ffffff;
 }
 
 .footerSub {
   font-size: 0.95rem;
-  color: #e2e8f0;
+  color: var(--border-default);
   line-height: 1.55;
   margin: 0;
 }

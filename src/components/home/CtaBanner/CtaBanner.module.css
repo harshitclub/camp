@@ -22,7 +22,7 @@
   padding: 0.4rem 0.9rem;
   border-radius: var(--radius-sm);
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #38bdf8;
@@ -31,16 +31,16 @@
 
 .title {
   font-size: 2.5rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #ffffff;
   line-height: 1.25;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
   font-size: 1.125rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
   line-height: 1.7;
   margin-bottom: 2.25rem;
   max-width: 680px;

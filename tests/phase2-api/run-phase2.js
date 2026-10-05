@@ -3,6 +3,7 @@ import { runAdminCertificatesApiTests } from "./02-admin-certificates-api.test.j
 import { runAdminAssessmentsCategoriesApiTests } from "./03-admin-assessments-categories-api.test.js";
 import { runLeadFormsApiTests } from "./04-lead-forms-api.test.js";
 import { runAdminFormsApiTests } from "./05-admin-forms-api.test.js";
+import { runAiChatApiTests } from "./06-chat-api.test.js";
 
 const GREEN = "\x1b[32m";
 const RED = "\x1b[31m";
@@ -27,6 +28,7 @@ async function runAllPhase2Tests() {
     await runAdminAssessmentsCategoriesApiTests(baseUrl),
     await runLeadFormsApiTests(baseUrl),
     await runAdminFormsApiTests(baseUrl),
+    await runAiChatApiTests(baseUrl),
   ];
 
   let grandTotalPassed = 0;

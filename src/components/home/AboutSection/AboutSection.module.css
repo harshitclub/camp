@@ -48,9 +48,9 @@
 }
 
 .expYears {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 1.85rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #38bdf8;
   line-height: 1;
 }
@@ -70,7 +70,7 @@
 .eyebrow {
   display: inline-block;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--mainBlue);
@@ -83,11 +83,11 @@
 
 .title {
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.25;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .description {
@@ -121,7 +121,7 @@
 }
 
 .pointTitle {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.925rem;
   color: var(--mainBlue);
   margin-bottom: 0.2rem;

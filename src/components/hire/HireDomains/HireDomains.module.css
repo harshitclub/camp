@@ -14,10 +14,10 @@
   align-items: center;
   gap: 0.45rem;
   background-color: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -26,16 +26,16 @@
 }
 
 .eyebrowIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: var(--mainBlue);
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -63,7 +63,7 @@
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 20px 40px -10px rgba(11, 87, 208, 0.12);
 }
 
@@ -79,7 +79,7 @@
   height: 52px;
   border-radius: var(--radius-sm);
   background: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   display: flex;
   align-items: center;
@@ -88,19 +88,19 @@
 
 .badge {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  background-color: #f1f5f9;
+  background-color: var(--bg-alt);
   color: #334155;
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-xs);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-default);
 }
 
 .cardTitle {
   font-size: 1.45rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 0.35rem;
 }
@@ -108,16 +108,16 @@
 .degrees {
   font-size: 0.82rem;
   font-weight: 700;
-  color: #0b57d0;
+  color: var(--accentBlue);
   margin-bottom: 1.5rem;
 }
 
 .blockLabel {
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
 
@@ -140,20 +140,20 @@
   align-items: flex-start;
   gap: 0.55rem;
   font-size: 0.92rem;
-  color: #1e293b;
+  color: var(--text-primary);
   font-weight: 500;
   line-height: 1.4;
 }
 
 .checkIcon {
-  color: #059669;
+  color: var(--accentEmerald);
   flex-shrink: 0;
   margin-top: 0.15rem;
 }
 
 .skillsBlock {
-  background-color: #f8fafc;
-  border: 1px solid #edf2f7;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
   padding: 1rem;
 }
@@ -167,7 +167,7 @@
 .tag {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #0b57d0;
+  color: var(--accentBlue);
   background: #ffffff;
   border: 1px solid #d0e1fd;
   padding: 0.25rem 0.6rem;

@@ -94,7 +94,7 @@
   padding: 0.35rem 0.85rem;
   border-radius: var(--radius-xs);
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #93c5fd;
   margin-bottom: 1.25rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -118,11 +118,11 @@
 
 .heroTitle {
   font-size: 2.85rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.18;
   color: #ffffff;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.03em;
+  letter-spacing: normal;
 }
 
 .highlightText {
@@ -135,7 +135,7 @@
 .heroSubtitle {
   font-size: 1.05rem;
   line-height: 1.68;
-  color: #cbd5e1;
+  color: var(--border-strong);
   margin-bottom: 1.85rem;
   max-width: 580px;
 }
@@ -184,7 +184,7 @@
   gap: 0.45rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--border-default);
 }
 
 .featureIcon {
@@ -258,7 +258,7 @@
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.3rem 0.75rem;
@@ -298,7 +298,7 @@
 
 .captionTitle {
   font-size: 1.12rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #ffffff;
   line-height: 1.3;
   text-shadow: 0 2px 4px rgba(0,0,0,0.7);
@@ -369,7 +369,7 @@
 .dot {
   width: 10px;
   height: 10px;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.3);
   border: none;
   cursor: pointer;
@@ -436,30 +436,30 @@
   width: 30px;
   height: 30px;
   border-radius: var(--radius-xs);
-  background-color: #e8f0fe;
+  background-color: var(--accentBlue-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .badgeTitle {
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
 }
 
 .badgeValue {
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
 }
 
 .bottomBadgeTitle {
   font-size: 0.65rem;
-  color: #94a3b8;
+  color: var(--text-light);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -467,7 +467,7 @@
 
 .bottomBadgeValue {
   font-size: 0.88rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #ffffff;
 }
 

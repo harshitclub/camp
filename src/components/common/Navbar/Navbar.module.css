@@ -4,7 +4,7 @@
   top: 0;
   z-index: 1000;
   background-color: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-default);
   box-shadow: 0 1px 3px rgba(0, 34, 85, 0.04);
   width: 100%;
 }
@@ -50,10 +50,10 @@
 }
 
 .navLink {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 0.925rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--text-secondary);
   padding: 0.5rem 0.25rem;
   position: relative;
   transition: color 0.15s ease;
@@ -92,7 +92,7 @@
 }
 
 .dropdownChevron {
-  color: #64748b;
+  color: var(--text-muted);
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
@@ -109,8 +109,8 @@
   right: 0;
   width: 100%;
   background: #ffffff;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #cbd5e1;
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-strong);
   box-shadow: 0 20px 45px -8px rgba(0, 34, 85, 0.14), 0 4px 16px rgba(0, 0, 0, 0.04);
   padding: 1.35rem 0 1.15rem;
   z-index: 1001;
@@ -159,15 +159,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 0.25rem 0.65rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-alt);
 }
 
 .megaLabel {
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #0b57d0;
+  color: var(--accentBlue);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -175,7 +175,7 @@
 
 .megaSubText {
   font-size: 0.78rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 600;
 }
 
@@ -194,8 +194,8 @@
   padding: 0.95rem 1rem;
   border-radius: var(--radius-sm);
   text-decoration: none;
-  background: #f8fafc;
-  border: 1px solid #edf2f7;
+  background: var(--bg-page);
+  border: 1px solid var(--border-subtle);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-sizing: border-box;
   height: 100%;
@@ -214,8 +214,8 @@
 }
 
 .dropdownLinkCardHire {
-  background: linear-gradient(180deg, #f8fafc 0%, #f0fdf4 100%);
-  border-color: #e2e8f0;
+  background: linear-gradient(180deg, var(--bg-page) 0%, #f0fdf4 100%);
+  border-color: var(--border-default);
 }
 
 .dropdownLinkCardHire:hover {
@@ -227,8 +227,8 @@
   width: 38px;
   height: 38px;
   border-radius: var(--radius-sm);
-  background-color: #e8f0fe;
-  color: #0b57d0;
+  background-color: var(--accentBlue-subtle);
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   display: flex;
   align-items: center;
@@ -239,7 +239,7 @@
 
 .itemIconHire {
   background-color: #ecfdf5;
-  color: #059669;
+  color: var(--accentEmerald);
   border-color: #a7f3d0;
 }
 
@@ -248,16 +248,16 @@
 }
 
 .dropdownLinkCard:hover .itemIconWrapper {
-  background-color: #0b57d0;
+  background-color: var(--accentBlue);
   color: #ffffff;
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   transform: scale(1.05);
 }
 
 .dropdownLinkCardHire:hover .itemIconHire {
-  background-color: #059669;
+  background-color: var(--accentEmerald);
   color: #ffffff;
-  border-color: #059669;
+  border-color: var(--accentEmerald);
 }
 
 .itemTextWrapper {
@@ -277,18 +277,18 @@
 
 .itemTitle {
   font-size: 0.9rem;
-  font-weight: 750;
+  font-weight: 650;
   color: var(--text-heading);
   line-height: 1.25;
 }
 
 .hiringBadge {
   font-size: 0.6rem;
-  font-weight: 750;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   background-color: #ecfdf5;
-  color: #059669;
+  color: var(--accentEmerald);
   border: 1px solid #a7f3d0;
   padding: 0.1rem 0.35rem;
   border-radius: var(--radius-xs);
@@ -296,7 +296,7 @@
 }
 
 .itemArrow {
-  color: #94a3b8;
+  color: var(--text-light);
   opacity: 0;
   transform: translateX(-4px);
   transition: all 0.15s ease;
@@ -306,12 +306,12 @@
 .dropdownLinkCard:hover .itemArrow {
   opacity: 1;
   transform: translateX(0);
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .itemDescription {
   font-size: 0.76rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
@@ -322,8 +322,8 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem 1.15rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-page);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   margin-top: 0.25rem;
 }
@@ -333,12 +333,12 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.78rem;
-  color: #475569;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .megaFooterIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
   flex-shrink: 0;
 }
 
@@ -347,15 +347,15 @@
   align-items: center;
   gap: 0.35rem;
   font-size: 0.78rem;
-  font-weight: 750;
-  color: #0b57d0;
+  font-weight: 650;
+  color: var(--accentBlue);
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.15s ease;
 }
 
 .megaFooterLink:hover {
-  color: #002255;
+  color: var(--mainBlue);
   text-decoration: underline;
 }
 
@@ -374,17 +374,17 @@
   height: 40px;
   min-width: 104px;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   padding: 0 1.15rem;
   border-radius: var(--radius-sm);
-  border: 1.5px solid #cbd5e1;
+  border: 1.5px solid var(--border-strong);
   background-color: #ffffff;
   text-decoration: none;
   transition: all 0.15s ease;
@@ -392,14 +392,14 @@
 }
 
 .verifyBtn:hover {
-  background-color: #f8fafc;
-  border-color: #94a3b8;
+  background-color: var(--bg-page);
+  border-color: var(--text-light);
   color: var(--mainBlue);
   box-shadow: 0 2px 6px rgba(0, 34, 85, 0.06);
 }
 
 .verifyIcon {
-  color: #059669;
+  color: var(--accentEmerald);
   flex-shrink: 0;
 }
 
@@ -408,7 +408,7 @@
   height: 40px;
   min-width: 104px;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   color: #ffffff;
@@ -445,8 +445,8 @@
   align-items: center;
   gap: 0.65rem;
   padding: 0 0.75rem 0 0.4rem;
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
+  background: var(--bg-page);
+  border: 1.5px solid var(--border-default);
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.15s ease;
@@ -454,7 +454,7 @@
 }
 
 .userPillBtn:hover {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   background: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 34, 85, 0.06);
 }
@@ -463,10 +463,10 @@
   width: 30px;
   height: 30px;
   border-radius: var(--radius-xs);
-  background: linear-gradient(135deg, #0b57d0 0%, #002255 100%);
+  background: linear-gradient(135deg, var(--accentBlue) 0%, var(--mainBlue) 100%);
   color: #ffffff;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 650;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -480,7 +480,7 @@
 
 .userNameText {
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   max-width: 120px;
   white-space: nowrap;
@@ -490,7 +490,7 @@
 
 .adminBadge {
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 650;
   text-transform: uppercase;
   background-color: #f3e8ff;
   color: #7c3aed;
@@ -540,7 +540,7 @@
 
 .dropdownUserName {
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-heading);
 }
 
@@ -587,8 +587,8 @@
 }
 
 .dropdownItem:hover {
-  background-color: #f8fafc;
-  color: #0b57d0;
+  background-color: var(--bg-page);
+  color: var(--accentBlue);
 }
 
 .adminLinkItem {
@@ -601,12 +601,12 @@
 }
 
 .logoutItem {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .logoutItem:hover {
   background-color: #fef2f2;
-  color: #b91c1c;
+  color: var(--color-danger-dark);
 }
 
 /* ==========================================================================
@@ -618,8 +618,8 @@
   width: 44px;
   border-radius: var(--radius-sm);
   color: var(--mainBlue);
-  border: 1.5px solid #cbd5e1;
-  background: #f8fafc;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg-page);
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -698,7 +698,7 @@
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     background-color: #ffffff;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-default);
     padding: 1.25rem 1.25rem 3rem 1.25rem;
     box-shadow: 0 16px 36px rgba(0, 34, 85, 0.16);
     z-index: 999;
@@ -717,7 +717,7 @@
   .mobileNavLink {
     font-size: 1rem;
     font-weight: 600;
-    color: #1e293b;
+    color: var(--text-primary);
     padding: 0.8rem 0.85rem;
     border-radius: var(--radius-sm);
     display: flex;
@@ -734,11 +734,11 @@
   .mobileNavLinkActive {
     background-color: var(--mainBlue-surface);
     color: var(--mainBlue);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .mobileDropdownGroup {
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--bg-alt);
     padding-bottom: 0.35rem;
   }
 
@@ -759,7 +759,7 @@
   }
 
   .mobileChevron {
-    color: #64748b;
+    color: var(--text-muted);
     transition: transform 0.2s ease;
   }
 
@@ -782,8 +782,8 @@
     padding: 0.65rem 0.75rem;
     border-radius: var(--radius-sm);
     text-decoration: none;
-    background: #f8fafc;
-    border: 1px solid #edf2f7;
+    background: var(--bg-page);
+    border: 1px solid var(--border-subtle);
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     transition: all 0.15s ease;
@@ -792,7 +792,7 @@
   .mobileSubLink:hover,
   .mobileSubLinkActive {
     background-color: var(--mainBlue-surface);
-    border-color: #cbd5e1;
+    border-color: var(--border-strong);
   }
 
   .mobileSubIcon {
@@ -808,7 +808,7 @@
 
   .mobileSubTitle {
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-heading);
   }
 
@@ -822,7 +822,7 @@
     flex-direction: column;
     gap: 0.75rem;
     padding-top: 0.75rem;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--border-default);
   }
 
   .mobileVerifyBtn {
@@ -831,8 +831,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    background-color: #f8fafc;
-    border: 1.5px solid #cbd5e1;
+    background-color: var(--bg-page);
+    border: 1.5px solid var(--border-strong);
     color: var(--mainBlue);
     font-weight: 600;
     font-size: 0.95rem;
@@ -903,7 +903,7 @@
     gap: 0.5rem;
     background-color: #fef2f2;
     border: 1.5px solid #fca5a5;
-    color: #dc2626;
+    color: var(--color-danger);
     font-weight: 600;
     font-size: 0.95rem;
     border-radius: var(--radius-sm);

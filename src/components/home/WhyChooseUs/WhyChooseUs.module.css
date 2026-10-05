@@ -19,11 +19,11 @@
 
 .title {
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.25;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -67,7 +67,7 @@
 
 .pillarTitle {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   margin-bottom: 0.35rem;
 }
@@ -121,7 +121,7 @@
 
 .trustHighlight {
   color: #38bdf8;
-  font-weight: 800;
+  font-weight: 650;
 }
 
 @media (max-width: 992px) {

@@ -3,6 +3,8 @@ import { runCertificateIdGeneratorTests } from "./02-certificate-id-generator.te
 import { runCsvExcelParserTests } from "./03-csv-excel-parser.test.js";
 import { runFormValidatorsTests } from "./04-form-validators.test.js";
 import { runCacheAndProfileTests } from "./05-cache-system.test.js";
+import { runCoursesCatalogTests } from "./06-courses-catalog.test.js";
+import { runCompanyAndNavigationTests } from "./07-company-navigation.test.js";
 
 const GREEN = "\x1b[32m";
 const RED = "\x1b[31m";
@@ -24,6 +26,8 @@ async function runAllPhase1Tests() {
     runCsvExcelParserTests(),
     runFormValidatorsTests(),
     await runCacheAndProfileTests(),
+    runCoursesCatalogTests(),
+    runCompanyAndNavigationTests(),
   ];
 
   let grandTotalPassed = 0;

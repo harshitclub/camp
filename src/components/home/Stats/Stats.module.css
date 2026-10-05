@@ -39,18 +39,18 @@
 }
 
 .statNumber {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.1;
   margin-bottom: 0.35rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .statLabel {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 0.35rem;
 }

@@ -10,7 +10,7 @@
 .sectionTitle {
   font-size: 1.65rem;
   color: var(--text-heading);
-  font-weight: 800;
+  font-weight: 650;
   margin-bottom: 1rem;
 }
 
@@ -36,7 +36,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   margin-bottom: 1rem;
 }
@@ -169,7 +169,7 @@
 
 .boxTitle {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-heading);
 }
 
@@ -225,7 +225,7 @@
 /* Prerequisites */
 .prereqBlock {
   background: #fffbeb;
-  border: 1px solid #fef3c7;
+  border: 1px solid var(--accentAmber-light);
   border-radius: var(--radius-sm);
   padding: 1.25rem 1.4rem;
   margin-bottom: 2.5rem;
@@ -244,7 +244,7 @@
 
 .prereqTitle {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #92400e;
 }
 
@@ -265,7 +265,7 @@
 }
 
 .prereqDot {
-  font-weight: 800;
+  font-weight: 650;
 }
 
 @media (max-width: 768px) {

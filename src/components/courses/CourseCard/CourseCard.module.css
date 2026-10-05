@@ -22,7 +22,7 @@
   width: 100%;
   height: 200px;
   overflow: hidden;
-  background-color: #f1f5f9;
+  background-color: var(--bg-alt);
 }
 
 .thumbnailImg {
@@ -51,7 +51,7 @@
   background-color: var(--mainBlue);
   color: #ffffff;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.25rem 0.65rem;
   border-radius: var(--radius-xs);
   text-transform: uppercase;
@@ -63,7 +63,7 @@
   background-color: rgba(255, 255, 255, 0.95);
   color: var(--mainBlue);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.25rem 0.6rem;
   border-radius: var(--radius-xs);
   border: 1px solid rgba(0, 34, 85, 0.1);
@@ -91,7 +91,7 @@
   align-items: center;
   gap: 0.25rem;
   color: #b45309;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .levelTag {
@@ -101,11 +101,11 @@
 
 .title {
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.35;
   margin-bottom: 0.65rem;
-  letter-spacing: -0.01em;
+  letter-spacing: normal;
 }
 
 .description {
@@ -161,7 +161,7 @@
   justify-content: center;
   gap: 0.4rem;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   background-color: var(--mainBlue-surface);
   border: 1px solid rgba(0, 34, 85, 0.15);

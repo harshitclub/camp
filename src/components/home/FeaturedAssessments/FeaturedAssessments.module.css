@@ -1,6 +1,6 @@
 /* Featured Assessments Section - Light Subtle Blue Gradient Theme */
 .assessmentsSection {
-  background: linear-gradient(180deg, #f0f5fc 0%, #f8fafd 50%, #f0f5fc 100%);
+  background: linear-gradient(180deg, var(--mainBlue-surface) 0%, var(--bg-subtle) 50%, var(--mainBlue-surface) 100%);
   padding: 4.25rem 0 4.75rem 0;
   border-bottom: 1px solid var(--border-default);
   position: relative;
@@ -20,7 +20,7 @@
   align-items: center;
   gap: 0.35rem;
   font-size: 0.785rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--mainBlue);
@@ -38,10 +38,10 @@
 
 .title {
   font-size: 2.15rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.2;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
   margin: 0;
 }
 
@@ -50,7 +50,7 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   background: #ffffff;
   border: 1px solid rgba(0, 34, 85, 0.15);
@@ -123,14 +123,14 @@
   background: #ffffff;
   border: 1px solid var(--border-default);
   padding: 0.2rem 0.55rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   letter-spacing: 0.02em;
 }
 
 /* Card Title */
 .cardTitle {
   font-size: 1.075rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.35;
   margin-bottom: 0.45rem;
@@ -174,7 +174,7 @@
   background: #ffffff;
   border: 1px solid var(--border-default);
   padding: 0.15rem 0.45rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-weight: 500;
 }
 
@@ -191,7 +191,7 @@
   align-items: center;
   gap: 0.35rem;
   font-size: 0.775rem;
-  color: #059669;
+  color: var(--accentEmerald);
   font-weight: 600;
 }
 

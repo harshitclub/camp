@@ -42,7 +42,7 @@
 }
 
 .faqQuestion {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--mainBlue);

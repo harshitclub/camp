@@ -9,13 +9,23 @@ Welcome to the automated test suite for **CampusSutras**. This directory contain
 ```text
 tests/
 ├── README.md                      <-- This Guide
-├── phase1-unit/                   <-- Phase 1: Unit & Core Logic Testing (100% Offline)
+├── phase1-unit/                   <-- Phase 1: Unit & Core Logic Testing (100% Offline, 116 Tests)
 │   ├── 01-assessment-engine.test.js
 │   ├── 02-certificate-id-generator.test.js
 │   ├── 03-csv-excel-parser.test.js
 │   ├── 04-form-validators.test.js
+│   ├── 05-cache-system.test.js
+│   ├── 06-courses-catalog.test.js
+│   ├── 07-company-navigation.test.js
 │   └── run-phase1.js             <-- Phase 1 Master Runner
-├── phase2-api/                    <-- Phase 2: Database & API Integration Tests
+├── phase2-api/                    <-- Phase 2: Database & API Integration Tests (37 Tests)
+│   ├── 01-verify-certificate-api.test.js
+│   ├── 02-admin-certificates-api.test.js
+│   ├── 03-admin-assessments-categories-api.test.js
+│   ├── 04-lead-forms-api.test.js
+│   ├── 05-admin-forms-api.test.js
+│   ├── 06-chat-api.test.js
+│   └── run-phase2.js             <-- Phase 2 Master Runner
 ├── phase3-forms/                  <-- Phase 3: Public Forms & SMTP Email Tests
 ├── phase4-quiz/                   <-- Phase 4: Dynamic Assessment Hub & Quiz Engine
 ├── phase5-auth/                   <-- Phase 5: Authentication, Profiles & Security
@@ -27,26 +37,34 @@ tests/
 
 ## 🚀 How to Run Tests
 
+You can run individual test suites via standard npm commands:
+
 ### Run Phase 1 (Unit & Core Logic)
 ```bash
-node tests/phase1-unit/run-phase1.js
+npm run test:unit
+# or: node tests/phase1-unit/run-phase1.js
 ```
-* **Scope:** 
+* **Scope (116 Assertions):** 
   - Validates all 30 assessment catalogs and all 450 question schemas in `src/data/assessmentsData.js`.
   - Tests scoring math, pass/fail thresholds, timer formatting, and topic analytics.
   - Tests Certificate ID generator, acronym extractor, and Indian degree matching.
   - Tests CSV/Excel quotes parser, column alias matching, UTF-8 BOM, and `isNA` checker.
   - Tests RFC email regex, phone formatting, password rules, and URL validation.
+  - Validates all 12 Industry Bootcamp tracks, curriculum modules, prerequisites, career roles, and canonical paths in `src/data/courses.js`.
+  - Validates company legal entities, internal canonical link registries, navigation dropdowns, and contact channels.
+
 ### Run Phase 2 (Database & API Integration)
 ```bash
-node tests/phase2-api/run-phase2.js
+npm run test:api
+# or: node tests/phase2-api/run-phase2.js
 ```
-* **Scope:**
+* **Scope (37 Assertions):**
   - Public Certificate verification API (`/api/verify-certificate`) with case-insensitive search and edge cache headers.
   - Admin Certificate CRUD & bulk batch upserting (`/api/admin/certificates`).
   - Admin Assessment authoring & category creation on-the-fly (`/api/admin/assessments` & `/api/admin/categories`).
   - Public Lead Ingestion endpoints (`/api/forms/[type]`) across contact, internship, hire, and course enrollment.
   - Admin Form submissions desk (`/api/admin/forms`).
+  - AI Academic Counselor Chatbot API (`/api/chat`), system prompt knowledge grounding, payload sanitization, and heuristic anti-misuse guardrails.
 ### Run Phase 3 (Public Forms & Lead Ingestion)
 ```bash
 node tests/phase3-forms/run-phase3.js
@@ -108,7 +126,8 @@ node tests/phase7-e2e/run-phase7.js
 To run the complete platform test suite across all 7 phases with a unified executive scorecard:
 
 ```bash
-node tests/run-all.js
+npm test
+# or: node tests/run-all.js
 ```
 
 ---

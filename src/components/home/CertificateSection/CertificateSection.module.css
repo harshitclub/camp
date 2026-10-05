@@ -20,11 +20,11 @@
 
 .title {
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.25;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -73,7 +73,7 @@
 
 .featureTitle {
   font-size: 0.975rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   margin-bottom: 0.2rem;
 }
@@ -131,15 +131,15 @@
 
 .verifiedBadgeTitle {
   font-size: 0.7rem;
-  color: #94a3b8;
-  font-weight: 700;
+  color: var(--text-light);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .verifiedBadgeVal {
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #38bdf8;
 }
 

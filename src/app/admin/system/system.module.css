@@ -14,9 +14,9 @@
 
 /* 1. Header & Quick Actions */
 .headerCard {
-  background: linear-gradient(135deg, #001e47 0%, #002b66 60%, #0b57d0 100%);
+  background: linear-gradient(135deg, #001e47 0%, #002b66 60%, var(--accentBlue) 100%);
   color: #ffffff;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 1.75rem 2rem;
   box-shadow: 0 4px 20px rgba(0, 30, 71, 0.15);
   display: flex;
@@ -62,11 +62,11 @@
   border: 1px solid rgba(34, 197, 94, 0.4);
   color: #4ade80;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 0.2rem 0.6rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .pulseDot {
@@ -87,11 +87,11 @@
 .versionBadge {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #cbd5e1;
+  color: var(--border-strong);
   font-size: 0.72rem;
   font-weight: 600;
   padding: 0.2rem 0.55rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .smtpBadge {
@@ -101,20 +101,20 @@
   font-size: 0.72rem;
   font-weight: 600;
   padding: 0.2rem 0.55rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .title {
   font-size: 1.65rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  letter-spacing: normal;
   margin: 0;
   color: #ffffff;
 }
 
 .subtitle {
   font-size: 0.9rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
   margin: 0;
   line-height: 1.45;
 }
@@ -137,9 +137,9 @@
   background: #ffffff;
   color: #001e47;
   border: 1px solid #ffffff;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.825rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -148,7 +148,7 @@
 
 .runDiagBtn:hover {
   background: #f0f7ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
@@ -162,7 +162,7 @@
   background: rgba(255, 255, 255, 0.12);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.825rem;
   font-weight: 600;
   cursor: pointer;
@@ -184,8 +184,8 @@
 
 .kpiCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.15rem 1.25rem;
   display: flex;
   align-items: center;
@@ -196,7 +196,7 @@
 }
 
 .kpiCard:hover {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 4px 12px rgba(11, 87, 208, 0.08);
   transform: translateY(-1px);
 }
@@ -209,32 +209,32 @@
 
 .kpiLabel {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--text-muted);
   letter-spacing: 0.05em;
 }
 
 .kpiValue {
   font-size: 1.55rem;
-  font-weight: 800;
-  color: #091e42;
-  letter-spacing: -0.02em;
+  font-weight: 650;
+  color: var(--text-heading);
+  letter-spacing: normal;
   line-height: 1.15;
 }
 
 .kpiHint {
   font-size: 0.725rem;
-  color: #059669;
+  color: var(--accentEmerald);
   font-weight: 600;
 }
 
 .kpiIconWrap {
   width: 44px;
   height: 44px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   background: #f0f7ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,8 +244,8 @@
 /* 3. Navigation Tabs Bar */
 .tabsBar {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 0.4rem;
   display: flex;
   align-items: center;
@@ -262,8 +262,8 @@
   padding: 0.55rem 0.95rem;
   background: transparent;
   border: none;
-  border-radius: 4px;
-  color: #475569;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
   font-size: 0.825rem;
   font-weight: 600;
   cursor: pointer;
@@ -272,21 +272,21 @@
 }
 
 .tabBtn:hover {
-  background: #f1f5f9;
-  color: #091e42;
+  background: var(--bg-alt);
+  color: var(--text-heading);
 }
 
 .tabBtnActive {
-  background: #002255 !important;
+  background: var(--mainBlue) !important;
   color: #ffffff !important;
   box-shadow: 0 2px 6px rgba(0, 34, 85, 0.2);
 }
 
 .tabBadge {
   font-size: 0.675rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   background: rgba(0, 0, 0, 0.08);
   color: inherit;
 }
@@ -305,8 +305,8 @@
 
 .topologyCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
@@ -316,14 +316,14 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-alt);
   padding-bottom: 0.75rem;
 }
 
 .cardTitle {
   font-size: 1.05rem;
-  font-weight: 700;
-  color: #091e42;
+  font-weight: 600;
+  color: var(--text-heading);
   margin: 0;
   display: flex;
   align-items: center;
@@ -332,7 +332,7 @@
 
 .cardSubtitle {
   font-size: 0.775rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0.2rem 0 0;
 }
 
@@ -345,9 +345,9 @@
 }
 
 .flowNode {
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   padding: 1.15rem 1rem;
   display: flex;
   flex-direction: column;
@@ -358,37 +358,37 @@
 
 .flowNode:hover {
   background: #ffffff;
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 4px 12px rgba(11, 87, 208, 0.08);
   transform: translateY(-2px);
 }
 
 .flowNodeActive {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   background: #f0f7ff;
 }
 
 .flowStepNum {
   font-size: 0.65rem;
-  font-weight: 800;
-  color: #0b57d0;
+  font-weight: 650;
+  color: var(--accentBlue);
   background: #e0edff;
   width: fit-content;
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   text-transform: uppercase;
 }
 
 .flowNodeTitle {
   font-size: 0.875rem;
-  font-weight: 700;
-  color: #091e42;
+  font-weight: 600;
+  color: var(--text-heading);
   margin: 0;
 }
 
 .flowNodeDesc {
   font-size: 0.735rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.4;
   margin: 0;
 }
@@ -396,10 +396,10 @@
 .flowNodeTech {
   font-size: 0.675rem;
   font-weight: 600;
-  color: #002255;
-  background: #e2e8f0;
+  color: var(--mainBlue);
+  background: var(--border-default);
   padding: 0.15rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   width: fit-content;
   margin-top: auto;
 }
@@ -413,8 +413,8 @@
 
 .subsystemCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
@@ -424,7 +424,7 @@
 }
 
 .subsystemCard:hover {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 4px 12px rgba(11, 87, 208, 0.06);
 }
 
@@ -439,23 +439,23 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.925rem;
-  font-weight: 700;
-  color: #091e42;
+  font-weight: 600;
+  color: var(--text-heading);
 }
 
 .subsystemRole {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .subsystemProvider {
   font-size: 0.75rem;
-  color: #0b57d0;
+  color: var(--accentBlue);
   font-weight: 600;
   background: #f0f7ff;
   padding: 0.2rem 0.5rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   width: fit-content;
 }
 
@@ -473,7 +473,7 @@
   align-items: flex-start;
   gap: 0.45rem;
   font-size: 0.765rem;
-  color: #475569;
+  color: var(--text-secondary);
   line-height: 1.35;
 }
 
@@ -485,9 +485,9 @@
 
 .subsystemNote {
   font-size: 0.7rem;
-  color: #64748b;
-  background: #f8fafc;
-  border-left: 2px solid #0b57d0;
+  color: var(--text-muted);
+  background: var(--bg-page);
+  border-left: 2px solid var(--accentBlue);
   padding: 0.4rem 0.6rem;
   border-radius: 0 4px 4px 0;
   margin-top: auto;
@@ -506,8 +506,8 @@
   justify-content: space-between;
   gap: 1rem;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   flex-wrap: wrap;
 }
@@ -516,9 +516,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   padding: 0.35rem 0.75rem;
   width: 320px;
 }
@@ -528,7 +528,7 @@
   background: transparent;
   outline: none;
   font-size: 0.825rem;
-  color: #091e42;
+  color: var(--text-heading);
   width: 100%;
 }
 
@@ -543,18 +543,18 @@
   padding: 0.25rem 0.6rem;
   font-size: 0.72rem;
   font-weight: 600;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
-  color: #475569;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.12s ease;
 }
 
 .filterTagActive {
-  background: #002255;
+  background: var(--mainBlue);
   color: #ffffff;
-  border-color: #002255;
+  border-color: var(--mainBlue);
 }
 
 .tablesGrid {
@@ -565,8 +565,8 @@
 
 .tableCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   transition: all 0.15s ease;
@@ -575,14 +575,14 @@
 }
 
 .tableCard:hover {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 6px 16px rgba(11, 87, 208, 0.08);
 }
 
 .tableHeader {
   padding: 0.85rem 1.15rem;
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border-default);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -597,17 +597,17 @@
 .tableName {
   font-family: monospace;
   font-size: 0.95rem;
-  font-weight: 700;
-  color: #002255;
+  font-weight: 600;
+  color: var(--mainBlue);
 }
 
 .tableCategoryBadge {
   font-size: 0.65rem;
-  font-weight: 700;
-  color: #0b57d0;
+  font-weight: 600;
+  color: var(--accentBlue);
   background: #e0edff;
   padding: 0.1rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .tableRlsBadge {
@@ -616,13 +616,13 @@
   color: #166534;
   background: #dcfce7;
   padding: 0.1rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .tableDesc {
   padding: 0.65rem 1.15rem 0.35rem;
   font-size: 0.775rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.4;
 }
@@ -637,9 +637,9 @@
 .columnsTable th {
   text-align: left;
   padding: 0.45rem 1.15rem;
-  background: #f1f5f9;
-  color: #475569;
-  font-weight: 700;
+  background: var(--bg-alt);
+  color: var(--text-secondary);
+  font-weight: 600;
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -647,14 +647,14 @@
 
 .columnsTable td {
   padding: 0.45rem 1.15rem;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--bg-alt);
   color: #334155;
 }
 
 .colName {
   font-family: monospace;
   font-weight: 600;
-  color: #091e42;
+  color: var(--text-heading);
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -662,39 +662,39 @@
 
 .pkPill {
   font-size: 0.575rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #991b1b;
-  background: #fee2e2;
+  background: var(--color-danger-light);
   padding: 0.05rem 0.3rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .fkPill {
   font-size: 0.575rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #075985;
   background: #e0f2fe;
   padding: 0.05rem 0.3rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .colType {
   font-family: monospace;
-  color: #0b57d0;
+  color: var(--accentBlue);
   font-size: 0.72rem;
 }
 
 .colDesc {
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .tableFooterRelations {
   padding: 0.65rem 1.15rem;
   background: #fafbfc;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--border-default);
   margin-top: auto;
   font-size: 0.725rem;
-  color: #475569;
+  color: var(--text-secondary);
 }
 
 .relationTag {
@@ -703,10 +703,10 @@
   gap: 0.3rem;
   font-family: monospace;
   font-weight: 600;
-  color: #0b57d0;
+  color: var(--accentBlue);
   background: #f0f7ff;
   padding: 0.15rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   margin-left: 0.35rem;
 }
 
@@ -725,8 +725,8 @@
 
 .apiCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.15rem 1.25rem;
   display: flex;
   align-items: center;
@@ -737,7 +737,7 @@
 }
 
 .apiCard:hover {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 4px 12px rgba(11, 87, 208, 0.06);
 }
 
@@ -759,9 +759,9 @@
 .methodBadge {
   font-family: monospace;
   font-size: 0.675rem;
-  font-weight: 800;
+  font-weight: 650;
   padding: 0.15rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   text-align: center;
 }
 
@@ -776,13 +776,13 @@
 }
 
 .methodPUT {
-  background: #fef3c7;
+  background: var(--accentAmber-light);
   color: #b45309;
 }
 
 .methodDELETE {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: var(--color-danger-light);
+  color: var(--color-danger-dark);
 }
 
 .apiMeta {
@@ -803,21 +803,21 @@
   font-family: monospace;
   font-size: 0.925rem;
   font-weight: 700;
-  color: #091e42;
+  color: var(--text-heading);
 }
 
 .authBadge {
   font-size: 0.65rem;
-  font-weight: 700;
-  color: #64748b;
-  background: #f1f5f9;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-alt);
   padding: 0.1rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .apiSummary {
   font-size: 0.775rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.4;
 }
@@ -832,18 +832,18 @@
 .apiTableTag {
   font-family: monospace;
   font-size: 0.675rem;
-  color: #0b57d0;
+  color: var(--accentBlue);
   background: #f0f7ff;
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .apiCacheTag {
   font-size: 0.675rem;
-  color: #059669;
+  color: var(--accentEmerald);
   background: #ecfdf5;
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .apiRight {
@@ -858,9 +858,9 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.3rem 0.65rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .probeSuccess {
@@ -870,9 +870,9 @@
 }
 
 .probePending {
-  background: #f8fafc;
-  color: #64748b;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-page);
+  color: var(--text-muted);
+  border: 1px solid var(--border-default);
 }
 
 .probeBtn {
@@ -881,9 +881,9 @@
   gap: 0.35rem;
   height: 32px;
   padding: 0 0.8rem;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
   color: #334155;
@@ -892,9 +892,9 @@
 }
 
 .probeBtn:hover {
-  background: #0b57d0;
+  background: var(--accentBlue);
   color: #ffffff;
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
 }
 
 /* 7. Tab 4: Website Pages & Route Monitor */
@@ -912,8 +912,8 @@
 
 .pageCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.15rem;
   display: flex;
   flex-direction: column;
@@ -923,7 +923,7 @@
 }
 
 .pageCard:hover {
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 4px 12px rgba(11, 87, 208, 0.06);
   transform: translateY(-1px);
 }
@@ -938,30 +938,30 @@
   font-family: monospace;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #002255;
+  color: var(--mainBlue);
 }
 
 .pageLink {
-  color: #64748b;
+  color: var(--text-muted);
   display: flex;
   align-items: center;
   transition: color 0.12s ease;
 }
 
 .pageLink:hover {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .pageTitle {
   font-size: 0.875rem;
-  font-weight: 700;
-  color: #091e42;
+  font-weight: 600;
+  color: var(--text-heading);
   margin: 0;
 }
 
 .pageDesc {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.4;
   margin: 0;
   flex: 1;
@@ -971,7 +971,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--bg-alt);
   padding-top: 0.55rem;
   margin-top: 0.35rem;
 }
@@ -979,17 +979,17 @@
 .pageModeBadge {
   font-size: 0.65rem;
   font-weight: 600;
-  color: #475569;
-  background: #f1f5f9;
+  color: var(--text-secondary);
+  background: var(--bg-alt);
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .pageAuthBadge {
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.1rem 0.4rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .authPublic {
@@ -1015,9 +1015,9 @@
 }
 
 .smtpBanner {
-  background: linear-gradient(135deg, #091e42 0%, #002255 100%);
+  background: linear-gradient(135deg, var(--text-heading) 0%, var(--mainBlue) 100%);
   color: #ffffff;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 1.5rem 1.75rem;
   border-left: 4px solid #0284c7;
   display: flex;
@@ -1035,7 +1035,7 @@
 
 .smtpTitle {
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #ffffff;
   margin: 0;
   display: flex;
@@ -1052,7 +1052,7 @@
 .smtpSpecItem {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   display: flex;
   flex-direction: column;
@@ -1061,7 +1061,7 @@
 
 .smtpSpecLabel {
   font-size: 0.675rem;
-  color: #94a3b8;
+  color: var(--text-light);
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1145,7 +1145,7 @@
 
   .apiRight {
     justify-content: space-between;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid var(--bg-alt);
     padding-top: 0.65rem;
     margin-top: 0.35rem;
   }

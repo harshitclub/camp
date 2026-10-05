@@ -85,13 +85,13 @@
 
 .channelName {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
 }
 
 .channelBadge {
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #065f46;
   background-color: var(--accentEmerald-light);
   border: 1px solid rgba(5, 150, 105, 0.2);
@@ -147,7 +147,7 @@
 
 .opTitle {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
 }
 
@@ -233,7 +233,7 @@
 
 .formEyebrow {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accentBlue);
@@ -276,7 +276,7 @@
 }
 
 .req {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .inputWrap {
@@ -320,13 +320,13 @@
 }
 
 .inputError {
-  border-color: #dc2626 !important;
+  border-color: var(--color-danger) !important;
   background-color: #fff8f8 !important;
 }
 
 .errText {
   font-size: 0.725rem;
-  color: #dc2626;
+  color: var(--color-danger);
   font-weight: 500;
 }
 

@@ -16,10 +16,10 @@
   align-items: center;
   gap: 0.45rem;
   background-color: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -28,16 +28,16 @@
 }
 
 .eyebrowIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: var(--mainBlue);
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -66,7 +66,7 @@
 /* Traditional Card Styling */
 .traditionalCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--border-default);
   box-shadow: var(--shadow-card);
 }
 
@@ -74,8 +74,8 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
-  background: #fee2e2;
-  color: #dc2626;
+  background: var(--color-danger-light);
+  color: var(--color-danger);
   border: 1px solid #fca5a5;
   display: flex;
   align-items: center;
@@ -85,9 +85,9 @@
 
 .categoryLabel {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #dc2626;
+  color: var(--color-danger);
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 0.2rem;
@@ -96,7 +96,7 @@
 /* Campussutras Card Styling */
 .campCard {
   background: linear-gradient(145deg, #ffffff 0%, #f0f7ff 100%);
-  border: 2px solid #0b57d0;
+  border: 2px solid var(--accentBlue);
   box-shadow: 0 20px 40px -15px rgba(11, 87, 208, 0.2);
 }
 
@@ -104,10 +104,10 @@
   position: absolute;
   top: -14px;
   right: 24px;
-  background: linear-gradient(135deg, #0b57d0 0%, #002255 100%);
+  background: linear-gradient(135deg, var(--accentBlue) 0%, var(--mainBlue) 100%);
   color: #ffffff;
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -119,8 +119,8 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-sm);
-  background-color: #e8f0fe;
-  color: #0b57d0;
+  background-color: var(--accentBlue-subtle);
+  color: var(--accentBlue);
   border: 1px solid #bfdbfe;
   display: flex;
   align-items: center;
@@ -130,9 +130,9 @@
 
 .categoryLabelCamp {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #0b57d0;
+  color: var(--accentBlue);
   letter-spacing: 0.05em;
   display: block;
   margin-bottom: 0.2rem;
@@ -147,7 +147,7 @@
 
 .cardHeading {
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin: 0;
 }
@@ -179,7 +179,7 @@
 }
 
 .checkIcon {
-  color: #059669;
+  color: var(--accentEmerald);
   flex-shrink: 0;
   margin-top: 3px;
 }

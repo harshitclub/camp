@@ -82,7 +82,7 @@
 
 .pillarTitle {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
 }
 
@@ -143,7 +143,7 @@
 
 .statNum {
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
 }
 
@@ -182,7 +182,7 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.775rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
 }
 
 /* Responsive */

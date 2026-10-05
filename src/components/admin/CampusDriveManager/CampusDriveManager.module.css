@@ -13,9 +13,9 @@
 
 /* 1. Header Card */
 .headerCard {
-  background: linear-gradient(135deg, #001e47 0%, #002b66 60%, #0b57d0 100%);
+  background: linear-gradient(135deg, #001e47 0%, #002b66 60%, var(--accentBlue) 100%);
   color: #ffffff;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 1.5rem 1.75rem;
   display: flex;
   align-items: center;
@@ -59,10 +59,10 @@
   border: 1px solid rgba(34, 197, 94, 0.4);
   color: #4ade80;
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   padding: 0.15rem 0.5rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .pulseDot {
@@ -81,15 +81,15 @@
 
 .title {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #ffffff;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
   margin: 0;
   line-height: 1.45;
 }
@@ -97,8 +97,8 @@
 /* 2. Tabs Bar */
 .tabsBar {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 0.35rem;
   display: flex;
   align-items: center;
@@ -113,8 +113,8 @@
   padding: 0.55rem 1rem;
   background: transparent;
   border: none;
-  border-radius: 4px;
-  color: #475569;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
   font-size: 0.825rem;
   font-weight: 600;
   cursor: pointer;
@@ -122,12 +122,12 @@
 }
 
 .tabBtn:hover {
-  background: #f1f5f9;
-  color: #091e42;
+  background: var(--bg-alt);
+  color: var(--text-heading);
 }
 
 .tabBtnActive {
-  background: #002255 !important;
+  background: var(--mainBlue) !important;
   color: #ffffff !important;
   box-shadow: 0 2px 6px rgba(0, 34, 85, 0.2);
 }
@@ -142,8 +142,8 @@
 
 .formCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -152,20 +152,20 @@
 }
 
 .formHeader {
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-alt);
   padding-bottom: 0.75rem;
 }
 
 .formTitle {
   font-size: 1.05rem;
-  font-weight: 700;
-  color: #091e42;
+  font-weight: 600;
+  color: var(--text-heading);
   margin: 0;
 }
 
 .formSubtitle {
   font-size: 0.775rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0.2rem 0 0;
 }
 
@@ -177,25 +177,25 @@
 
 .label {
   font-size: 0.785rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #334155;
 }
 
 .textInput {
   height: 38px;
   padding: 0 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
-  color: #091e42;
-  background: #f8fafc;
+  color: var(--text-heading);
+  background: var(--bg-page);
   outline: none;
   transition: all 0.15s ease;
 }
 
 .textInput:focus {
   background: #ffffff;
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.1);
 }
 
@@ -210,25 +210,25 @@
 .suggestionChip {
   font-size: 0.675rem;
   font-weight: 600;
-  color: #0b57d0;
+  color: var(--accentBlue);
   background: #f0f7ff;
   border: 1px solid #d0e1fd;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   padding: 0.15rem 0.45rem;
   cursor: pointer;
   transition: all 0.12s ease;
 }
 
 .suggestionChip:hover {
-  background: #0b57d0;
+  background: var(--accentBlue);
   color: #ffffff;
 }
 
 /* QR Code Preview Card */
 .qrPreviewCard {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -241,8 +241,8 @@
 .qrContainer {
   background: #ffffff;
   padding: 1rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -262,9 +262,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #94a3b8;
+  color: var(--text-light);
   font-size: 0.8rem;
-  background: #f8fafc;
+  background: var(--bg-page);
 }
 
 .qrMeta {
@@ -276,13 +276,13 @@
 
 .qrCollegeName {
   font-size: 0.95rem;
-  font-weight: 700;
-  color: #002255;
+  font-weight: 600;
+  color: var(--mainBlue);
 }
 
 .qrCourseName {
   font-size: 0.775rem;
-  color: #059669;
+  color: var(--accentEmerald);
   font-weight: 600;
 }
 
@@ -291,9 +291,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  background: #f1f5f9;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   padding: 0.4rem 0.65rem;
   width: 100%;
   box-sizing: border-box;
@@ -302,7 +302,7 @@
 .urlText {
   font-family: monospace;
   font-size: 0.72rem;
-  color: #475569;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -314,11 +314,11 @@
   align-items: center;
   gap: 0.3rem;
   background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 3px;
-  color: #091e42;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-heading);
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   padding: 0.25rem 0.55rem;
   cursor: pointer;
   flex-shrink: 0;
@@ -326,9 +326,9 @@
 }
 
 .copyBtn:hover {
-  background: #0b57d0;
+  background: var(--accentBlue);
   color: #ffffff;
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
 }
 
 .qrActionsRow {
@@ -345,18 +345,18 @@
   justify-content: center;
   gap: 0.4rem;
   height: 36px;
-  background: #002255;
+  background: var(--mainBlue);
   color: #ffffff;
-  border: 1px solid #002255;
-  border-radius: 4px;
+  border: 1px solid var(--mainBlue);
+  border-radius: var(--radius-sm);
   font-size: 0.785rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .projectorBtn:hover {
-  background: #003380;
+  background: var(--mainBlue-light);
 }
 
 .downloadQrBtn {
@@ -366,10 +366,10 @@
   gap: 0.35rem;
   height: 36px;
   padding: 0 0.85rem;
-  background: #f8fafc;
+  background: var(--bg-page);
   color: #334155;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   font-size: 0.785rem;
   font-weight: 600;
   cursor: pointer;
@@ -377,7 +377,7 @@
 }
 
 .downloadQrBtn:hover {
-  background: #e2e8f0;
+  background: var(--border-default);
 }
 
 /* 4. Tab 2: Results & Excel Exporter */
@@ -393,8 +393,8 @@
   justify-content: space-between;
   gap: 1rem;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 0.85rem 1.15rem;
   flex-wrap: wrap;
 }
@@ -409,11 +409,11 @@
 .filterSelect {
   height: 36px;
   padding: 0 0.75rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
   font-size: 0.825rem;
-  color: #091e42;
-  background: #f8fafc;
+  color: var(--text-heading);
+  background: var(--bg-page);
   outline: none;
 }
 
@@ -426,9 +426,9 @@
   background: #166534;
   color: #ffffff;
   border: 1px solid #166534;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.825rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
   box-shadow: 0 2px 6px rgba(22, 101, 52, 0.2);
@@ -440,8 +440,8 @@
 }
 
 .exportExcelBtn:disabled {
-  background: #94a3b8;
-  border-color: #94a3b8;
+  background: var(--text-light);
+  border-color: var(--text-light);
   cursor: not-allowed;
   transform: none;
 }
@@ -449,8 +449,8 @@
 /* College Summary Banner */
 .statsBanner {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   padding: 1.15rem 1.25rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -465,28 +465,28 @@
 
 .statLabel {
   font-size: 0.72rem;
-  font-weight: 700;
-  color: #64748b;
+  font-weight: 600;
+  color: var(--text-muted);
   text-transform: uppercase;
 }
 
 .statVal {
   font-size: 1.4rem;
-  font-weight: 800;
-  color: #002255;
+  font-weight: 650;
+  color: var(--mainBlue);
 }
 
 .statSub {
   font-size: 0.725rem;
-  color: #059669;
+  color: var(--accentEmerald);
   font-weight: 600;
 }
 
 /* Table Container */
 .tableContainer {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
@@ -500,17 +500,17 @@
 .dataTable th {
   text-align: left;
   padding: 0.65rem 1rem;
-  background: #f8fafc;
-  color: #475569;
-  font-weight: 700;
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  font-weight: 600;
   font-size: 0.72rem;
   text-transform: uppercase;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--border-default);
 }
 
 .dataTable td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--bg-alt);
   color: #334155;
 }
 
@@ -520,45 +520,45 @@
 }
 
 .studentName {
-  font-weight: 700;
-  color: #091e42;
+  font-weight: 600;
+  color: var(--text-heading);
 }
 
 .studentEmail {
   font-size: 0.72rem;
-  color: #64748b;
+  color: var(--text-muted);
 }
 
 .statusPassed {
   display: inline-block;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #15803d;
   background: #dcfce7;
   padding: 0.15rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .statusFailed {
   display: inline-block;
   font-size: 0.65rem;
-  font-weight: 800;
-  color: #b91c1c;
-  background: #fee2e2;
+  font-weight: 650;
+  color: var(--color-danger-dark);
+  background: var(--color-danger-light);
   padding: 0.15rem 0.45rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .scorePill {
   font-family: monospace;
   font-weight: 700;
-  color: #002255;
+  color: var(--mainBlue);
 }
 
 .emptyState {
   padding: 3rem 1.5rem;
   text-align: center;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.875rem;
 }
 
@@ -585,7 +585,7 @@
   color: #ffffff;
   width: 40px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -610,12 +610,12 @@
   height: 40px;
   background: #ffffff;
   padding: 0.35rem 0.75rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .projectorCollege {
   font-size: 1.85rem;
-  font-weight: 800;
+  font-weight: 650;
   margin: 0;
   color: #ffffff;
 }
@@ -630,7 +630,7 @@
 .projectorQrWrap {
   background: #ffffff;
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
@@ -642,17 +642,17 @@
 
 .projectorInstruction {
   font-size: 1rem;
-  color: #94a3b8;
+  color: var(--text-light);
   margin: 0;
 }
 
 .projectorUrl {
   font-family: monospace;
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: var(--border-strong);
   background: rgba(255, 255, 255, 0.08);
   padding: 0.4rem 1rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* Landing Flow Toggle */
@@ -668,8 +668,8 @@
   align-items: flex-start;
   gap: 0.25rem;
   padding: 0.65rem 0.85rem;
-  border-radius: 4px;
-  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
   background: #ffffff;
   cursor: pointer;
   text-align: left;
@@ -677,8 +677,8 @@
 }
 
 .flowToggleBtn:hover {
-  border-color: #0b57d0;
-  background: #f8fafc;
+  border-color: var(--accentBlue);
+  background: var(--bg-page);
 }
 
 .flowToggleBtn strong {
@@ -688,14 +688,14 @@
 
 .flowToggleBtn span {
   font-size: 0.72rem;
-  color: #64748b;
+  color: var(--text-muted);
   line-height: 1.35;
 }
 
 .flowToggleBtnActive {
-  background: #f0f5fc;
-  border-color: #0b57d0;
-  box-shadow: 0 0 0 1px #0b57d0;
+  background: var(--mainBlue-surface);
+  border-color: var(--accentBlue);
+  box-shadow: 0 0 0 1px var(--accentBlue);
 }
 
 .flowToggleBtnActive strong {

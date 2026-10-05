@@ -1,7 +1,7 @@
 .section {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #00173b 0%, #002255 60%, #0b57d0 100%);
+  background: linear-gradient(135deg, #00173b 0%, var(--mainBlue) 60%, var(--accentBlue) 100%);
   color: #ffffff;
   padding: 5.5rem 0;
 }
@@ -37,7 +37,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #93c5fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -47,17 +47,17 @@
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: #ffffff;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
   font-size: 1.05rem;
   line-height: 1.65;
-  color: #cbd5e1;
+  color: var(--border-strong);
 }
 
 .grid {
@@ -101,23 +101,23 @@
 
 .statValue {
   font-size: 2.65rem;
-  font-weight: 800;
+  font-weight: 650;
   color: #ffffff;
   line-height: 1.1;
   margin-bottom: 0.35rem;
-  letter-spacing: -0.03em;
+  letter-spacing: normal;
 }
 
 .statLabel {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #93c5fd;
   margin-bottom: 0.5rem;
 }
 
 .statSub {
   font-size: 0.82rem;
-  color: #94a3b8;
+  color: var(--text-light);
   line-height: 1.4;
 }
 

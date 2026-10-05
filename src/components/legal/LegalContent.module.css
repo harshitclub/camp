@@ -23,7 +23,7 @@
 
 .tocTitle {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -86,7 +86,7 @@
 
 .sectionNumber {
   color: var(--accentBlue);
-  font-weight: 800;
+  font-weight: 650;
   font-size: 1.25rem;
 }
 
@@ -121,7 +121,7 @@
 
 .listBullet {
   color: var(--accentBlue);
-  font-weight: 800;
+  font-weight: 650;
   flex-shrink: 0;
   margin-top: 0.1rem;
 }
@@ -136,7 +136,7 @@
 
 .calloutTitle {
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   margin-bottom: 0.35rem;
 }

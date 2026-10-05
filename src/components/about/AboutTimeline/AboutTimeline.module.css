@@ -14,10 +14,10 @@
   align-items: center;
   gap: 0.45rem;
   background-color: #eef4ff;
-  color: #0b57d0;
+  color: var(--accentBlue);
   border: 1px solid #d0e1fd;
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.35rem 0.85rem;
@@ -26,16 +26,16 @@
 }
 
 .eyebrowIcon {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .title {
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.25;
   color: var(--mainBlue);
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .subtitle {
@@ -59,8 +59,8 @@
   left: 50%;
   transform: translateX(-50%);
   width: 3px;
-  background: linear-gradient(180deg, #0b57d0 0%, #38bdf8 100%);
-  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accentBlue) 0%, #38bdf8 100%);
+  border-radius: var(--radius-xs);
 }
 
 .timelineList {
@@ -95,13 +95,13 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #002255;
+  background: var(--mainBlue);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 650;
   box-shadow: 0 0 0 5px rgba(11, 87, 208, 0.2);
   z-index: 2;
 }
@@ -131,7 +131,7 @@
 
 .timelineCard:hover {
   transform: translateY(-3px);
-  border-color: #0b57d0;
+  border-color: var(--accentBlue);
   box-shadow: 0 16px 32px -8px rgba(11, 87, 208, 0.15);
 }
 
@@ -144,10 +144,10 @@
 
 .phaseTag {
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 650;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #0b57d0;
+  color: var(--accentBlue);
   background-color: #eef4ff;
   border: 1px solid #d0e1fd;
   padding: 0.25rem 0.65rem;
@@ -156,13 +156,13 @@
 
 .yearBadge {
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--text-muted);
 }
 
 .cardTitle {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 0.65rem;
   line-height: 1.35;
@@ -181,7 +181,7 @@
   gap: 0.45rem;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #059669;
+  color: var(--accentEmerald);
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
   padding: 0.35rem 0.75rem;
@@ -189,7 +189,7 @@
 }
 
 .metricIcon {
-  color: #059669;
+  color: var(--accentEmerald);
 }
 
 /* Responsive adjustments */

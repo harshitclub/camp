@@ -25,7 +25,7 @@
   background: var(--mainBlue-surface);
   color: var(--accentBlue);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.25rem 0.65rem;
@@ -39,7 +39,7 @@
 
 .searchTitle {
   font-size: 1.75rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--text-heading);
   margin-bottom: 0.4rem;
 }
@@ -121,7 +121,7 @@
   gap: 0.5rem;
   padding: 0.95rem 1.6rem;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: var(--radius-xs);
   white-space: nowrap;
   cursor: pointer;
@@ -171,7 +171,7 @@
   border: 1px solid var(--border-default);
   padding: 0.25rem 0.6rem;
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: var(--radius-xs);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -196,7 +196,7 @@
 }
 
 .errorIconWrap {
-  color: #dc2626;
+  color: var(--color-danger);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -207,13 +207,13 @@
 
 .errorTitle {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #991b1b;
   margin-bottom: 0.35rem;
 }
 
 .errorDesc {
-  color: #b91c1c;
+  color: var(--color-danger-dark);
   font-size: 0.92rem;
   line-height: 1.5;
   margin-bottom: 0.75rem;
@@ -221,7 +221,7 @@
 
 .errorTip {
   background: #ffffff;
-  border: 1px solid #fee2e2;
+  border: 1px solid var(--color-danger-light);
   border-radius: var(--radius-xs);
   padding: 0.75rem 1rem;
   font-size: 0.85rem;
@@ -259,7 +259,7 @@
 }
 
 .ribbonBar {
-  background: linear-gradient(90deg, #059669 0%, #047857 100%);
+  background: linear-gradient(90deg, var(--accentEmerald) 0%, #047857 100%);
   color: #ffffff;
   padding: 0.75rem 1.5rem;
   display: flex;
@@ -272,13 +272,13 @@
   align-items: center;
   gap: 0.45rem;
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 650;
   letter-spacing: 0.04em;
 }
 
 .certCode {
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 650;
   background: rgba(0, 0, 0, 0.2);
   padding: 0.2rem 0.6rem;
   border-radius: var(--radius-xs);
@@ -287,7 +287,7 @@
 
 .certBody {
   padding: 2.25rem;
-  background: radial-gradient(circle at center, #ffffff 0%, #f8fafd 100%);
+  background: radial-gradient(circle at center, #ffffff 0%, var(--bg-subtle) 100%);
 }
 
 .certHeader {
@@ -322,7 +322,7 @@
 
 .orgName {
   font-size: 1.12rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   letter-spacing: 0.02em;
   line-height: 1.25;
@@ -342,7 +342,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #d97706;
+  color: var(--accentAmber);
   border: 2px dashed #f59e0b;
   padding: 0.45rem 0.85rem;
   border-radius: var(--radius-xs);
@@ -351,12 +351,12 @@
 }
 
 .stampIcon {
-  color: #d97706;
+  color: var(--accentAmber);
 }
 
 .stampText {
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 650;
   letter-spacing: 0.06em;
   margin-top: 2px;
 }
@@ -380,7 +380,7 @@
 
 .studentName {
   font-size: 2.1rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin: 0.5rem 0;
   letter-spacing: 0.01em;
@@ -397,12 +397,12 @@
   padding: 0.6rem 1.4rem;
   border-radius: var(--radius-xs);
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 650;
   margin-top: 0.75rem;
 }
 
 .sparkleIcon {
-  color: #d97706;
+  color: var(--accentAmber);
 }
 
 /* Details Grid */
@@ -462,11 +462,11 @@
   display: inline-block;
   font-size: 0.78rem;
   font-weight: 600;
-  color: #64748b;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  color: var(--text-muted);
+  background: var(--bg-alt);
+  border: 1px solid var(--border-default);
   padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-xs, 4px);
+  border-radius: var(--radius-xs);
   letter-spacing: 0.02em;
 }
 
@@ -474,15 +474,15 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--accentBlue, #0b57d0);
+  color: var(--accentBlue, var(--accentBlue));
   font-size: 0.86rem;
   font-weight: 700;
 }
 
 .statusVerified {
-  color: #059669;
+  color: var(--accentEmerald);
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .certFooter {
@@ -501,7 +501,7 @@
 }
 
 .secShield {
-  color: #059669;
+  color: var(--accentEmerald);
   flex-shrink: 0;
 }
 
@@ -578,9 +578,9 @@
 
 .idFormatTitle {
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-heading);
-  letter-spacing: -0.01em;
+  letter-spacing: normal;
   margin: 0;
 }
 
@@ -626,7 +626,7 @@
 .segCode {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.92rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   background: #ffffff;
   border: 1px solid var(--border-default);
@@ -664,7 +664,7 @@
   background: var(--bg-alt);
   color: var(--accentBlue);
   padding: 0.1rem 0.35rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.76rem;
 }
@@ -678,7 +678,7 @@
 
 .guideTitle {
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--text-heading);
   text-align: center;
   margin-bottom: 1.75rem;
@@ -711,7 +711,7 @@
 
 .guideCardTitle {
   font-size: 0.98rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--text-heading);
   margin-bottom: 0.35rem;
 }
@@ -725,7 +725,7 @@
 .guideCardDesc code {
   background: var(--bg-alt);
   padding: 0.15rem 0.35rem;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   color: var(--accentBlue);
 }
@@ -755,7 +755,7 @@
   }
 
   .certificateResultCard {
-    border: 2px solid #002255 !important;
+    border: 2px solid var(--mainBlue) !important;
     box-shadow: none !important;
     margin: 0 auto !important;
     width: 100% !important;
@@ -764,11 +764,11 @@
     break-inside: avoid !important;
     page-break-before: avoid !important;
     page-break-after: avoid !important;
-    border-radius: 4px !important;
+    border-radius: var(--radius-sm) !important;
   }
 
   .ribbonBar {
-    background: #059669 !important;
+    background: var(--accentEmerald) !important;
     padding: 0.6rem 1.25rem !important;
   }
 
@@ -802,7 +802,7 @@
   .authStamp {
     padding: 0.35rem 0.65rem !important;
     background: #fffbeb !important;
-    border: 1.5px dashed #d97706 !important;
+    border: 1.5px dashed var(--accentAmber) !important;
   }
 
   .stampText {
@@ -830,7 +830,7 @@
     font-size: 1.05rem !important;
     padding: 0.45rem 1.15rem !important;
     margin-top: 0.5rem !important;
-    background: #f0f5fc !important;
+    background: var(--mainBlue-surface) !important;
     border: 1px solid #bfdbfe !important;
   }
 
@@ -840,7 +840,7 @@
     padding: 0.85rem !important;
     margin-bottom: 1rem !important;
     background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
+    border: 1px solid var(--border-default) !important;
   }
 
   .detailItem {

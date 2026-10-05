@@ -41,7 +41,7 @@
   padding: 0.35rem 0.95rem;
   border-radius: var(--radius-sm);
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--accentBlue);
@@ -61,7 +61,7 @@
   gap: 0.75rem;
   font-size: 7.5rem;
   font-weight: 900;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   line-height: 1;
   color: var(--mainBlue);
   margin-bottom: 1.5rem;
@@ -117,7 +117,7 @@
 
 .heading {
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   margin-bottom: 1rem;
   line-height: 1.25;
@@ -179,7 +179,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -236,7 +236,7 @@
 
 .destBadge {
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #065f46;
   background: var(--accentEmerald-light);
   border: 1px solid rgba(5, 150, 105, 0.2);
@@ -248,7 +248,7 @@
 
 .destTitle {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   margin-bottom: 0.35rem;
 }

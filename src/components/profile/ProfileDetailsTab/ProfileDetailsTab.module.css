@@ -1,7 +1,7 @@
 .tabContentCard {
   background: var(--bg-card, #ffffff);
-  border: 1px solid var(--border-default, #e2e8f0);
-  border-radius: var(--radius-lg, 8px);
+  border: 1px solid var(--border-default, var(--border-default));
+  border-radius: var(--radius-lg);
   padding: 1.75rem 2rem;
   box-shadow: var(--shadow-sm, 0 2px 4px rgba(0, 34, 85, 0.06));
 }
@@ -9,20 +9,20 @@
 .sectionHeader {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-subtle, #edf2f7);
+  border-bottom: 1px solid var(--border-subtle, var(--border-subtle));
 }
 
 .sectionTitle {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--mainBlue, #002255);
+  font-weight: 600;
+  color: var(--mainBlue, var(--mainBlue));
   margin: 0 0 0.35rem 0;
-  letter-spacing: -0.01em;
+  letter-spacing: normal;
 }
 
 .sectionDesc {
   font-size: 0.875rem;
-  color: var(--text-secondary, #475569);
+  color: var(--text-secondary, var(--text-secondary));
   margin: 0;
   line-height: 1.5;
 }
@@ -33,9 +33,9 @@
   gap: 0.65rem;
   padding: 0.75rem 1rem;
   background-color: #fef2f2;
-  border: 1px solid #fee2e2;
-  border-radius: var(--radius-md, 6px);
-  color: #dc2626;
+  border: 1px solid var(--color-danger-light);
+  border-radius: var(--radius-md);
+  color: var(--color-danger);
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
 }
@@ -47,7 +47,7 @@
   padding: 0.75rem 1rem;
   background-color: #f0fdf4;
   border: 1px solid #dcfce7;
-  border-radius: var(--radius-md, 6px);
+  border-radius: var(--radius-md);
   color: #16a34a;
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
@@ -84,20 +84,20 @@
 .label {
   font-size: 0.825rem;
   font-weight: 600;
-  color: var(--text-heading, #091e42);
+  color: var(--text-heading, var(--text-heading));
   display: flex;
   align-items: center;
   gap: 0.3rem;
 }
 
 .reqStar {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .optLabel {
   font-size: 0.72rem;
   font-weight: 400;
-  color: var(--text-light, #94a3b8);
+  color: var(--text-light, var(--text-light));
 }
 
 .inputWrapper {
@@ -109,7 +109,7 @@
 .fieldIcon {
   position: absolute;
   left: 0.85rem;
-  color: var(--text-light, #94a3b8);
+  color: var(--text-light, var(--text-light));
   pointer-events: none;
 }
 
@@ -117,17 +117,17 @@
   width: 100%;
   padding: 0.65rem 0.85rem 0.65rem 2.4rem;
   font-size: 0.9rem;
-  color: var(--text-primary, #1e293b);
+  color: var(--text-primary, var(--text-primary));
   background-color: #ffffff;
-  border: 1px solid var(--border-default, #e2e8f0);
-  border-radius: var(--radius-md, 6px);
+  border: 1px solid var(--border-default, var(--border-default));
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast, 0.15s ease);
   font-family: inherit;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--accentBlue, #0b57d0);
+  border-color: var(--accentBlue, var(--accentBlue));
   box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
 }
 
@@ -135,10 +135,10 @@
   width: 100%;
   padding: 0.65rem 0.85rem;
   font-size: 0.9rem;
-  color: var(--text-primary, #1e293b);
+  color: var(--text-primary, var(--text-primary));
   background-color: #ffffff;
-  border: 1px solid var(--border-default, #e2e8f0);
-  border-radius: var(--radius-md, 6px);
+  border: 1px solid var(--border-default, var(--border-default));
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast, 0.15s ease);
   font-family: inherit;
   cursor: pointer;
@@ -146,7 +146,7 @@
 
 .selectInput:focus {
   outline: none;
-  border-color: var(--accentBlue, #0b57d0);
+  border-color: var(--accentBlue, var(--accentBlue));
   box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.12);
 }
 
@@ -156,7 +156,7 @@
   justify-content: flex-end;
   margin-top: 0.75rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--border-subtle, #edf2f7);
+  border-top: 1px solid var(--border-subtle, var(--border-subtle));
 }
 
 .saveBtn {
@@ -166,14 +166,14 @@
   padding: 0.65rem 1.5rem;
   font-weight: 600;
   font-size: 0.9rem;
-  border-radius: var(--radius-md, 6px);
-  background-color: var(--mainBlue, #002255);
+  border-radius: var(--radius-md);
+  background-color: var(--mainBlue, var(--mainBlue));
   color: #ffffff;
-  border: 1px solid var(--mainBlue, #002255);
+  border: 1px solid var(--mainBlue, var(--mainBlue));
 }
 
 .saveBtn:hover {
-  background-color: var(--mainBlue-dark, #00163a);
+  background-color: var(--mainBlue-dark, var(--mainBlue-dark));
 }
 
 .loadingWrap {

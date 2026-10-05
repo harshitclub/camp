@@ -16,11 +16,11 @@
   align-items: center;
   gap: 0.5rem;
   background-color: #ffffff;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border-strong);
   padding: 0.35rem 0.9rem;
   border-radius: var(--radius-sm);
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--mainBlue);
   margin-bottom: 1.25rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -29,22 +29,22 @@
 .eyebrowDot {
   width: 8px;
   height: 8px;
-  background-color: #059669;
+  background-color: var(--accentEmerald);
   border-radius: 50%;
   display: inline-block;
 }
 
 .title {
   font-size: 2.85rem;
-  font-weight: 800;
+  font-weight: 650;
   color: var(--mainBlue);
   line-height: 1.2;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.03em;
+  letter-spacing: normal;
 }
 
 .highlight {
-  color: #0b57d0;
+  color: var(--accentBlue);
 }
 
 .subtitle {
@@ -61,7 +61,7 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #cbd5e1;
+  border-top: 1px solid var(--border-strong);
 }
 
 .statItem {
@@ -70,11 +70,11 @@
   gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .statIcon {
-  color: #059669;
+  color: var(--accentEmerald);
   flex-shrink: 0;
 }
 

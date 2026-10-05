@@ -74,7 +74,7 @@
   background: rgba(255, 255, 255, 0.1);
   color: #93c5fd;
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 0.3rem 0.75rem;
@@ -86,10 +86,10 @@
 .heroTitle {
   color: #ffffff;
   font-size: 2.35rem;
-  font-weight: 800;
+  font-weight: 650;
   line-height: 1.2;
   margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
 }
 
 .highlight {
@@ -99,7 +99,7 @@
 }
 
 .heroSubtitle {
-  color: #cbd5e1;
+  color: var(--border-strong);
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1.75rem;

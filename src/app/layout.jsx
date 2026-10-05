@@ -1,19 +1,8 @@
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import { Navbar, Footer } from "@/components/common";
+import { Navbar, Footer, Chatbot } from "@/components/common";
 import { AuthProvider } from "@/context/AuthContext";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-heading",
-});
 
 export const viewport = {
   width: "device-width",
@@ -77,12 +66,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${plusJakarta.variable}`}>
-      <body>
+    <html lang="en" data-scroll-behavior="smooth" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={GeistSans.className}>
         <AuthProvider>
           <Navbar />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />
+          <Chatbot />
         </AuthProvider>
       </body>
     </html>
