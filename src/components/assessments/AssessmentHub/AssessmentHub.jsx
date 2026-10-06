@@ -3,10 +3,6 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import styles from "./AssessmentHub.module.css";
-import { 
-  assessmentCategories as initialCategories, 
-  assessmentsList as initialAssessments 
-} from "@/data/assessmentsData";
 import { getAllAssessments, getAllCategories } from "@/lib/adminService";
 import { 
   FileText, 
@@ -32,7 +28,7 @@ import { getPaginationRange } from "@/lib/pagination";
 
 const ITEMS_PER_PAGE = 6;
 
-export default function AssessmentHub() {
+export default function AssessmentHub({ initialAssessments = [], initialCategories = [] }) {
   const [categories, setCategories] = useState(initialCategories);
   const [assessments, setAssessments] = useState(initialAssessments);
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -42,30 +38,39 @@ export default function AssessmentHub() {
 
   const gridTopRef = useRef(null);
 
-  // Fetch live assessments & categories from Supabase on mount
+  // Sync or fetch live assessments & categories from Supabase on mount
   useEffect(() => {
-    async function loadLiveDbData() {
-      try {
-        setIsLoading(true);
-        const [liveAssessments, liveCategories] = await Promise.all([
-          getAllAssessments(),
-          getAllCategories(),
-        ]);
-        if (liveAssessments && liveAssessments.length > 0) {
-          setAssessments(liveAssessments);
-        }
-        if (liveCategories && liveCategories.length > 0) {
-          setCategories(liveCategories);
-        }
-      } catch (err) {
-        console.warn("[AssessmentHub] Live fetch notice:", err);
-      } finally {
-        setIsLoading(false);
-      }
+    if (initialAssessments?.length > 0 && assessments.length === 0) {
+      setAssessments(initialAssessments);
+    }
+    if (initialCategories?.length > 0 && categories.length === 0) {
+      setCategories(initialCategories);
     }
 
-    loadLiveDbData();
-  }, []);
+    if (assessments.length === 0 || categories.length === 0) {
+      async function loadLiveDbData() {
+        try {
+          setIsLoading(true);
+          const [liveAssessments, liveCategories] = await Promise.all([
+            getAllAssessments(),
+            getAllCategories(),
+          ]);
+          if (liveAssessments && liveAssessments.length > 0) {
+            setAssessments(liveAssessments);
+          }
+          if (liveCategories && liveCategories.length > 0) {
+            setCategories(liveCategories);
+          }
+        } catch (err) {
+          console.warn("[AssessmentHub] Live fetch notice:", err);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+
+      loadLiveDbData();
+    }
+  }, [initialAssessments, initialCategories, assessments.length, categories.length]);
 
   // Helper to check if an assessment belongs to a specific category
   const isAssessmentInCategory = (item, catSlug) => {

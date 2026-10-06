@@ -1,15 +1,15 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { getAssessmentById } from "@/lib/adminService";
-import { assessmentsList } from "@/data/assessmentsData";
+import { getAssessmentById, getAllAssessments } from "@/lib/adminService";
 import AssessmentRunner from "@/components/assessments/AssessmentRunner/AssessmentRunner";
 
 export const dynamic = "auto";
 export const revalidate = 300;
 
 export async function generateStaticParams() {
-  return assessmentsList.map((a) => ({
-    id: a.slug,
+  const assessments = await getAllAssessments();
+  return (assessments || []).map((a) => ({
+    id: a.slug || a.id,
   }));
 }
 

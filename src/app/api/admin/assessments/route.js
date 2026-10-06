@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +19,7 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const idOrSlug = searchParams.get("id") || searchParams.get("slug");
 
-    const supabase = await createClient();
+    const supabase = createAdminClient();
 
     if (idOrSlug) {
       const cleanId = idOrSlug.trim();
@@ -105,7 +105,7 @@ export async function POST(request) {
     }
 
     const slug = body.slug?.trim() || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    const supabase = await createClient();
+    const supabase = createAdminClient();
 
     // 1. Resolve Category UUID
     let resolvedCategoryUuid = null;
@@ -238,7 +238,7 @@ export async function DELETE(request) {
     }
 
     const cleanId = idOrSlug.trim();
-    const supabase = await createClient();
+    const supabase = createAdminClient();
 
     let query = supabase.from("assessments").delete();
     if (isUuid(cleanId)) {

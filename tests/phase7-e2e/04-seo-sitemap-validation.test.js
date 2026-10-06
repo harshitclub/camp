@@ -1,11 +1,12 @@
 import { allCourses } from "../../src/data/courses.js";
-import { assessmentsList } from "../../src/data/assessmentsData.js";
+import { getAllAssessments } from "../../src/lib/adminService.js";
 
 /**
  * 04 - SEO, Robots.txt & Dynamic Sitemap Validator
  */
 
-export function runSeoSitemapValidationTests() {
+export async function runSeoSitemapValidationTests() {
+  const assessmentsList = await getAllAssessments();
   const results = {
     name: "SEO, Robots.txt & Dynamic Sitemap Integrity",
     passed: 0,

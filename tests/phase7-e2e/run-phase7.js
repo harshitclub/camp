@@ -22,10 +22,10 @@ async function runAllPhase7Tests() {
   console.log(`  🌐 Target Dev Server: ${BOLD}${baseUrl}${RESET}\n`);
 
   const suites = [
-    runE2EStudentJourneyTests(),
+    await runE2EStudentJourneyTests(),
     await runE2EAdminJourneyTests(baseUrl),
     await runEdgeCasesDataIntegrityTests(baseUrl),
-    runSeoSitemapValidationTests(),
+    await runSeoSitemapValidationTests(),
     await runPerformanceLatencyTests(baseUrl),
   ];
 

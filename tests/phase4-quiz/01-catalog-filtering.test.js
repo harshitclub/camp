@@ -1,10 +1,13 @@
-import { assessmentsList, assessmentCategories } from "../../src/data/assessmentsData.js";
+import { getAllAssessments, getAllCategories } from "../../src/lib/adminService.js";
 
 /**
  * 01 - Assessment Hub Catalog & Filtering Test Suite (/assessments)
  */
 
-export function runCatalogFilteringTests() {
+export async function runCatalogFilteringTests() {
+  const assessmentCategories = await getAllCategories();
+  const assessmentsList = await getAllAssessments();
+
   const results = {
     name: "Assessment Hub Catalog & Filtering (/assessments)",
     passed: 0,
@@ -32,7 +35,7 @@ export function runCatalogFilteringTests() {
   // 2. Category Filter Matching Function
   function filterByCategory(catSlug) {
     if (!catSlug || catSlug === "all") return assessmentsList;
-    return assessmentsList.filter((a) => a.category_id === catSlug);
+    return assessmentsList.filter((a) => a.category_slug === catSlug || a.category_id === catSlug);
   }
 
   const aiTests = filterByCategory("ai-data");

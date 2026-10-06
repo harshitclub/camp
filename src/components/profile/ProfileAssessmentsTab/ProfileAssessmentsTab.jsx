@@ -16,7 +16,7 @@ import {
   ExternalLink
 } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
-import { getAssessmentById } from "@/data/assessmentsData";
+import { getAllAssessments } from "@/lib/adminService";
 
 export default function ProfileAssessmentsTab({ user }) {
   const [attempts, setAttempts] = useState([]);
@@ -78,14 +78,29 @@ export default function ProfileAssessmentsTab({ user }) {
         }
       }
 
-      // 3. Normalize attempts with assessment definitions
+      // 3. Resolve assessment catalog map for title & slug normalization
+      let allAssessmentsMap = new Map();
+      try {
+        const allAsms = await getAllAssessments();
+        if (Array.isArray(allAsms)) {
+          allAsms.forEach((a) => {
+            if (a.id) allAssessmentsMap.set(String(a.id).toLowerCase(), a);
+            if (a.slug) allAssessmentsMap.set(String(a.slug).toLowerCase(), a);
+          });
+        }
+      } catch (err) {
+        console.warn("[ProfileAssessmentsTab] assessment map notice:", err);
+      }
+
+      // 4. Normalize attempts with assessment definitions
       const normalized = Array.from(combinedMap.values()).map((attempt) => {
-        const assessmentDef = getAssessmentById(attempt.assessment_id || attempt.assessment_slug);
+        const lookupKey = String(attempt.assessment_id || attempt.assessment_slug || "").toLowerCase();
+        const assessmentDef = allAssessmentsMap.get(lookupKey) || null;
         return {
           ...attempt,
-          title: attempt.assessment_title || assessmentDef?.title || "Assessment",
+          title: attempt.assessment_title || attempt.title || assessmentDef?.title || "Assessment",
           category_name: attempt.category_name || assessmentDef?.category_name || "General",
-          slug: attempt.assessment_slug || assessmentDef?.slug || attempt.assessment_id || "agentic-ai",
+          slug: attempt.assessment_slug || attempt.slug || assessmentDef?.slug || attempt.assessment_id || "generative-ai-agents",
         };
       });
 

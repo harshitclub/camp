@@ -1,4 +1,8 @@
 import AssessmentHub from "@/components/assessments/AssessmentHub/AssessmentHub";
+import { getAllAssessments, getAllCategories } from "@/lib/adminService";
+
+export const dynamic = "auto";
+export const revalidate = 300; // Next.js ISR: Cache page at the edge for 5 minutes (0ms response time)
 
 export const metadata = {
   title: "Skill Assessment Hub — Free Online Practice Tests",
@@ -56,7 +60,12 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function AssessmentsPage() {
+export default async function AssessmentsPage() {
+  const [assessments, categories] = await Promise.all([
+    getAllAssessments(),
+    getAllCategories(),
+  ]);
+
   return (
     <>
       {/* Schema.org Structured Data (JSON-LD) */}
@@ -72,7 +81,7 @@ export default function AssessmentsPage() {
           __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c"),
         }}
       />
-      <AssessmentHub />
+      <AssessmentHub initialAssessments={assessments} initialCategories={categories} />
     </>
   );
 }

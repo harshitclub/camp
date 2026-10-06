@@ -21,7 +21,7 @@ async function runAllPhase1Tests() {
   const startTime = Date.now();
 
   const suites = [
-    runAssessmentEngineTests(),
+    await runAssessmentEngineTests(),
     runCertificateIdGeneratorTests(),
     runCsvExcelParserTests(),
     runFormValidatorsTests(),

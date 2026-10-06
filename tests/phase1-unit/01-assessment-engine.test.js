@@ -1,9 +1,11 @@
-import { assessmentsList, assessmentCategories } from "../../src/data/assessmentsData.js";
+import { getAllAssessments, getAllCategories } from "../../src/lib/adminService.js";
 
 /**
  * 01 - Assessment Engine & Catalog Integrity Unit Tests
  */
-export function runAssessmentEngineTests() {
+export async function runAssessmentEngineTests() {
+  const assessmentCategories = await getAllCategories();
+  const assessmentsList = await getAllAssessments();
   const results = { name: "Assessment Engine & Catalog Integrity", passed: 0, failed: 0, tests: [] };
 
   function assert(condition, testName, details = "") {

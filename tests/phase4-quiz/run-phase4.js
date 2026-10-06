@@ -19,7 +19,7 @@ async function runAllPhase4Tests() {
   const startTime = Date.now();
 
   const suites = [
-    runCatalogFilteringTests(),
+    await runCatalogFilteringTests(),
     runTimerLifecycleTests(),
     runQuestionPaletteMatrixTests(),
     runScorecardSolutionsReviewTests(),

@@ -12,7 +12,10 @@ import {
   FaqSection,
   CtaBanner,
 } from "@/components/home";
+import { getAllAssessments } from "@/lib/adminService";
 import { faqsData } from "@/data/faqs";
+
+export const revalidate = 300; // Next.js ISR: Revalidate every 5 minutes (0ms edge delivery)
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -61,7 +64,9 @@ const faqPageSchema = {
   }))
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const allAssessments = await getAllAssessments();
+
   return (
     <>
       {/* Schema.org Structured Data (JSON-LD) for Search Rich Snippets */}
@@ -94,7 +99,7 @@ export default function HomePage() {
       <FeaturedCourses />
 
       {/* 4. Interactive Engagement Hook: Free Diagnostic Assessments */}
-      <FeaturedAssessments />
+      <FeaturedAssessments assessments={allAssessments} />
 
       {/* 5. Differentiator: Why CampusSutras vs Traditional College Theory */}
       <WhyChooseUs />

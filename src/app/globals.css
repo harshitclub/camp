@@ -6,25 +6,25 @@
   --mainBlue-dark: #00163a;
   --mainBlue-light: #003380;
   --mainBlue-surface: #f0f5fc;
-  
+
   --accentBlue: #0b57d0;
   --accentBlue-hover: #0842a0;
   --accentBlue-subtle: #e8f0fe;
-  
+
   --accentAmber: #d97706;
   --accentAmber-light: #fef3c7;
   --accentEmerald: #059669;
   --accentEmerald-light: #d1fae5;
   --accentOrange: #ea580c;
   --accentOrange-light: #ffedd5;
-  
+
   /* Neutral / Light Mode Palette */
   --bg-white: #ffffff;
   --bg-page: #f8fafc;
   --bg-card: #ffffff;
   --bg-alt: #f1f5f9;
   --bg-subtle: #f8fafd;
-  
+
   /* Typography Colors */
   --text-heading: #091e42;
   --text-primary: #1e293b;
@@ -32,13 +32,13 @@
   --text-muted: #64748b;
   --text-light: #94a3b8;
   --text-inverse: #ffffff;
-  
+
   /* Borders & Dividers */
   --border-subtle: #edf2f7;
   --border-default: #e2e8f0;
   --border-strong: #cbd5e1;
   --border-focus: #0b57d0;
-  
+
   /* Semantic Feedback Palette */
   --color-danger: #dc2626;
   --color-danger-light: #fee2e2;
@@ -67,38 +67,49 @@
   --font-inter: var(--font-sans);
 
   /* Standardized Typography Scale */
-  --text-xs: 0.75rem;      /* 12px */
-  --text-sm: 0.875rem;     /* 14px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg: 1.125rem;     /* 18px */
-  --text-xl: 1.25rem;      /* 20px */
-  --text-2xl: 1.5rem;      /* 24px */
-  --text-3xl: 1.875rem;    /* 30px */
-  --text-4xl: 2.25rem;     /* 36px */
-  --text-5xl: 3rem;        /* 48px */
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.25rem;
+  /* 36px */
+  --text-5xl: 3rem;
+  /* 48px */
 
   /* Cohesive Brand Gradients */
   --grad-primary: linear-gradient(135deg, #002255 0%, #0b57d0 100%);
   --grad-accent: linear-gradient(135deg, #0b57d0 0%, #0284c7 100%);
   --grad-dark: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
   --grad-surface: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  
+
   /* Shadows */
   --shadow-xs: 0 1px 2px rgba(0, 34, 85, 0.04);
   --shadow-sm: 0 2px 4px rgba(0, 34, 85, 0.06);
   --shadow-md: 0 4px 12px rgba(0, 34, 85, 0.08);
   --shadow-lg: 0 10px 24px -4px rgba(0, 34, 85, 0.1);
   --shadow-hover: 0 14px 28px -4px rgba(0, 34, 85, 0.12);
-  
+
   /* Spacing & Layout */
-  --container-max: 1360px;
+  --container-max: 1280px;
   --transition-fast: 0.15s ease;
   --transition-normal: 0.25s ease;
   --transition-slow: 0.4s ease;
 }
 
 /* Reset & Box Sizing */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -124,7 +135,12 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-sans);
   color: var(--text-heading);
   font-weight: 600;
@@ -132,7 +148,8 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: normal;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 600;
   color: var(--text-heading);
 }
@@ -248,9 +265,11 @@ button {
   .section-title {
     font-size: 1.75rem;
   }
+
   .section-subtitle {
     font-size: 1rem;
   }
+
   .section-header {
     margin-bottom: 2.5rem;
   }
@@ -503,27 +522,54 @@ button {
   .grid-4 {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .grid-3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .grid-4, .grid-3, .grid-2 {
+
+  .grid-4,
+  .grid-3,
+  .grid-2 {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 }
 
 /* Helper Utilities */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 650; }
-.text-mainBlue { color: var(--mainBlue); }
-.text-accentBlue { color: var(--accentBlue); }
-.text-muted { color: var(--text-muted); }
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 650;
+}
+
+.text-mainBlue {
+  color: var(--mainBlue);
+}
+
+.text-accentBlue {
+  color: var(--accentBlue);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
 
 /* =========================================================
    Print Stylesheet - Optimized for Single-Page Certificate
@@ -534,12 +580,15 @@ button {
     margin: 8mm 10mm;
   }
 
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  html, body {
+  html,
+  body {
     background: #ffffff !important;
     color: #091e42 !important;
     font-size: 13px !important;

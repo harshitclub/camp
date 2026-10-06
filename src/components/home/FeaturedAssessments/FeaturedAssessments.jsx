@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./FeaturedAssessments.module.css";
-import { assessmentsList } from "@/data/assessmentsData";
+import { getAllAssessments } from "@/lib/adminService";
 import { 
   Sparkles, 
   ArrowRight, 
@@ -12,7 +12,7 @@ import {
   Cpu, 
   BarChart3, 
   FileSpreadsheet, 
-  Megaphone,
+  Megaphone, 
   CheckCircle2
 } from "lucide-react";
 
@@ -66,10 +66,12 @@ const ICON_MAP = {
   },
 };
 
-export default function FeaturedAssessments() {
-  const featuredAssessments = FEATURED_IDS
-    .map((id) => assessmentsList.find((a) => a.id === id))
+export default async function FeaturedAssessments({ assessments }) {
+  const allAssessments = assessments || (await getAllAssessments());
+  const matched = FEATURED_IDS
+    .map((id) => (allAssessments || []).find((a) => a.slug === id || a.id === id))
     .filter(Boolean);
+  const featuredAssessments = matched.length > 0 ? matched : (allAssessments || []).slice(0, 6);
 
   return (
     <section className={styles.assessmentsSection}>
@@ -95,7 +97,7 @@ export default function FeaturedAssessments() {
         {/* 6-Card Light Minimalist Grid */}
         <div className={styles.grid}>
           {featuredAssessments.map((item) => {
-            const config = ICON_MAP[item.id] || {
+            const config = ICON_MAP[item.slug] || ICON_MAP[item.id] || {
               icon: Brain,
               bg: "#f0f5fc",
               color: "#002255",
@@ -105,8 +107,8 @@ export default function FeaturedAssessments() {
 
             return (
               <Link
-                key={item.id}
-                href={`/assessments/${item.id}`}
+                key={item.id || item.slug}
+                href={`/assessments/${item.slug || item.id}`}
                 className={styles.card}
               >
                 {/* Top Row: Icon & Category Tag */}

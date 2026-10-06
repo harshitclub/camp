@@ -15,11 +15,30 @@
  * - Resilient client-side and offline fallbacks
  */
 
-import { supabase } from "@/lib/supabase/client";
-import { assessmentsList, assessmentCategories } from "@/data/assessmentsData";
-import { memoryCache } from "@/lib/cache";
-import { isUuid, slugify } from "@/lib/validators";
-import { normalizeCertificate } from "@/lib/certificateUtils";
+import { supabase as browserSupabase } from "./supabase/client.js";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { memoryCache } from "./cache.js";
+import { isUuid, slugify } from "./validators.js";
+import { normalizeCertificate } from "./certificateUtils.js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://mjxjoxpajtejynxzjtoa.supabase.co";
+const serviceKey = 
+  process.env.SUPABASE_SECRET_KEY || 
+  process.env.SUPABASE_SERVICE_ROLE_KEY || 
+  process.env.NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY || 
+  "";
+
+function getDbClient() {
+  if (typeof window === "undefined" && serviceKey) {
+    if (!globalThis._adminDbClient) {
+      globalThis._adminDbClient = createSupabaseClient(supabaseUrl, serviceKey, {
+        auth: { persistSession: false, autoRefreshToken: false },
+      });
+    }
+    return globalThis._adminDbClient;
+  }
+  return browserSupabase;
+}
 
 // Initial Demo/Fallback Users for development and offline testing
 const INITIAL_DEMO_USERS = [
@@ -123,12 +142,21 @@ export async function getAllCategories() {
 
   const map = new Map();
 
-  // 1. Static fallback categories
-  assessmentCategories.forEach((cat) => map.set(cat.slug, cat));
+  // Core base pillars to ensure clean navigation slugs
+  const DEFAULT_PILLARS = [
+    { id: "all", slug: "all", name: "All Categories", color: "#002255" },
+    { id: "ai-data", slug: "ai-data", name: "AI, ML & Python", color: "#7c3aed" },
+    { id: "web-software", slug: "web-software", name: "Software & Mobile Dev", color: "#0284c7" },
+    { id: "data-cloud", slug: "data-cloud", name: "Data, Cloud & Security", color: "#4f46e5" },
+    { id: "business-management", slug: "business-management", name: "Business & Management", color: "#d97706" },
+    { id: "growth-career", slug: "growth-career", name: "Marketing, Design & Career", color: "#e11d48" },
+  ];
+  DEFAULT_PILLARS.forEach((cat) => map.set(cat.slug, cat));
 
-  // 2. Fetch live categories from Supabase
+  // Fetch live categories from Supabase
   try {
-    const { data, error } = await supabase
+    const db = getDbClient();
+    const { data, error } = await db
       .from("categories")
       .select("*")
       .order("name", { ascending: true });
@@ -151,7 +179,7 @@ export async function getAllCategories() {
     console.warn("[AdminService] getAllCategories db error:", err);
   }
 
-  // 3. Custom localStorage categories
+  // Custom localStorage categories
   const custom = getCustomCategories();
   custom.forEach((cat) => {
     if (!map.has(cat.slug)) {
@@ -260,22 +288,13 @@ export async function getAllAssessments() {
   if (cached) return cached;
 
   const map = new Map();
+  const db = getDbClient();
 
-  // 1. Static list first as initial fallback
-  assessmentsList.forEach((a) => {
-    map.set(a.slug || a.id, {
-      ...a,
-      category_slug: a.category_id || a.category_slug,
-      is_custom: false,
-      is_published: a.is_published !== undefined ? a.is_published : true,
-    });
-  });
-
-  // 2. Fetch live assessments from Supabase
+  // Fetch live assessments & categories from Supabase
   try {
     const [{ data: asms, error: asmErr }, { data: cats }] = await Promise.all([
-      supabase.from("assessments").select("*, questions(*)").order("created_at", { ascending: true }),
-      supabase.from("categories").select("*"),
+      db.from("assessments").select("*, questions(*)").order("created_at", { ascending: true }),
+      db.from("categories").select("*"),
     ]);
 
     const catIdToSlug = new Map((cats || []).map((c) => [c.id, c.slug]));
@@ -291,23 +310,21 @@ export async function getAllAssessments() {
         const sortedQuestions = (a.questions || []).sort(
           (x, y) => (x.question_number || 0) - (y.question_number || 0)
         );
-        const fallbackAsm = map.get(a.slug) || {};
         const catSlug =
           catIdToSlug.get(a.category_id) ||
           catNameToSlug.get((a.category_name || "").toLowerCase().trim()) ||
-          fallbackAsm.category_id ||
-          fallbackAsm.category_slug ||
+          a.category_slug ||
           "all";
 
         map.set(a.slug || a.id, {
-          ...fallbackAsm,
           ...a,
           category_slug: catSlug,
           category_id: a.category_id || catSlug,
-          category_name: a.category_name || fallbackAsm.category_name,
-          questions: sortedQuestions.length > 0 ? sortedQuestions : fallbackAsm.questions || [],
-          total_questions: a.total_questions || sortedQuestions.length || fallbackAsm.total_questions || 15,
+          category_name: a.category_name || "General",
+          questions: sortedQuestions,
+          total_questions: a.total_questions || sortedQuestions.length || 15,
           is_custom: false,
+          is_published: a.is_published !== undefined ? a.is_published : true,
         });
       });
     }
@@ -315,7 +332,7 @@ export async function getAllAssessments() {
     console.warn("[AdminService] getAllAssessments db error:", err);
   }
 
-  // 3. Custom list from localStorage (can override or add)
+  // Custom list from localStorage (can override or add)
   const custom = getCustomAssessments();
   custom.forEach((a) => {
     map.set(a.slug || a.id, {
@@ -326,12 +343,14 @@ export async function getAllAssessments() {
   });
 
   const result = Array.from(map.values());
-  memoryCache.set(cacheKey, result, 60, ["assessments"]);
+  if (result.length > 0) {
+    memoryCache.set(cacheKey, result, 300, ["assessments"]);
+  }
   return result;
 }
 
 /**
- * Retrieves a single assessment by ID or Slug with caching and full fallbacks.
+ * Retrieves a single assessment by ID or Slug with caching.
  * 
  * @param {string} idOrSlug - Assessment identifier or slug
  * @returns {Promise<object|null>} Assessment object or null
@@ -344,10 +363,11 @@ export async function getAssessmentById(idOrSlug) {
   if (cached) return cached;
 
   const isTargetUuid = isUuid(cleanId);
+  const db = getDbClient();
 
   // 1. Query Supabase
   try {
-    let query = supabase.from("assessments").select("*, questions(*)");
+    let query = db.from("assessments").select("*, questions(*)");
     if (isTargetUuid) {
       query = query.or(`slug.eq.${cleanId},id.eq.${cleanId}`);
     } else {
@@ -361,46 +381,11 @@ export async function getAssessmentById(idOrSlug) {
         (a, b) => (a.question_number || 0) - (b.question_number || 0)
       );
 
-      let finalAssessment = null;
-
-      // If database has questions, return full assessment
-      if (sortedQuestions.length > 0) {
-        finalAssessment = {
-          ...data,
-          questions: sortedQuestions,
-          total_questions: data.total_questions || sortedQuestions.length,
-        };
-      } else {
-        // If questions missing in DB row, check static or local fallback
-        const staticMatch = assessmentsList.find((a) => a.slug === cleanId || a.id === cleanId);
-        if (staticMatch && staticMatch.questions?.length > 0) {
-          finalAssessment = {
-            ...data,
-            questions: staticMatch.questions,
-            total_questions: staticMatch.questions.length,
-          };
-        } else if (typeof window !== "undefined") {
-          try {
-            const customList = JSON.parse(localStorage.getItem("campussutras_custom_assessments") || "[]");
-            const customFound = customList.find((a) => a.id === cleanId || a.slug === cleanId);
-            if (customFound && customFound.questions?.length > 0) {
-              finalAssessment = {
-                ...data,
-                questions: customFound.questions,
-                total_questions: customFound.questions.length,
-              };
-            }
-          } catch (e) {}
-        }
-
-        if (!finalAssessment) {
-          finalAssessment = {
-            ...data,
-            questions: sortedQuestions,
-            total_questions: data.total_questions || sortedQuestions.length || 0,
-          };
-        }
-      }
+      const finalAssessment = {
+        ...data,
+        questions: sortedQuestions,
+        total_questions: data.total_questions || sortedQuestions.length || 0,
+      };
 
       memoryCache.set(cacheKey, finalAssessment, 60, ["assessment", `assessment:${cleanId}`]);
       return finalAssessment;
@@ -409,14 +394,7 @@ export async function getAssessmentById(idOrSlug) {
     console.warn("[AdminService] getAssessmentById db error:", err);
   }
 
-  // 2. Static catalog fallback
-  const staticFound = assessmentsList.find((a) => a.id === cleanId || a.slug === cleanId);
-  if (staticFound) {
-    memoryCache.set(cacheKey, staticFound, 60, ["assessment", `assessment:${cleanId}`]);
-    return staticFound;
-  }
-
-  // 3. Custom localStorage fallback
+  // 2. Custom localStorage fallback
   if (typeof window !== "undefined") {
     try {
       const customList = JSON.parse(localStorage.getItem("campussutras_custom_assessments") || "[]");

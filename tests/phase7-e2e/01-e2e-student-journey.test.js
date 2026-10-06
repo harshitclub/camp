@@ -1,10 +1,12 @@
-import { assessmentsList, assessmentCategories } from "../../src/data/assessmentsData.js";
+import { getAllAssessments, getAllCategories } from "../../src/lib/adminService.js";
 
 /**
  * 01 - End-to-End Complete Student User Journey Test
  */
 
-export function runE2EStudentJourneyTests() {
+export async function runE2EStudentJourneyTests() {
+  const assessmentsList = await getAllAssessments();
+
   const results = {
     name: "E2E Complete Student Journey (Signup -> Quiz -> Scorecard -> Transcripts)",
     passed: 0,
@@ -42,7 +44,7 @@ export function runE2EStudentJourneyTests() {
 
   // --- STEP 2: Assessment Discovery & Category Filtering ---
   const selectedCategory = "ai-data";
-  const availableTests = assessmentsList.filter((a) => a.category_id === selectedCategory);
+  const availableTests = assessmentsList.filter((a) => a.category_slug === selectedCategory || a.category_id === selectedCategory);
   assert(
     availableTests.length === 6,
     `Step 2: Student browses Assessment Hub and filters '${selectedCategory}' category (6 tests available)`

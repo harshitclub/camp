@@ -1,9 +1,9 @@
 import { allCourses } from "@/data/courses";
-import { assessmentsList } from "@/data/assessmentsData";
+import { getAllAssessments } from "@/lib/adminService";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://campussutras.com";
 
-export default function sitemap() {
+export default async function sitemap() {
   const staticPages = [
     { route: "", priority: 1.0, changeFreq: "daily" },
     { route: "/courses", priority: 0.95, changeFreq: "weekly" },
@@ -30,7 +30,9 @@ export default function sitemap() {
     priority: 0.90,
   }));
 
-  const assessmentPages = (assessmentsList || []).map((test) => ({
+  const assessments = await getAllAssessments();
+
+  const assessmentPages = (assessments || []).map((test) => ({
     url: `${BASE_URL}/assessments/${test.slug || test.id}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "monthly",
